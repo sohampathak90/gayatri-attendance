@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Employee Attendance | Gayatri Industries</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  min-height:100vh;
+  background:#030914;
+  color:#edf5ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.grid{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background-image:
+    linear-gradient(rgba(70,150,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(70,150,255,.045) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+
+.container{
+  width:100%;
+  max-width:520px;
+}
+
+.brand{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  margin:auto;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  font-size:32px;
+  background:linear-gradient(135deg,#126cc5,#071d3a);
+}
+
+.brand h1{
+  margin-top:13px;
+  font-size:28px;
+}
+
+.brand h1 span{
+  color:#ff6b00;
+}
+
+.brand p{
+  margin-top:6px;
+  font-size:10px;
+  color:#74849a;
+  letter-spacing:1.5px;
+}
+
+.card{
+  padding:28px;
+  border-radius:25px;
+  background:#08172b;
+  border:1px solid rgba(67,147,255,.2);
+}
+
+.status{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:13px;
+  border-radius:13px;
+  background:rgba(40,130,255,.07);
+  margin-bottom:22px;
+  font-size:12px;
+}
+
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#ff9d00;
+}
+
+.field label{
+  display:block;
+  font-size:11px;
+  color:#8b9bb0;
+  margin-bottom:8px;
+}
+
+.field input{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #1c4d7d;
+  background:#061326;
+  color:white;
+  font-size:15px;
+  margin-bottom:16px;
+}
+
+.location-box{
+  margin:6px 0 18px;
+  padding:15px;
+  border-radius:14px;
+  background:#061326;
+}
+
+.location-title{
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.location-text,
+.distance{
+  font-size:11px;
+  color:#9fb4ca;
+  line-height:1.6;
+}
+
+.distance{
+  margin-top:8px;
+  color:#62b3ff;
+}
+
+.button-group{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.action-btn{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:13px;
+  color:white;
+  font-size:13px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.checkin-btn{
+  background:linear-gradient(135deg,#137ee9,#0b57a4);
+}
+
+.checkout-btn{
+  background:linear-gradient(135deg,#ff7a00,#d94d00);
+}
+
+.action-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.message{
+  display:none;
+  margin-top:16px;
+  padding:13px;
+  border-radius:12px;
+  font-size:12px;
+}
+
+.message.show{
+  display:block;
+}
+
+.success{
+  background:rgba(48,220,140,.1);
+  color:#66e6a5;
+}
+
+.error{
+  background:rgba(255,80,70,.1);
+  color:#ff998d;
+}
+
+.info{
+  background:rgba(50,145,255,.1);
+  color:#86c4ff;
+}
+
+.today{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+.today h3{
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+.record{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  font-size:12px;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:20px;
+  color:#8fa0b4;
+  font-size:12px;
+  text-decoration:none;
+}
+
+@media(max-width:500px){
+
+  .button-group{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="grid"></div>
+
+<div class="container">
+
+<div class="brand">
+
+  <div class="logo">📍</div>
+
+  <h1>Face<span>Attend</span></h1>
+
+  <p>GAYATRI INDUSTRIES • SMART ATTENDANCE</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="status">
+
+  <div class="dot" id="statusDot"></div>
+
+  <span id="statusText">
+    Ready for attendance
+  </span>
+
+</div>
+
+
+<div class="field">
+
+  <label>EMPLOYEE ID</label>
+
+  <input
+    type="text"
+    id="employeeId"
+    placeholder="Example: GI-001"
+  >
+
+</div>
+
+
+<div class="location-box">
+
+  <div class="location-title">
+    📍 Company Location Verification
+  </div>
+
+  <div class="location-text">
+    Attendance is allowed only within the authorized Gayatri Industries area.
+  </div>
+
+  <div class="distance" id="distanceText">
+    Location not checked yet
+  </div>
+
+</div>
+
+
+<div class="button-group">
+
+  <button
+    class="action-btn checkin-btn"
+    id="checkInBtn"
+  >
+    🟢 CHECK-IN
+  </button>
+
+  <button
+    class="action-btn checkout-btn"
+    id="checkOutBtn"
+  >
+    🔴 CHECK-OUT
+  </button>
+
+</div>
+
+
+<div
+  class="message"
+  id="message"
+></div>
+
+
+<div
+  class="today"
+  id="todayBox"
+  style="display:none"
+>
+
+  <h3>Today's Attendance</h3>
+
+  <div class="record">
+
+    <span>Employee</span>
+
+    <span id="recordName">
+      —
+    </span>
+
+  </div>
+
+
+  <div class="record">
+
+    <span>Check-In</span>
+
+    <span id="recordCheckIn">
+      Not marked
+    </span>
+
+  </div>
+
+
+  <div class="record">
+
+    <span>Check-Out</span>
+
+    <span id="recordCheckOut">
+      Not marked
+    </span>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<a
+  href="./index.html"
+  class="back"
+>
+  ← Back to Home
+</a>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://ysdpsndophokczdqysiw.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+
+/* =========================
+   COMPANY LOCATION
+========================= */
+
+/* Check that these are your correct
+   Gayatri Industries coordinates */
+
+const COMPANY_LAT = 19.4159;
+
+const COMPANY_LNG = 72.8541;
+
+const ALLOWED_RADIUS = 200;
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+  text,
+  type = "info"
+){
+
+  const message =
+  document.getElementById("message");
+
+  message.textContent =
+  text;
+
+  message.className =
+  "message show " + type;
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function setStatus(
+  text,
+  color = "orange"
+){
+
+  document
+  .getElementById("statusText")
+  .textContent =
+  text;
+
+  const dot =
+  document.getElementById("statusDot");
+
+  if(color === "green"){
+
+    dot.style.background =
+    "#45e29a";
+
+  }
+
+  else if(color === "red"){
+
+    dot.style.background =
+    "#ff6259";
+
+  }
+
+  else{
+
+    dot.style.background =
+    "#ff9d00";
+
+  }
+
+}
+
+
+/* =========================
+   TODAY DATE
+========================= */
+
+function getToday(){
+
+  const now =
+  new Date();
+
+  const year =
+  now.getFullYear();
+
+  const month =
+  String(
+    now.getMonth() + 1
+  ).padStart(
+    2,
+    "0"
+  );
+
+  const day =
+  String(
+    now.getDate()
+  ).padStart(
+    2,
+    "0"
+  );
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+/* =========================
+   DISTANCE CALCULATION
+========================= */
+
+function calculateDistance(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+){
+
+  const R =
+  6371000;
+
+  const toRad =
+  value =>
+  value * Math.PI / 180;
+
+  const dLat =
+  toRad(lat2 - lat1);
+
+  const dLon =
+  toRad(lon2 - lon1);
+
+  const a =
+
+    Math.sin(
+      dLat / 2
+    ) *
+
+    Math.sin(
+      dLat / 2
+    )
+
+    +
+
+    Math.cos(
+      toRad(lat1)
+    )
+
+    *
+
+    Math.cos(
+      toRad(lat2)
+    )
+
+    *
+
+    Math.sin(
+      dLon / 2
+    )
+
+    *
+
+    Math.sin(
+      dLon / 2
+    );
+
+  const c =
+  2 *
+  Math.atan2(
+    Math.sqrt(a),
+    Math.sqrt(1-a)
+  );
+
+  return R * c;
+
+}
+
+
+/* =========================
+   GET LOCATION
+========================= */
+
+function getLocation(){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      if(
+        !navigator.geolocation
+      ){
+
+        reject(
+          new Error(
+            "Geolocation is not supported on this device."
+          )
+        );
+
+        return;
+
+      }
+
+
+      navigator.geolocation.getCurrentPosition(
+
+        position => {
+
+          resolve({
+
+            lat:
+            position.coords.latitude,
+
+            lng:
+            position.coords.longitude,
+
+            accuracy:
+            position.coords.accuracy
+
+          });
+
+        },
+
+
+        error => {
+
+          if(
+            error.code === 1
+          ){
+
+            reject(
+              new Error(
+                "Location permission denied."
+              )
+            );
+
+          }
+
+          else if(
+            error.code === 2
+          ){
+
+            reject(
+              new Error(
+                "Location unavailable."
+              )
+            );
+
+          }
+
+          else if(
+            error.code === 3
+          ){
+
+            reject(
+              new Error(
+                "Location request timed out."
+              )
+            );
+
+          }
+
+          else{
+
+            reject(
+              new Error(
+                "Unable to get your location."
+              )
+            );
+
+          }
+
+        },
+
+
+        {
+
+          enableHighAccuracy:
+          true,
+
+          timeout:
+          15000,
+
+          maximumAge:
+          0
+
+        }
+
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   GET EMPLOYEE
+========================= */
+
+async function getEmployee(){
+
+  const employeeId =
+  document
+  .getElementById(
+    "employeeId"
+  )
+  .value
+  .trim();
+
+
+  if(
+    !employeeId
+  ){
+
+    throw new Error(
+      "Please enter your Employee ID."
+    );
+
+  }
+
+
+  const {
+
+    data,
+    error
+
+  } =
+
+  await supabaseClient
+
+  .from("employees")
+
+  .select("*")
+
+  .eq(
+    "employee_id",
+    employeeId
+  )
+
+  .maybeSingle();
+
+
+  if(error){
+
+    throw error;
+
+  }
+
+
+  if(!data){
+
+    throw new Error(
+      `Employee ID "${employeeId}" was not found.`
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/* =========================
+   VERIFY LOCATION
+========================= */
+
+async function verifyLocation(){
+
+  setStatus(
+    "Checking company location...",
+    "orange"
+  );
+
+
+  const location =
+  await getLocation();
+
+
+  const distance =
+  calculateDistance(
+
+    location.lat,
+
+    location.lng,
+
+    COMPANY_LAT,
+
+    COMPANY_LNG
+
+  );
+
+
+  document
+  .getElementById(
+    "distanceText"
+  )
+  .textContent =
+
+  `Distance from company: ${Math.round(distance)} meters • GPS accuracy ±${Math.round(location.accuracy)}m`;
+
+
+  if(
+    distance > ALLOWED_RADIUS
+  ){
+
+    throw new Error(
+      `You are outside the company attendance area. Allowed radius: ${ALLOWED_RADIUS} meters.`
+    );
+
+  }
+
+
+  return location;
+
+}
+
+
+/* =========================
+   LOAD TODAY RECORD
+========================= */
+
+async function loadTodayRecord(
+  employee
+){
+
+  const {
+
+    data,
+    error
+
+  } =
+
+  await supabaseClient
+
+  .from("attendance")
+
+  .select("*")
+
+  .eq(
+    "employee_id",
+    employee.employee_id
+  )
+
+  .eq(
+    "attendance_date",
+    getToday()
+  )
+
+  .maybeSingle();
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+    return;
+
+  }
+
+
+  if(!data){
+
+    document
+    .getElementById(
+      "todayBox"
+    )
+    .style.display =
+    "none";
+
+    return;
+
+  }
+
+
+  document
+  .getElementById(
+    "todayBox"
+  )
+  .style.display =
+  "block";
+
+
+  document
+  .getElementById(
+    "recordName"
+  )
+  .textContent =
+  employee.name;
+
+
+  document
+  .getElementById(
+    "recordCheckIn"
+  )
+  .textContent =
+
+  data.check_in_time
+
+  ?
+
+  new Date(
+    data.check_in_time
+  )
+  .toLocaleTimeString()
+
+  :
+
+  "Not marked";
+
+
+  document
+  .getElementById(
+    "recordCheckOut"
+  )
+  .textContent =
+
+  data.check_out_time
+
+  ?
+
+  new Date(
+    data.check_out_time
+  )
+  .toLocaleTimeString()
+
+  :
+
+  "Not marked";
+
+}
+
+
+/* =========================
+   CHECK-IN
+========================= */
+
+async function checkIn(){
+
+  const checkInBtn =
+  document.getElementById(
+    "checkInBtn"
+  );
+
+
+  const checkOutBtn =
+  document.getElementById(
+    "checkOutBtn"
+  );
+
+
+  checkInBtn.disabled =
+  true;
+
+  checkOutBtn.disabled =
+  true;
+
+
+  try{
+
+    checkInBtn.textContent =
+    "Verifying Employee...";
+
+
+    setStatus(
+      "Verifying Employee ID...",
+      "orange"
+    );
+
+
+    const employee =
+    await getEmployee();
+
+
+    checkInBtn.textContent =
+    "Checking Location...";
+
+
+    const location =
+    await verifyLocation();
+
+
+    checkInBtn.textContent =
+    "Checking Attendance...";
+
+
+    const {
+
+      data: existingRecord,
+
+      error: recordError
+
+    } =
+
+    await supabaseClient
+
+    .from("attendance")
+
+    .select("*")
+
+    .eq(
+      "employee_id",
+      employee.employee_id
+    )
+
+    .eq(
+      "attendance_date",
+      getToday()
+    )
+
+    .maybeSingle();
+
+
+    if(recordError){
+
+      throw recordError;
+
+    }
+
+
+    if(existingRecord){
+
+      if(
+        existingRecord.check_in_time
+      ){
+
+        throw new Error(
+          "You have already checked in today."
+        );
+
+      }
+
+    }
+
+
+    checkInBtn.textContent =
+    "Marking Check-In...";
+
+
+    const now =
+    new Date()
+    .toISOString();
+
+
+    const {
+
+      error: insertError
+
+    } =
+
+    await supabaseClient
+
+    .from("attendance")
+
+    .insert([{
+
+      employee_id:
+      employee.employee_id,
+
+      employee_name:
+      employee.name,
+
+      department:
+      employee.department,
+
+      attendance_date:
+      getToday(),
+
+      check_in_time:
+      now,
+
+      check_in_lat:
+      location.lat,
+
+      check_in_lng:
+      location.lng
+
+    }]);
+
+
+    if(insertError){
+
+      throw insertError;
+
+    }
+
+
+    setStatus(
+      "Check-In successful",
+      "green"
+    );
+
+
+    showMessage(
+
+      `✓ Check-In successful! Welcome ${employee.name}.`,
+
+      "success"
+
+    );
+
+
+    await loadTodayRecord(
+      employee
+    );
+
+  }
+
+
+  catch(error){
+
+    console.error(
+      error
+    );
+
+
+    setStatus(
+      "Check-In failed",
+      "red"
+    );
+
+
+    showMessage(
+
+      error.message,
+
+      "error"
+
+    );
+
+  }
+
+
+  finally{
+
+    checkInBtn.disabled =
+    false;
+
+    checkOutBtn.disabled =
+    false;
+
+
+    checkInBtn.textContent =
+    "🟢 CHECK-IN";
+
+  }
+
+}
+
+
+/* =========================
+   CHECK-OUT
+========================= */
+
+async function checkOut(){
+
+  const checkInBtn =
+  document.getElementById(
+    "checkInBtn"
+  );
+
+
+  const checkOutBtn =
+  document.getElementById(
+    "checkOutBtn"
+  );
+
+
+  checkInBtn.disabled =
+  true;
+
+  checkOutBtn.disabled =
+  true;
+
+
+  try{
+
+    checkOutBtn.textContent =
+    "Verifying Employee...";
+
+
+    setStatus(
+      "Verifying Employee ID...",
+      "orange"
+    );
+
+
+    const employee =
+    await getEmployee();
+
+
+    checkOutBtn.textContent =
+    "Checking Location...";
+
+
+    const location =
+    await verifyLocation();
+
+
+    checkOutBtn.textContent =
+    "Checking Attendance...";
+
+
+    const {
+
+      data: record,
+
+      error: recordError
+
+    } =
+
+    await supabaseClient
+
+    .from("attendance")
+
+    .select("*")
+
+    .eq(
+      "employee_id",
+      employee.employee_id
+    )
+
+    .eq(
+      "attendance_date",
+      getToday()
+    )
+
+    .maybeSingle();
+
+
+    if(recordError){
+
+      throw recordError;
+
+    }
+
+
+    if(
+      !record
+    ){
+
+      throw new Error(
+        "Check-In not found. Please check in first."
+      );
+
+    }
+
+
+    if(
+      !record.check_in_time
+    ){
+
+      throw new Error(
+        "Please check in first."
+      );
+
+    }
+
+
+    if(
+      record.check_out_time
+    ){
+
+      throw new Error(
+        "You have already checked out today."
+      );
+
+    }
+
+
+    checkOutBtn.textContent =
+    "Marking Check-Out...";
+
+
+    const now =
+    new Date()
+    .toISOString();
+
+
+    const {
+
+      error: updateError
+
+    } =
+
+    await supabaseClient
+
+    .from("attendance")
+
+    .update({
+
+      check_out_time:
+      now,
+
+      check_out_lat:
+      location.lat,
+
+      check_out_lng:
+      location.lng
+
+    })
+
+    .eq(
+      "id",
+      record.id
+    );
+
+
+    if(updateError){
+
+      throw updateError;
+
+    }
+
+
+    setStatus(
+      "Check-Out successful",
+      "green"
+    );
+
+
+    showMessage(
+
+      `✓ Check-Out successful! Have a great day, ${employee.name}.`,
+
+      "success"
+
+    );
+
+
+    await loadTodayRecord(
+      employee
+    );
+
+  }
+
+
+  catch(error){
+
+    console.error(
+      error
+    );
+
+
+    setStatus(
+      "Check-Out failed",
+      "red"
+    );
+
+
+    showMessage(
+
+      error.message,
+
+      "error"
+
+    );
+
+  }
+
+
+  finally{
+
+    checkInBtn.disabled =
+    false;
+
+    checkOutBtn.disabled =
+    false;
+
+
+    checkOutBtn.textContent =
+    "🔴 CHECK-OUT";
+
+  }
+
+}
+
+
+/* =========================
+   BUTTON EVENTS
+========================= */
+
+document
+.getElementById(
+  "checkInBtn"
+)
+.addEventListener(
+  "click",
+  checkIn
+);
+
+
+document
+.getElementById(
+  "checkOutBtn"
+)
+.addEventListener(
+  "click",
+  checkOut
+);
+
+</script>
+
+</body>
+
+</html>

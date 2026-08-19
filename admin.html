@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Gayatri Industries</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,Segoe UI,sans-serif;
+  background:#030914;
+  color:#edf5ff;
+  min-height:100vh;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(0,115,255,.16),transparent 28%),
+    radial-gradient(circle at 90% 90%,rgba(255,100,0,.10),transparent 30%),
+    #030914;
+}
+
+.grid{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background-image:
+    linear-gradient(rgba(70,150,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(70,150,255,.04) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+
+/* HEADER */
+
+.header{
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(3,9,20,.75);
+  backdrop-filter:blur(15px);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  background:linear-gradient(135deg,#137ee9,#062b55);
+  box-shadow:0 10px 30px rgba(0,100,255,.25);
+}
+
+.brand h2{
+  font-size:17px;
+}
+
+.brand p{
+  color:#8192a8;
+  font-size:10px;
+  margin-top:3px;
+  letter-spacing:1px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.live{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  color:#70e0a4;
+}
+
+.live-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#45e29a;
+  box-shadow:0 0 12px #45e29a;
+}
+
+.manage-btn{
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,#137ee9,#0b57a4);
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:11px;
+}
+
+.logout-btn{
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,#e5484d,#a91d27);
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:11px;
+}
+
+/* MAIN */
+
+.main{
+  width:90%;
+  max-width:1250px;
+  margin:35px auto;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:25px;
+}
+
+.top h1{
+  font-size:28px;
+}
+
+.top p{
+  font-size:12px;
+  color:#8393a8;
+  margin-top:6px;
+}
+
+.date-box{
+  padding:10px 15px;
+  border-radius:10px;
+  background:#08172b;
+  border:1px solid rgba(70,140,255,.2);
+  color:#8ebeff;
+  font-size:11px;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  padding:20px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#0a1b31,#061222);
+  border:1px solid rgba(70,140,255,.15);
+}
+
+.stat-icon{
+  font-size:23px;
+  margin-bottom:13px;
+}
+
+.stat-number{
+  font-size:28px;
+  font-weight:bold;
+}
+
+.stat-title{
+  margin-top:5px;
+  font-size:11px;
+  color:#8393a8;
+}
+
+/* CONTROLS */
+
+.controls{
+  display:flex;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.search-box,
+.date-input{
+  padding:13px 15px;
+  border-radius:11px;
+  border:1px solid rgba(70,140,255,.2);
+  background:#061326;
+  color:white;
+  outline:none;
+  font-size:12px;
+}
+
+.search-box{
+  flex:1;
+}
+
+.date-input{
+  width:160px;
+}
+
+.refresh-btn,
+.download-btn{
+  padding:13px 18px;
+  border:none;
+  border-radius:11px;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:12px;
+}
+
+.refresh-btn{
+  background:linear-gradient(135deg,#137ee9,#0b57a4);
+}
+
+.download-btn{
+  background:linear-gradient(135deg,#16a05d,#08733d);
+}
+
+.download-btn:hover{
+  opacity:.9;
+}
+
+/* TABLE */
+
+.table-card{
+  border-radius:20px;
+  overflow:hidden;
+  background:#071426;
+  border:1px solid rgba(70,140,255,.15);
+}
+
+.table-header{
+  padding:18px 20px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.table-header h3{
+  font-size:14px;
+}
+
+.table-wrapper{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:800px;
+}
+
+th{
+  text-align:left;
+  padding:14px 20px;
+  font-size:10px;
+  color:#7f91a8;
+  letter-spacing:.5px;
+  background:rgba(255,255,255,.02);
+}
+
+td{
+  padding:16px 20px;
+  font-size:12px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+.status-badge{
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:10px;
+  display:inline-block;
+}
+
+.present{
+  background:rgba(48,220,140,.1);
+  color:#66e6a5;
+}
+
+.incomplete{
+  background:rgba(255,160,0,.1);
+  color:#ffb85c;
+}
+
+.loading{
+  text-align:center;
+  padding:40px;
+  color:#8192a8;
+}
+
+@media(max-width:850px){
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .header{
+    padding:15px;
+  }
+
+  .live{
+    display:none;
+  }
+
+  .manage-btn,
+  .logout-btn{
+    padding:9px 10px;
+    font-size:10px;
+  }
+
+  .main{
+    width:92%;
+  }
+
+  .top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .controls{
+    flex-direction:column;
+  }
+
+  .date-input{
+    width:100%;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+
+<header class="header">
+
+  <div class="brand">
+
+    <div class="logo">⚡</div>
+
+    <div>
+      <h2>Gayatri Industries</h2>
+      <p>SMART ATTENDANCE ADMIN</p>
+    </div>
+
+  </div>
+
+  <div class="header-right">
+
+    <div class="live">
+      <div class="live-dot"></div>
+      ADMIN ONLINE
+    </div>
+
+    <button
+      class="manage-btn"
+      onclick="window.location.href='./employees.html'"
+    >
+      👥 Manage Employees
+    </button>
+
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      Logout
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="main">
+
+<div class="top">
+
+  <div>
+    <h1>Attendance Dashboard</h1>
+    <p>Monitor your workforce attendance in real-time.</p>
+  </div>
+
+  <div
+    class="date-box"
+    id="currentDate"
+  ></div>
+
+</div>
+
+
+<div class="stats">
+
+  <div class="stat-card">
+    <div class="stat-icon">👥</div>
+
+    <div
+      class="stat-number"
+      id="totalEmployees"
+    >
+      0
+    </div>
+
+    <div class="stat-title">
+      TOTAL EMPLOYEES
+    </div>
+  </div>
+
+
+  <div class="stat-card">
+    <div class="stat-icon">🟢</div>
+
+    <div
+      class="stat-number"
+      id="presentToday"
+    >
+      0
+    </div>
+
+    <div class="stat-title">
+      PRESENT TODAY
+    </div>
+  </div>
+
+
+  <div class="stat-card">
+    <div class="stat-icon">🔴</div>
+
+    <div
+      class="stat-number"
+      id="absentToday"
+    >
+      0
+    </div>
+
+    <div class="stat-title">
+      ABSENT TODAY
+    </div>
+  </div>
+
+
+  <div class="stat-card">
+    <div class="stat-icon">⏳</div>
+
+    <div
+      class="stat-number"
+      id="pendingCheckout"
+    >
+      0
+    </div>
+
+    <div class="stat-title">
+      PENDING CHECK-OUT
+    </div>
+  </div>
+
+</div>
+
+
+<div class="controls">
+
+  <input
+    type="text"
+    class="search-box"
+    id="searchInput"
+    placeholder="🔍 Search employee name or ID..."
+  >
+
+  <input
+    type="date"
+    class="date-input"
+    id="dateFilter"
+  >
+
+  <button
+    class="refresh-btn"
+    onclick="loadDashboard()"
+  >
+    ↻ Refresh
+  </button>
+
+  <button
+    class="download-btn"
+    onclick="downloadAttendance()"
+  >
+    📥 Download Excel
+  </button>
+
+</div>
+
+
+<div class="table-card">
+
+  <div class="table-header">
+
+    <h3>Employee Attendance</h3>
+
+    <span
+      id="recordCount"
+      style="font-size:11px;color:#8192a8"
+    >
+      0 Records
+    </span>
+
+  </div>
+
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>EMPLOYEE</th>
+          <th>EMPLOYEE ID</th>
+          <th>DEPARTMENT</th>
+          <th>CHECK-IN</th>
+          <th>CHECK-OUT</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+
+
+      <tbody id="attendanceBody">
+
+        <tr>
+          <td
+            colspan="6"
+            class="loading"
+          >
+            Loading dashboard...
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+</main>
+
+
+<script>
+
+/* =====================================
+   SUPABASE CONFIG
+===================================== */
+
+const SUPABASE_URL =
+"https://ysdpsndophokczdqysiw.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+
+
+/* =====================================
+   SUPABASE CLIENT
+===================================== */
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY,
+  {
+    auth:{
+      persistSession:true,
+      autoRefreshToken:true,
+      detectSessionInUrl:false,
+      storage:window.localStorage,
+      storageKey:"gayatri-admin-auth"
+    }
+  }
+);
+
+
+/* =====================================
+   GLOBAL DATA
+===================================== */
+
+let currentAttendance = [];
+
+
+/* =====================================
+   GET TODAY
+===================================== */
+
+function getToday(){
+
+  const now = new Date();
+
+  const year = now.getFullYear();
+
+  const month =
+  String(now.getMonth() + 1)
+  .padStart(2,"0");
+
+  const day =
+  String(now.getDate())
+  .padStart(2,"0");
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+/* =====================================
+   FORMAT TIME
+===================================== */
+
+function formatTime(time){
+
+  if(!time){
+    return "—";
+  }
+
+  return new Date(time)
+  .toLocaleTimeString(
+    [],
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+}
+
+
+/* =====================================
+   LOAD DASHBOARD
+===================================== */
+
+async function loadDashboard(){
+
+  const selectedDate =
+  document.getElementById(
+    "dateFilter"
+  ).value || getToday();
+
+
+  document.getElementById(
+    "attendanceBody"
+  ).innerHTML = `
+    <tr>
+      <td colspan="6" class="loading">
+        Loading data...
+      </td>
+    </tr>
+  `;
+
+
+  /* TOTAL EMPLOYEES */
+
+  const {
+    count:employeeCount,
+    error:employeeError
+  } =
+  await supabaseClient
+  .from("employees")
+  .select("*",{
+    count:"exact",
+    head:true
+  });
+
+
+  if(employeeError){
+
+    console.error(
+      "Employee Error:",
+      employeeError
+    );
+
+  }
+
+
+  document
+  .getElementById("totalEmployees")
+  .textContent =
+  employeeCount || 0;
+
+
+  /* ATTENDANCE */
+
+  const {
+    data:attendance,
+    error:attendanceError
+  } =
+  await supabaseClient
+  .from("attendance")
+  .select("*")
+  .eq(
+    "attendance_date",
+    selectedDate
+  )
+  .order(
+    "check_in_time",
+    {
+      ascending:false
+    }
+  );
+
+
+  if(attendanceError){
+
+    console.error(
+      "Attendance Error:",
+      attendanceError
+    );
+
+
+    document
+    .getElementById(
+      "attendanceBody"
+    )
+    .innerHTML = `
+      <tr>
+        <td colspan="6" class="loading">
+          Error loading attendance data.
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  currentAttendance =
+  attendance || [];
+
+
+  const present =
+  currentAttendance.length;
+
+
+  const pending =
+  currentAttendance.filter(
+    record =>
+    !record.check_out_time
+  ).length;
+
+
+  const absent =
+  Math.max(
+    0,
+    (employeeCount || 0) - present
+  );
+
+
+  document
+  .getElementById("presentToday")
+  .textContent =
+  present;
+
+
+  document
+  .getElementById("absentToday")
+  .textContent =
+  absent;
+
+
+  document
+  .getElementById("pendingCheckout")
+  .textContent =
+  pending;
+
+
+  renderTable();
+
+}
+
+
+/* =====================================
+   RENDER TABLE
+===================================== */
+
+function renderTable(){
+
+  const body =
+  document.getElementById(
+    "attendanceBody"
+  );
+
+
+  const search =
+  document
+  .getElementById(
+    "searchInput"
+  )
+  .value
+  .toLowerCase()
+  .trim();
+
+
+  const filtered =
+  currentAttendance.filter(
+    record => {
+
+      const employeeName =
+      String(
+        record.employee_name || ""
+      )
+      .toLowerCase();
+
+
+      const employeeId =
+      String(
+        record.employee_id || ""
+      )
+      .toLowerCase();
+
+
+      return (
+        employeeName.includes(search)
+        ||
+        employeeId.includes(search)
+      );
+
+    }
+  );
+
+
+  document
+  .getElementById(
+    "recordCount"
+  )
+  .textContent =
+  `${filtered.length} Records`;
+
+
+  if(filtered.length === 0){
+
+    body.innerHTML = `
+      <tr>
+        <td colspan="6" class="loading">
+          No attendance records found.
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  body.innerHTML =
+  filtered.map(
+    record => {
+
+      let status;
+
+
+      if(record.check_out_time){
+
+        status = `
+          <span class="status-badge present">
+            Completed
+          </span>
+        `;
+
+      }
+      else{
+
+        status = `
+          <span class="status-badge incomplete">
+            Checked In
+          </span>
+        `;
+
+      }
+
+
+      return `
+
+        <tr>
+
+          <td>
+            ${record.employee_name || "—"}
+          </td>
+
+          <td>
+            ${record.employee_id || "—"}
+          </td>
+
+          <td>
+            ${record.department || "—"}
+          </td>
+
+          <td>
+            ${formatTime(record.check_in_time)}
+          </td>
+
+          <td>
+            ${formatTime(record.check_out_time)}
+          </td>
+
+          <td>
+            ${status}
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  )
+  .join("");
+
+}
+
+
+/* =====================================
+   DOWNLOAD ATTENDANCE CSV
+===================================== */
+
+function downloadAttendance(){
+
+  if(currentAttendance.length === 0){
+
+    alert(
+      "No attendance records available to download."
+    );
+
+    return;
+
+  }
+
+
+  const selectedDate =
+  document.getElementById(
+    "dateFilter"
+  ).value || getToday();
+
+
+  let csv = "";
+
+
+  /* HEADERS */
+
+  csv +=
+  "Employee Name,Employee ID,Department,Attendance Date,Check-In,Check-Out,Status\n";
+
+
+  /* DATA */
+
+  currentAttendance.forEach(
+    record => {
+
+      const status =
+      record.check_out_time
+      ?
+      "Completed"
+      :
+      "Checked In";
+
+
+      const employeeName =
+      `"${String(
+        record.employee_name || ""
+      ).replace(/"/g,'""')}"`;
+
+
+      const employeeId =
+      `"${String(
+        record.employee_id || ""
+      ).replace(/"/g,'""')}"`;
+
+
+      const department =
+      `"${String(
+        record.department || ""
+      ).replace(/"/g,'""')}"`;
+
+
+      const checkIn =
+      record.check_in_time
+      ?
+      new Date(
+        record.check_in_time
+      ).toLocaleString()
+      :
+      "";
+
+
+      const checkOut =
+      record.check_out_time
+      ?
+      new Date(
+        record.check_out_time
+      ).toLocaleString()
+      :
+      "";
+
+
+      csv +=
+      `${employeeName},${employeeId},${department},${selectedDate},"${checkIn}","${checkOut}",${status}\n`;
+
+    }
+  );
+
+
+  /* CREATE FILE */
+
+  const blob =
+  new Blob(
+    [
+      "\uFEFF" + csv
+    ],
+    {
+      type:"text/csv;charset=utf-8;"
+    }
+  );
+
+
+  const url =
+  URL.createObjectURL(
+    blob
+  );
+
+
+  const link =
+  document.createElement(
+    "a"
+  );
+
+
+  link.href =
+  url;
+
+
+  link.download =
+  `Gayatri_Industries_Attendance_${selectedDate}.csv`;
+
+
+  document.body.appendChild(
+    link
+  );
+
+
+  link.click();
+
+
+  document.body.removeChild(
+    link
+  );
+
+
+  URL.revokeObjectURL(
+    url
+  );
+
+
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+  "input",
+  renderTable
+);
+
+
+/* =====================================
+   DATE FILTER
+===================================== */
+
+document
+.getElementById("dateFilter")
+.addEventListener(
+  "change",
+  loadDashboard
+);
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+async function logout(){
+
+  const confirmLogout =
+  confirm(
+    "Are you sure you want to logout?"
+  );
+
+
+  if(!confirmLogout){
+    return;
+  }
+
+
+  try{
+
+    const {
+      error
+    } =
+    await supabaseClient
+    .auth
+    .signOut();
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    window.location.replace(
+      "./login.html"
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "LOGOUT ERROR:",
+      error
+    );
+
+    alert(
+      "Logout failed: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================
+   INITIALIZE DASHBOARD
+===================================== */
+
+async function initializeDashboard(){
+
+  document
+  .getElementById("dateFilter")
+  .value =
+  getToday();
+
+
+  document
+  .getElementById("currentDate")
+  .textContent =
+  new Date()
+  .toLocaleDateString(
+    "en-IN",
+    {
+      weekday:"short",
+      day:"numeric",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
+
+  try{
+
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+    .auth
+    .getSession();
+
+
+    if(error){
+
+      console.error(
+        "SESSION ERROR:",
+        error
+      );
+
+    }
+
+
+    if(
+      !data ||
+      !data.session
+    ){
+
+      window.location.replace(
+        "./login.html"
+      );
+
+      return;
+
+    }
+
+
+    await loadDashboard();
+
+
+  }
+  catch(error){
+
+    console.error(
+      "DASHBOARD INIT ERROR:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================
+   AUTH STATE LISTENER
+===================================== */
+
+supabaseClient
+.auth
+.onAuthStateChange(
+  (event,session) => {
+
+    console.log(
+      "AUTH EVENT:",
+      event
+    );
+
+
+    if(
+      event === "SIGNED_OUT"
+      &&
+      !session
+    ){
+
+      window.location.replace(
+        "./login.html"
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================
+   START DASHBOARD
+===================================== */
+
+initializeDashboard();
+
+</script>
+
+</body>
+</html>
