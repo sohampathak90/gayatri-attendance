@@ -1,262 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Admin Login | Gayatri Industries</title>
+  <title>Admin Login | Gayatri Industries</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --orange: #f97316;
+      --text: #172033;
+      --muted: #718096;
+      --border: #e6eaf0;
+      --bg: #f6f8fb;
+      --white: #ffffff;
+      --success: #16a34a;
+      --danger: #dc2626;
+    }
 
-body{
-  font-family:Arial,Segoe UI,sans-serif;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#030914;
-  color:white;
-  padding:20px;
-}
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(0,115,255,.18),transparent 30%),
-    radial-gradient(circle at 80% 80%,rgba(255,100,0,.12),transparent 30%);
-}
+    .page {
+      width: 100%;
+      max-width: 1050px;
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--white);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(31, 41, 55, 0.12);
+    }
 
-.grid{
-  position:fixed;
-  inset:0;
-  z-index:-1;
+    /* LEFT SIDE */
 
-  background-image:
-    linear-gradient(rgba(70,150,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(70,150,255,.04) 1px,transparent 1px);
+    .welcome-side {
+      background: linear-gradient(
+        135deg,
+        #1d4ed8,
+        #2563eb 55%,
+        #0f3c91
+      );
+      color: white;
+      padding: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
 
-  background-size:42px 42px;
-}
+    .welcome-side::before,
+    .welcome-side::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
 
-.login-box{
-  width:100%;
-  max-width:430px;
-  padding:35px;
-  border-radius:25px;
+    .welcome-side::before {
+      width: 280px;
+      height: 280px;
+      top: -100px;
+      right: -100px;
+    }
 
-  background:linear-gradient(145deg,#0a1b31,#061222);
+    .welcome-side::after {
+      width: 350px;
+      height: 350px;
+      bottom: -180px;
+      left: -130px;
+    }
 
-  border:1px solid rgba(70,140,255,.2);
+    .brand {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-  box-shadow:0 30px 80px rgba(0,0,0,.45);
-}
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      background: white;
+      color: var(--primary);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-.logo{
-  width:70px;
-  height:70px;
+    .brand-text h2 {
+      font-size: 18px;
+    }
 
-  margin:auto;
+    .brand-text p {
+      font-size: 10px;
+      opacity: 0.75;
+      margin-top: 3px;
+      letter-spacing: 1px;
+    }
 
-  border-radius:20px;
+    .welcome-content {
+      position: relative;
+      z-index: 1;
+    }
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    .welcome-content h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
 
-  font-size:32px;
+    .welcome-content h1 span {
+      color: #fed7aa;
+    }
 
-  background:linear-gradient(135deg,#137ee9,#062b55);
-}
+    .welcome-content p {
+      max-width: 390px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.78);
+    }
 
-h1{
-  text-align:center;
-  margin-top:18px;
-  font-size:26px;
-}
+    .feature-list {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-.subtitle{
-  text-align:center;
-  margin-top:8px;
-  font-size:11px;
-  color:#8293a8;
-  letter-spacing:1px;
-}
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+    }
 
-.field{
-  margin-top:25px;
-}
+    .check {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.16);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+    }
 
-.field label{
-  display:block;
-  margin-bottom:8px;
-  font-size:11px;
-  color:#9aacbf;
-}
+    /* RIGHT SIDE */
 
-.field input{
-  width:100%;
-  padding:15px;
+    .login-side {
+      padding: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-  border-radius:12px;
+    .mobile-brand {
+      display: none;
+    }
 
-  border:1px solid rgba(70,140,255,.25);
+    .login-header h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
 
-  background:#061326;
+    .login-header p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
 
-  color:white;
+    .field {
+      margin-bottom: 20px;
+    }
 
-  outline:none;
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #374151;
+    }
 
-  font-size:14px;
-}
+    .input-wrap {
+      position: relative;
+    }
 
-.login-btn{
-  width:100%;
-  margin-top:22px;
-  padding:15px;
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      opacity: 0.6;
+    }
 
-  border:none;
-  border-radius:12px;
+    .field input {
+      width: 100%;
+      height: 52px;
+      padding: 0 16px 0 45px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      transition: 0.2s;
+    }
 
-  background:linear-gradient(135deg,#137ee9,#0b57a4);
+    .field input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+    }
 
-  color:white;
+    .login-btn {
+      width: 100%;
+      height: 52px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-  font-weight:bold;
+    .login-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
 
-  cursor:pointer;
-}
+    .login-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
 
-.login-btn:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-}
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
 
-.message{
-  display:none;
+    .message.show {
+      display: block;
+    }
 
-  margin-top:15px;
+    .error {
+      background: #fef2f2;
+      color: var(--danger);
+      border: 1px solid #fecaca;
+    }
 
-  padding:12px;
+    .success {
+      background: #f0fdf4;
+      color: var(--success);
+      border: 1px solid #bbf7d0;
+    }
 
-  border-radius:10px;
+    .back {
+      margin-top: 28px;
+      text-align: center;
+    }
 
-  font-size:12px;
-}
+    .back a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
-.message.show{
-  display:block;
-}
+    .back a:hover {
+      color: var(--primary);
+    }
 
-.error{
-  background:rgba(255,80,70,.1);
-  color:#ff998d;
-}
+    @media (max-width: 800px) {
+      .page {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
 
-.success{
-  background:rgba(48,220,140,.1);
-  color:#66e6a5;
-}
+      .welcome-side {
+        display: none;
+      }
 
-.back{
-  display:block;
-  text-align:center;
-  margin-top:20px;
+      .login-side {
+        padding: 40px 28px;
+      }
 
-  font-size:12px;
+      .mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 40px;
+      }
 
-  color:#8fa0b4;
+      .mobile-logo {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        background: var(--primary);
+        color: white;
+        display: grid;
+        place-items: center;
+      }
 
-  text-decoration:none;
-}
+      .mobile-brand h3 {
+        font-size: 16px;
+      }
 
-</style>
+      .mobile-brand p {
+        font-size: 9px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      body {
+        padding: 0;
+      }
+
+      .page {
+        min-height: 100vh;
+        border-radius: 0;
+      }
+
+      .login-side {
+        padding: 35px 22px;
+      }
+
+      .login-header h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="grid"></div>
+  <main class="page">
 
-<div class="login-box">
+    <!-- LEFT SIDE -->
 
-  <div class="logo">🔐</div>
+    <section class="welcome-side">
 
-  <h1>Admin Login</h1>
+      <div class="brand">
+        <div class="brand-logo">GI</div>
 
-  <p class="subtitle">
-    GAYATRI INDUSTRIES • SECURE ACCESS
-  </p>
-
-
-  <div class="field">
-
-    <label>ADMIN EMAIL</label>
-
-    <input
-      type="email"
-      id="email"
-      placeholder="Enter admin email"
-      autocomplete="email"
-    >
-
-  </div>
+        <div class="brand-text">
+          <h2>Gayatri Industries</h2>
+          <p>SMART ATTENDANCE SYSTEM</p>
+        </div>
+      </div>
 
 
-  <div class="field">
+      <div class="welcome-content">
+        <h1>
+          Welcome back to your
+          <span>workspace.</span>
+        </h1>
 
-    <label>PASSWORD</label>
-
-    <input
-      type="password"
-      id="password"
-      placeholder="Enter password"
-      autocomplete="current-password"
-    >
-
-  </div>
-
-
-  <button
-    class="login-btn"
-    id="loginBtn"
-  >
-    🔐 Login to Dashboard
-  </button>
+        <p>
+          Manage employee attendance, monitor daily activity
+          and keep your workforce records organized from one
+          simple dashboard.
+        </p>
+      </div>
 
 
-  <div
-    class="message"
-    id="message"
-  ></div>
+      <div class="feature-list">
+
+        <div class="feature">
+          <div class="check">✓</div>
+          Live employee attendance tracking
+        </div>
+
+        <div class="feature">
+          <div class="check">✓</div>
+          Manage employees and records
+        </div>
+
+        <div class="feature">
+          <div class="check">✓</div>
+          Secure admin access
+        </div>
+
+      </div>
+
+    </section>
 
 
-  <a
-    href="./index.html"
-    class="back"
-  >
-    ← Back to Home
-  </a>
+    <!-- LOGIN SIDE -->
 
-</div>
+    <section class="login-side">
+
+      <div class="mobile-brand">
+        <div class="mobile-logo">GI</div>
+
+        <div>
+          <h3>Gayatri Industries</h3>
+          <p>SMART ATTENDANCE SYSTEM</p>
+        </div>
+      </div>
+
+
+      <div class="login-header">
+        <h2>Admin Login</h2>
+
+        <p>
+          Enter your administrator credentials to access
+          the attendance dashboard.
+        </p>
+      </div>
+
+
+      <div class="field">
+
+        <label>EMAIL ADDRESS</label>
+
+        <div class="input-wrap">
+          <span class="input-icon">✉</span>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+          />
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>PASSWORD</label>
+
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+        </div>
+
+      </div>
+
+
+      <button class="login-btn" id="loginBtn">
+        Login to Dashboard →
+      </button>
+
+
+      <div class="message" id="message"></div>
+
+
+      <div class="back">
+        <a href="./index.html">
+          ← Back to Home
+        </a>
+      </div>
+
+    </section>
+
+  </main>
 
 
 <script>
 
-/* =====================================
+/* =========================
    SUPABASE CONFIG
-===================================== */
+========================= */
 
 const SUPABASE_URL =
 "https://ysdpsndophokczdqysiw.supabase.co";
@@ -265,35 +512,31 @@ const SUPABASE_ANON_KEY =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
 
-/* =====================================
+/* =========================
    CREATE SUPABASE CLIENT
-
-   IMPORTANT:
-   SAME storageKey will be used
-   in admin.html
-===================================== */
+========================= */
 
 const supabaseClient =
 window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY,
   {
-    auth:{
-      persistSession:true,
-      autoRefreshToken:true,
-      detectSessionInUrl:false,
-      storage:window.localStorage,
-      storageKey:"gayatri-admin-auth"
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: false,
+      storage: window.localStorage,
+      storageKey: "gayatri-admin-auth"
     }
   }
 );
 
 
-/* =====================================
+/* =========================
    SHOW MESSAGE
-===================================== */
+========================= */
 
-function showMessage(text,type){
+function showMessage(text, type) {
 
   const message =
   document.getElementById("message");
@@ -306,28 +549,31 @@ function showMessage(text,type){
 }
 
 
-/* =====================================
+/* =========================
    LOGIN
-===================================== */
+========================= */
 
-async function login(){
+async function login() {
 
   const email =
   document
-  .getElementById("email")
-  .value
-  .trim();
+    .getElementById("email")
+    .value
+    .trim();
 
   const password =
   document
-  .getElementById("password")
-  .value;
+    .getElementById("password")
+    .value;
+
+  const button =
+  document.getElementById("loginBtn");
 
 
-  if(!email || !password){
+  if (!email || !password) {
 
     showMessage(
-      "Please enter email and password.",
+      "Please enter both email and password.",
       "error"
     );
 
@@ -336,86 +582,35 @@ async function login(){
   }
 
 
-  const button =
-  document.getElementById("loginBtn");
-
-
   button.disabled = true;
 
   button.textContent =
-  "Logging in...";
+  "Logging you in...";
 
 
-  try{
-
-
-    /* Clear old broken session first */
-
-    await supabaseClient
-    .auth
-    .signOut();
-
-
-    /* Login */
+  try {
 
     const {
       data,
       error
     } =
     await supabaseClient
-    .auth
-    .signInWithPassword({
-      email:email,
-      password:password
-    });
+      .auth
+      .signInWithPassword({
+        email: email,
+        password: password
+      });
 
 
-    if(error){
-
+    if (error) {
       throw error;
-
     }
 
 
-    if(
-      !data ||
-      !data.session
-    ){
+    if (!data.session) {
 
       throw new Error(
-        "Login successful but session was not created."
-      );
-
-    }
-
-
-    console.log(
-      "LOGIN SUCCESS"
-    );
-
-    console.log(
-      "SESSION:",
-      data.session
-    );
-
-
-    /* Confirm session is stored */
-
-    const {
-      data:sessionData
-    } =
-    await supabaseClient
-    .auth
-    .getSession();
-
-
-    if(
-      !sessionData ||
-      !sessionData.session
-    ){
-
-      throw new Error(
-        "Session could not be saved. Please try again."
+        "Unable to create login session."
       );
 
     }
@@ -427,31 +622,18 @@ async function login(){
     );
 
 
-    /* Redirect */
-
     setTimeout(() => {
 
       window.location.href =
       "./admin.html";
 
-    },1000);
-
+    }, 800);
 
   }
-  catch(error){
 
+  catch (error) {
 
-    console.error(
-      "LOGIN ERROR:",
-      error
-    );
-
-
-    button.disabled = false;
-
-    button.textContent =
-    "🔐 Login to Dashboard";
-
+    console.error("LOGIN ERROR:", error);
 
     showMessage(
       error.message ||
@@ -459,117 +641,78 @@ async function login(){
       "error"
     );
 
+    button.disabled = false;
+
+    button.textContent =
+    "Login to Dashboard →";
+
   }
 
 }
 
 
-/* =====================================
-   LOGIN BUTTON
-===================================== */
+/* =========================
+   BUTTON CLICK
+========================= */
 
 document
-.getElementById("loginBtn")
-.addEventListener(
-  "click",
-  login
-);
+  .getElementById("loginBtn")
+  .addEventListener(
+    "click",
+    login
+  );
 
 
-/* =====================================
+/* =========================
    ENTER KEY
-===================================== */
+========================= */
 
 document
-.getElementById("email")
-.addEventListener(
-  "keydown",
-  function(event){
+  .getElementById("password")
+  .addEventListener(
+    "keydown",
+    function(event) {
 
-    if(event.key === "Enter"){
+      if (event.key === "Enter") {
 
-      document
-      .getElementById("password")
-      .focus();
+        event.preventDefault();
 
-    }
+        login();
 
-  }
-);
-
-
-document
-.getElementById("password")
-.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-
-      event.preventDefault();
-
-      login();
+      }
 
     }
-
-  }
-);
+  );
 
 
-/* =====================================
-   CHECK EXISTING SESSION
-===================================== */
+/* =========================
+   EXISTING SESSION
+========================= */
 
-async function checkExistingLogin(){
+async function checkSession() {
 
-  try{
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
+  const {
+    data
+  } =
+  await supabaseClient
     .auth
     .getSession();
 
 
-    if(error){
+  if (
+    data &&
+    data.session
+  ) {
 
-      console.error(
-        "SESSION CHECK ERROR:",
-        error
-      );
-
-      return;
-
-    }
-
-
-    if(
-      data &&
-      data.session
-    ){
-
-      console.log(
-        "Existing admin session found"
-      );
-
-    }
-
-  }
-  catch(error){
-
-    console.error(
-      "SESSION CHECK FAILED:",
-      error
-    );
+    window.location.href =
+    "./admin.html";
 
   }
 
 }
 
 
-checkExistingLogin();
+checkSession();
 
 </script>
 
