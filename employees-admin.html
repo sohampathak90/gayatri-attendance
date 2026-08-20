@@ -2,23 +2,18 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>
-Employee Management | Gayatri Industries
-</title>
-
+<title>Employees | Gayatri Industries</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
 
 *{
   margin:0;
@@ -38,22 +33,10 @@ body::before{
   position:fixed;
   inset:0;
   z-index:-2;
-
   background:
-
-  radial-gradient(
-    circle at 10% 10%,
-    rgba(0,115,255,.16),
-    transparent 28%
-  ),
-
-  radial-gradient(
-    circle at 90% 90%,
-    rgba(255,100,0,.10),
-    transparent 30%
-  ),
-
-  #030914;
+    radial-gradient(circle at 8% 8%,rgba(0,115,255,.18),transparent 30%),
+    radial-gradient(circle at 95% 90%,rgba(255,115,0,.10),transparent 32%),
+    #030914;
 }
 
 .grid{
@@ -62,244 +45,400 @@ body::before{
   z-index:-1;
 
   background-image:
-
-  linear-gradient(
-    rgba(70,150,255,.04) 1px,
-    transparent 1px
-  ),
-
-  linear-gradient(
-    90deg,
-    rgba(70,150,255,.04) 1px,
-    transparent 1px
-  );
+    linear-gradient(rgba(70,150,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(70,150,255,.04) 1px,transparent 1px);
 
   background-size:42px 42px;
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .header{
-
-  padding:20px 6%;
+  height:76px;
+  padding:0 6%;
 
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 
-  border-bottom:
-  1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
 
-  background:
-  rgba(3,9,20,.75);
+  background:rgba(3,9,20,.82);
 
-  backdrop-filter:
-  blur(15px);
+  backdrop-filter:blur(16px);
+
+  position:sticky;
+  top:0;
+  z-index:50;
 }
 
-
 .brand{
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
 }
 
-
 .logo{
-
   width:45px;
-
   height:45px;
 
   border-radius:14px;
 
   display:grid;
-
   place-items:center;
 
-  font-size:22px;
+  font-size:21px;
 
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #062b55
-  );
-}
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #062b55
+    );
 
+  box-shadow:
+    0 10px 25px
+    rgba(0,100,255,.22);
+}
 
 .brand h2{
-
-  font-size:17px;
+  font-size:16px;
+  font-weight:700;
 }
 
-
 .brand p{
+  margin-top:3px;
 
-  font-size:10px;
+  font-size:9px;
 
   color:#8192a8;
 
-  margin-top:3px;
-
-  letter-spacing:1px;
+  letter-spacing:1.3px;
 }
 
-
 .header-actions{
-
   display:flex;
-
+  align-items:center;
   gap:10px;
 }
 
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 
 .btn{
-
-  padding:10px 15px;
-
   border:none;
 
-  border-radius:10px;
+  color:white;
 
   cursor:pointer;
 
-  font-size:11px;
-
   font-weight:bold;
 
-  color:white;
+  font-size:11px;
+
+  transition:.2s;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
 }
 
+.btn:hover{
+  transform:translateY(-1px);
+  opacity:.92;
+}
 
 .dashboard-btn{
+  padding:10px 15px;
+
+  border-radius:10px;
 
   background:#0b57a4;
 }
 
-
 .logout-btn{
+  padding:10px 15px;
+
+  border-radius:10px;
 
   background:
-  linear-gradient(
-    135deg,
-    #e5484d,
-    #a91d27
-  );
+    linear-gradient(
+      135deg,
+      #e5484d,
+      #a91d27
+    );
 }
-
 
 .add-btn{
-
-  background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #0b57a4
-  );
-
   padding:13px 20px;
-}
-
-
-/* MAIN */
-
-.main{
-
-  width:90%;
-
-  max-width:1200px;
-
-  margin:35px auto;
-}
-
-
-.top{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:25px;
-}
-
-
-.top h1{
-
-  font-size:28px;
-}
-
-
-.top p{
-
-  margin-top:6px;
-
-  color:#8393a8;
-
-  font-size:12px;
-}
-
-
-/* SEARCH */
-
-.controls{
-
-  margin-bottom:20px;
-}
-
-
-.search-box{
-
-  width:100%;
-
-  padding:14px 16px;
-
-  background:#061326;
-
-  border:
-  1px solid rgba(70,140,255,.2);
 
   border-radius:12px;
 
-  color:white;
+  background:
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #0b57a4
+    );
 
-  outline:none;
+  box-shadow:
+    0 10px 25px
+    rgba(0,100,255,.18);
 }
 
 
-/* TABLE */
+/* =========================
+   MAIN
+========================= */
 
-.table-card{
+.main{
+  width:90%;
+  max-width:1250px;
 
-  background:#071426;
+  margin:38px auto;
+}
+
+
+/* =========================
+   PAGE TOP
+========================= */
+
+.page-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+
+  margin-bottom:28px;
+}
+
+.page-title h1{
+  font-size:29px;
+  letter-spacing:-.5px;
+}
+
+.page-title p{
+  margin-top:7px;
+
+  font-size:12px;
+
+  color:#8393a8;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:16px;
+
+  margin-bottom:24px;
+}
+
+.stat-card{
+  position:relative;
+
+  padding:20px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0a1b31,
+      #061222
+    );
 
   border:
-  1px solid rgba(70,140,255,.15);
-
-  border-radius:20px;
+    1px solid
+    rgba(70,140,255,.14);
 
   overflow:hidden;
 }
 
+.stat-card::after{
+  content:"";
 
-.table-wrapper{
+  position:absolute;
 
-  overflow-x:auto;
+  width:90px;
+  height:90px;
+
+  border-radius:50%;
+
+  right:-30px;
+  bottom:-40px;
+
+  background:
+    rgba(19,126,233,.07);
+}
+
+.stat-icon{
+  font-size:22px;
+  margin-bottom:13px;
+}
+
+.stat-number{
+  font-size:27px;
+  font-weight:bold;
+}
+
+.stat-label{
+  margin-top:5px;
+
+  font-size:10px;
+
+  color:#8393a8;
+
+  letter-spacing:.7px;
 }
 
 
-table{
+/* =========================
+   SEARCH PANEL
+========================= */
 
+.search-panel{
+  padding:16px;
+
+  margin-bottom:20px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  background:
+    rgba(7,20,38,.85);
+
+  border:
+    1px solid
+    rgba(70,140,255,.15);
+
+  border-radius:16px;
+}
+
+.search-wrap{
+  flex:1;
+
+  position:relative;
+}
+
+.search-icon{
+  position:absolute;
+
+  left:15px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  font-size:14px;
+
+  opacity:.7;
+}
+
+.search-box{
+  width:100%;
+
+  padding:14px 15px 14px 42px;
+
+  background:#061326;
+
+  border:
+    1px solid
+    rgba(70,140,255,.20);
+
+  border-radius:11px;
+
+  color:white;
+
+  outline:none;
+
+  font-size:12px;
+
+  transition:.2s;
+}
+
+.search-box:focus{
+  border-color:#137ee9;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(19,126,233,.10);
+}
+
+.refresh-btn{
+  padding:13px 17px;
+
+  border-radius:11px;
+
+  background:
+    #13263f;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-card{
+  border-radius:20px;
+
+  overflow:hidden;
+
+  background:#071426;
+
+  border:
+    1px solid
+    rgba(70,140,255,.15);
+}
+
+.table-header{
+  padding:19px 21px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.06);
+}
+
+.table-header h3{
+  font-size:14px;
+}
+
+.record-count{
+  font-size:10px;
+
+  color:#8192a8;
+
+  padding:7px 11px;
+
+  border-radius:20px;
+
+  background:
+    rgba(19,126,233,.08);
+
+  border:
+    1px solid
+    rgba(19,126,233,.12);
+}
+
+.table-wrapper{
+  overflow-x:auto;
+}
+
+table{
   width:100%;
 
   min-width:850px;
@@ -307,39 +446,53 @@ table{
   border-collapse:collapse;
 }
 
-
 th{
-
   text-align:left;
 
   padding:15px 20px;
 
   font-size:10px;
 
-  color:#8192a8;
+  color:#7f91a8;
+
+  letter-spacing:.6px;
 
   background:
-  rgba(255,255,255,.02);
+    rgba(255,255,255,.02);
 }
 
-
 td{
-
-  padding:16px 20px;
+  padding:15px 20px;
 
   font-size:12px;
 
   border-top:
-  1px solid rgba(255,255,255,.06);
+    1px solid
+    rgba(255,255,255,.05);
+}
+
+tr{
+  transition:.2s;
+}
+
+tbody tr:hover{
+  background:
+    rgba(19,126,233,.035);
 }
 
 
-/* EMPLOYEE PHOTO */
+/* =========================
+   EMPLOYEE INFO
+========================= */
+
+.employee-info{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
 
 .employee-photo{
-
   width:42px;
-
   height:42px;
 
   border-radius:50%;
@@ -349,44 +502,99 @@ td{
   background:#0b68c4;
 
   border:
-  1px solid rgba(255,255,255,.15);
+    1px solid
+    rgba(255,255,255,.15);
 }
 
-
 .photo-placeholder{
-
   width:42px;
-
   height:42px;
 
   border-radius:50%;
 
   display:grid;
-
   place-items:center;
 
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #062b55
-  );
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #062b55
+    );
 
   font-weight:bold;
 
-  font-size:14px;
+  font-size:13px;
+}
+
+.employee-name{
+  font-weight:600;
+  font-size:12px;
+}
+
+.employee-sub{
+  margin-top:3px;
+
+  font-size:9px;
+
+  color:#7f91a8;
 }
 
 
-/* ACTION BUTTONS */
+/* =========================
+   BADGES
+========================= */
+
+.id-badge{
+  display:inline-block;
+
+  padding:6px 10px;
+
+  border-radius:7px;
+
+  font-size:10px;
+
+  color:#8ebeff;
+
+  background:
+    rgba(19,126,233,.09);
+
+  border:
+    1px solid
+    rgba(19,126,233,.15);
+}
+
+.department-badge{
+  display:inline-block;
+
+  padding:6px 10px;
+
+  border-radius:20px;
+
+  font-size:10px;
+
+  color:#9ab0c8;
+
+  background:
+    rgba(255,255,255,.04);
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions{
+  display:flex;
+  gap:7px;
+}
 
 .action-btn{
-
-  padding:7px 11px;
+  padding:8px 11px;
 
   border:none;
 
-  border-radius:7px;
+  border-radius:8px;
 
   color:white;
 
@@ -394,36 +602,51 @@ td{
 
   font-size:10px;
 
-  margin-right:5px;
+  font-weight:bold;
+
+  transition:.2s;
 }
 
+.action-btn:hover{
+  transform:translateY(-1px);
+}
 
 .edit-btn{
-
   background:#0b68c4;
 }
 
-
 .delete-btn{
+  background:
+    rgba(229,72,77,.14);
 
-  background:#c62f38;
+  color:#ff8d92;
+
+  border:
+    1px solid
+    rgba(229,72,77,.15);
 }
 
+
+/* =========================
+   LOADING
+========================= */
 
 .loading{
-
   text-align:center;
 
-  padding:35px;
+  padding:45px;
 
   color:#8192a8;
+
+  font-size:12px;
 }
 
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
-
   display:none;
 
   position:fixed;
@@ -431,10 +654,11 @@ td{
   inset:0;
 
   background:
-  rgba(0,0,0,.7);
+    rgba(0,0,0,.72);
+
+  backdrop-filter:blur(6px);
 
   align-items:center;
-
   justify-content:center;
 
   padding:20px;
@@ -442,100 +666,94 @@ td{
   z-index:100;
 }
 
-
 .modal.show{
-
   display:flex;
 }
 
-
 .modal-box{
-
   width:100%;
-
-  max-width:500px;
+  max-width:520px;
 
   max-height:90vh;
 
   overflow-y:auto;
 
-  background:#071426;
+  padding:27px;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0a1b31,
+      #061222
+    );
 
   border:
-  1px solid rgba(70,140,255,.2);
+    1px solid
+    rgba(70,140,255,.20);
 
-  border-radius:20px;
-
-  padding:25px;
+  box-shadow:
+    0 30px 90px
+    rgba(0,0,0,.55);
 }
 
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:22px;
+}
 
 .modal-box h2{
-
-  margin-bottom:20px;
-
   font-size:20px;
 }
 
+.close-modal{
+  width:32px;
+  height:32px;
 
-/* FORM */
+  border:none;
 
-.field{
+  border-radius:9px;
 
-  margin-bottom:15px;
+  background:#13263f;
+
+  color:#9aacbf;
+
+  cursor:pointer;
 }
 
 
-.field label{
-
-  display:block;
-
-  margin-bottom:7px;
-
-  font-size:11px;
-
-  color:#8fa1b8;
-}
-
-
-.field input{
-
-  width:100%;
-
-  padding:13px;
-
-  background:#061326;
-
-  border:
-  1px solid rgba(70,140,255,.2);
-
-  border-radius:10px;
-
-  color:white;
-
-  outline:none;
-}
-
-
-/* PHOTO UPLOAD */
+/* =========================
+   PHOTO SECTION
+========================= */
 
 .photo-section{
-
   display:flex;
 
   flex-direction:column;
 
   align-items:center;
 
+  padding:18px;
+
   margin-bottom:20px;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,.018);
+
+  border:
+    1px dashed
+    rgba(70,140,255,.20);
 }
 
-
 .photo-preview{
-
-  width:110px;
-
-  height:110px;
+  width:105px;
+  height:105px;
 
   border-radius:50%;
 
@@ -543,33 +761,28 @@ td{
 
   display:none;
 
-  margin-bottom:12px;
+  margin-bottom:13px;
 
   border:
-  1px solid rgba(255,255,255,.15);
+    2px solid
+    rgba(19,126,233,.45);
 }
 
-
 .photo-placeholder.large{
-
-  width:110px;
-
-  height:110px;
+  width:105px;
+  height:105px;
 
   border-radius:50%;
 
   display:grid;
-
   place-items:center;
 
-  font-size:35px;
+  font-size:32px;
 
-  margin-bottom:12px;
+  margin-bottom:13px;
 }
 
-
 .photo-upload-label{
-
   display:inline-block;
 
   background:#0b68c4;
@@ -587,460 +800,585 @@ td{
   font-weight:bold;
 }
 
-
 .photo-upload-label input{
-
   display:none;
 }
 
-
 .photo-note{
-
   font-size:9px;
 
   color:#8192a8;
 
-  margin-top:8px;
+  margin-top:9px;
 }
 
 
-/* MODAL BUTTONS */
+/* =========================
+   FORM
+========================= */
+
+.field{
+  margin-bottom:16px;
+}
+
+.field label{
+  display:block;
+
+  margin-bottom:8px;
+
+  font-size:10px;
+
+  color:#8fa1b8;
+
+  letter-spacing:.4px;
+}
+
+.field input{
+  width:100%;
+
+  padding:14px;
+
+  background:#061326;
+
+  border:
+    1px solid
+    rgba(70,140,255,.20);
+
+  border-radius:10px;
+
+  color:white;
+
+  outline:none;
+
+  font-size:12px;
+
+  transition:.2s;
+}
+
+.field input:focus{
+  border-color:#137ee9;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(19,126,233,.08);
+}
+
+
+/* =========================
+   MODAL BUTTONS
+========================= */
 
 .modal-actions{
-
   display:flex;
 
   justify-content:flex-end;
 
   gap:10px;
 
-  margin-top:20px;
+  margin-top:22px;
+
+  padding-top:18px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.06);
 }
 
-
 .cancel-btn{
+  padding:11px 16px;
+
+  border-radius:10px;
 
   background:#26384d;
 }
 
-
 .save-btn{
+  padding:11px 17px;
 
-  background:#0b68c4;
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #0b57a4
+    );
 }
 
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+}
 
 @media(max-width:600px){
 
   .header{
-    padding:16px;
+    padding:0 15px;
+  }
+
+  .brand h2{
+    font-size:14px;
+  }
+
+  .brand p{
+    font-size:8px;
   }
 
   .main{
     width:92%;
+    margin:25px auto;
   }
 
-  .top{
-
+  .page-top{
     flex-direction:column;
-
     align-items:flex-start;
-
-    gap:15px;
+    gap:16px;
   }
 
-  .header-actions .btn{
+  .page-top h1{
+    font-size:25px;
+  }
 
+  .header-actions{
+    gap:6px;
+  }
+
+  .dashboard-btn,
+  .logout-btn{
     padding:9px 10px;
+    font-size:9px;
+  }
+
+  .search-panel{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .refresh-btn{
+    width:100%;
   }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <div class="grid"></div>
 
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
+  <div class="brand">
 
-<div class="brand">
+    <div class="logo">
+      👥
+    </div>
 
+    <div>
+      <h2>Gayatri Industries</h2>
+      <p>EMPLOYEE MANAGEMENT</p>
+    </div>
 
-<div class="logo">
-👥
-</div>
-
-
-<div>
-
-<h2>
-Gayatri Industries
-</h2>
-
-<p>
-EMPLOYEE MANAGEMENT
-</p>
-
-</div>
+  </div>
 
 
-</div>
+  <div class="header-actions">
+
+    <button
+      class="btn dashboard-btn"
+      onclick="window.location.href='./admin.html'"
+    >
+      📊 Dashboard
+    </button>
 
 
-<div class="header-actions">
+    <button
+      class="btn logout-btn"
+      onclick="logout()"
+    >
+      Logout
+    </button>
 
-
-<button
-class="btn dashboard-btn"
-onclick="window.location.href='./admin.html'"
->
-Dashboard
-</button>
-
-
-<button
-class="btn logout-btn"
-onclick="logout()"
->
-Logout
-</button>
-
-
-</div>
-
+  </div>
 
 </header>
 
 
 
-<!-- MAIN -->
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="main">
 
 
-<div class="top">
+  <div class="page-top">
+
+    <div class="page-title">
+
+      <h1>
+        Employee Management
+      </h1>
+
+      <p>
+        Add, update and manage your company workforce.
+      </p>
+
+    </div>
 
 
-<div>
+    <button
+      class="btn add-btn"
+      onclick="openAddModal()"
+    >
+      ＋ Add Employee
+    </button>
 
-<h1>
-Employees
-</h1>
-
-<p>
-Add, edit and manage company employees.
-</p>
-
-</div>
-
-
-<button
-class="btn add-btn"
-onclick="openAddModal()"
->
-+ Add Employee
-</button>
-
-
-</div>
-
-
-
-<!-- SEARCH -->
-
-<div class="controls">
-
-
-<input
-
-type="text"
-
-id="searchInput"
-
-class="search-box"
-
-placeholder="🔍 Search by employee name, ID or department..."
-
->
-
-
-</div>
+  </div>
 
 
 
-<!-- TABLE -->
+  <!-- =========================
+       STATS
+  ========================= -->
 
-<div class="table-card">
+  <div class="stats">
 
+    <div class="stat-card">
 
-<div class="table-wrapper">
+      <div class="stat-icon">
+        👥
+      </div>
 
+      <div
+        class="stat-number"
+        id="totalEmployees"
+      >
+        0
+      </div>
 
-<table>
+      <div class="stat-label">
+        TOTAL EMPLOYEES
+      </div>
 
-
-<thead>
-
-<tr>
-
-<th>
-PHOTO
-</th>
-
-<th>
-EMPLOYEE ID
-</th>
-
-<th>
-NAME
-</th>
-
-<th>
-DEPARTMENT
-</th>
-
-<th>
-ACTIONS
-</th>
-
-</tr>
-
-</thead>
+    </div>
 
 
+    <div class="stat-card">
 
-<tbody id="employeeBody">
+      <div class="stat-icon">
+        🏢
+      </div>
 
+      <div
+        class="stat-number"
+        id="totalDepartments"
+      >
+        0
+      </div>
 
-<tr>
+      <div class="stat-label">
+        DEPARTMENTS
+      </div>
 
-<td
-colspan="5"
-class="loading"
->
-
-Loading employees...
-
-</td>
-
-</tr>
-
-
-</tbody>
-
-
-</table>
+    </div>
 
 
-</div>
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        🟢
+      </div>
+
+      <div
+        class="stat-number"
+        id="employeesWithPhoto"
+      >
+        0
+      </div>
+
+      <div class="stat-label">
+        PHOTO PROFILES
+      </div>
+
+    </div>
+
+  </div>
 
 
-</div>
 
+  <!-- =========================
+       SEARCH
+  ========================= -->
+
+  <div class="search-panel">
+
+    <div class="search-wrap">
+
+      <span class="search-icon">
+        🔍
+      </span>
+
+      <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="Search employee name, ID or department..."
+      >
+
+    </div>
+
+
+    <button
+      class="btn refresh-btn"
+      onclick="loadEmployees()"
+    >
+      ↻ Refresh
+    </button>
+
+  </div>
+
+
+
+  <!-- =========================
+       TABLE
+  ========================= -->
+
+  <div class="table-card">
+
+    <div class="table-header">
+
+      <h3>
+        Employee Directory
+      </h3>
+
+      <div
+        class="record-count"
+        id="recordCount"
+      >
+        0 Employees
+      </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              EMPLOYEE
+            </th>
+
+            <th>
+              EMPLOYEE ID
+            </th>
+
+            <th>
+              DEPARTMENT
+            </th>
+
+            <th>
+              ACTIONS
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="employeeBody">
+
+          <tr>
+
+            <td
+              colspan="4"
+              class="loading"
+            >
+              Loading employees...
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
 
 </main>
 
 
 
-<!-- ADD / EDIT MODAL -->
+<!-- =========================
+     ADD / EDIT MODAL
+========================= -->
 
 <div
-class="modal"
-id="employeeModal"
+  class="modal"
+  id="employeeModal"
 >
 
+  <div class="modal-box">
 
-<div class="modal-box">
 
+    <div class="modal-top">
 
-<h2 id="modalTitle">
-Add Employee
-</h2>
+      <h2 id="modalTitle">
+        Add Employee
+      </h2>
 
 
+      <button
+        class="close-modal"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
 
-<!-- PHOTO -->
+    </div>
 
-<div class="photo-section">
 
 
-<div
+    <!-- PHOTO -->
 
-id="photoPlaceholder"
+    <div class="photo-section">
 
-class="photo-placeholder large"
+      <div
+        id="photoPlaceholder"
+        class="photo-placeholder large"
+      >
+        👤
+      </div>
 
->
-👤
-</div>
 
+      <img
+        id="photoPreview"
+        class="photo-preview"
+        alt="Employee Photo"
+      >
 
 
-<img
+      <label class="photo-upload-label">
 
-id="photoPreview"
+        📷 Upload Photo
 
-class="photo-preview"
+        <input
+          type="file"
+          id="employeePhoto"
+          accept="image/*"
+          onchange="previewPhoto(event)"
+        >
 
-alt="Employee Photo"
+      </label>
 
->
 
+      <div class="photo-note">
+        JPG, PNG or WEBP • Recommended square image
+      </div>
 
+    </div>
 
-<label class="photo-upload-label">
 
 
-📷 Upload Employee Photo
+    <!-- EMPLOYEE ID -->
 
+    <div class="field">
 
-<input
+      <label>
+        EMPLOYEE ID
+      </label>
 
-type="file"
+      <input
+        type="text"
+        id="employeeId"
+        placeholder="Example: GI-001"
+      >
 
-id="employeePhoto"
+    </div>
 
-accept="image/*"
 
-onchange="previewPhoto(event)"
 
->
+    <!-- NAME -->
 
+    <div class="field">
 
-</label>
+      <label>
+        EMPLOYEE NAME
+      </label>
 
+      <input
+        type="text"
+        id="employeeName"
+        placeholder="Enter employee name"
+      >
 
+    </div>
 
-<div class="photo-note">
 
-JPG, PNG or WEBP • Recommended square photo
 
-</div>
+    <!-- DEPARTMENT -->
 
+    <div class="field">
 
-</div>
+      <label>
+        DEPARTMENT
+      </label>
 
+      <input
+        type="text"
+        id="department"
+        placeholder="Example: Production"
+      >
 
+    </div>
 
-<!-- EMPLOYEE ID -->
 
-<div class="field">
 
+    <!-- BUTTONS -->
 
-<label>
-Employee ID
-</label>
+    <div class="modal-actions">
 
+      <button
+        class="btn cancel-btn"
+        onclick="closeModal()"
+      >
+        Cancel
+      </button>
 
-<input
 
-type="text"
+      <button
+        class="btn save-btn"
+        id="saveBtn"
+        onclick="saveEmployee()"
+      >
+        Save Employee
+      </button>
 
-id="employeeId"
+    </div>
 
-placeholder="Example: GI-001"
-
->
-
-
-</div>
-
-
-
-<!-- EMPLOYEE NAME -->
-
-<div class="field">
-
-
-<label>
-Employee Name
-</label>
-
-
-<input
-
-type="text"
-
-id="employeeName"
-
-placeholder="Enter employee name"
-
->
-
-
-</div>
-
-
-
-<!-- DEPARTMENT -->
-
-<div class="field">
-
-
-<label>
-Department
-</label>
-
-
-<input
-
-type="text"
-
-id="department"
-
-placeholder="Example: Production"
-
->
-
-
-</div>
-
-
-
-<!-- BUTTONS -->
-
-<div class="modal-actions">
-
-
-<button
-
-class="btn cancel-btn"
-
-onclick="closeModal()"
-
->
-Cancel
-</button>
-
-
-
-<button
-
-class="btn save-btn"
-
-id="saveBtn"
-
-onclick="saveEmployee()"
-
->
-Save Employee
-</button>
-
-
-</div>
-
-
-</div>
-
+  </div>
 
 </div>
 
@@ -1048,15 +1386,12 @@ Save Employee
 
 <script>
 
-
 /* =========================
    SUPABASE
 ========================= */
 
-
 const SUPABASE_URL =
 "https://ysdpsndophokczdqysiw.supabase.co";
-
 
 const SUPABASE_ANON_KEY =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
@@ -1064,31 +1399,20 @@ const SUPABASE_ANON_KEY =
 
 const supabaseClient =
 window.supabase.createClient(
-
-SUPABASE_URL,
-
-SUPABASE_ANON_KEY,
-
-{
-
-auth:{
-
-persistSession:true,
-
-autoRefreshToken:true
-
-}
-
-}
-
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY,
+  {
+    auth:{
+      persistSession:true,
+      autoRefreshToken:true
+    }
+  }
 );
-
 
 
 /* =========================
    VARIABLES
 ========================= */
-
 
 let editingEmployeeId = null;
 
@@ -1099,1455 +1423,1069 @@ let selectedPhotoFile = null;
 let existingPhotoUrl = null;
 
 
-
 /* =========================
    ADMIN CHECK
 ========================= */
 
-
 async function checkAdminLogin(){
 
-
-const {
-
-data,
-
-error
-
-}
-
-=
-
-await supabaseClient
-.auth
-.getUser();
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+  .auth
+  .getUser();
 
 
+  if(
+    error ||
+    !data.user
+  ){
 
-if(
-error ||
-!data.user
-){
+    window.location.replace(
+      "./login.html"
+    );
 
+    return false;
 
-window.location.replace(
-"./login.html"
-);
+  }
 
-
-return false;
-
+  return true;
 
 }
-
-
-return true;
-
-
-}
-
 
 
 /* =========================
    LOAD EMPLOYEES
 ========================= */
 
-
 async function loadEmployees(){
 
-
-const body =
-document.getElementById(
-"employeeBody"
-);
-
+  const body =
+  document.getElementById(
+    "employeeBody"
+  );
 
 
-body.innerHTML = `
-
-<tr>
-
-<td
-colspan="5"
-class="loading"
->
-
-Loading employees...
-
-</td>
-
-</tr>
-
-`;
+  body.innerHTML = `
+    <tr>
+      <td
+        colspan="4"
+        class="loading"
+      >
+        Loading employees...
+      </td>
+    </tr>
+  `;
 
 
-
-const {
-
-data,
-
-error
-
-}
-
-=
-
-await supabaseClient
-
-.from("employees")
-
-.select("*")
-
-.order(
-
-"employee_id",
-
-{
-ascending:true
-}
-
-);
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+  .from("employees")
+  .select("*")
+  .order(
+    "employee_id",
+    {
+      ascending:true
+    }
+  );
 
 
+  if(error){
 
-if(error){
+    console.error(error);
 
+    body.innerHTML = `
+      <tr>
+        <td
+          colspan="4"
+          class="loading"
+        >
+          Error loading employees:
+          ${error.message}
+        </td>
+      </tr>
+    `;
 
-console.error(error);
+    return;
 
-
-body.innerHTML = `
-
-<tr>
-
-<td
-colspan="5"
-class="loading"
->
-
-Error loading employees:
-
-${error.message}
-
-</td>
-
-</tr>
-
-`;
+  }
 
 
-return;
+  employeesData =
+  data || [];
 
+
+  updateStats();
+
+  renderEmployees();
 
 }
 
 
+/* =========================
+   UPDATE STATS
+========================= */
 
-employeesData =
-data || [];
+function updateStats(){
+
+  document
+  .getElementById(
+    "totalEmployees"
+  )
+  .textContent =
+  employeesData.length;
 
 
-renderEmployees();
+  const departments =
+  new Set(
+    employeesData
+    .map(
+      employee =>
+      employee.department
+    )
+    .filter(Boolean)
+  );
 
+
+  document
+  .getElementById(
+    "totalDepartments"
+  )
+  .textContent =
+  departments.size;
+
+
+  const withPhoto =
+  employeesData.filter(
+    employee =>
+    employee.photo_url
+  ).length;
+
+
+  document
+  .getElementById(
+    "employeesWithPhoto"
+  )
+  .textContent =
+  withPhoto;
 
 }
-
 
 
 /* =========================
    GET INITIALS
 ========================= */
 
-
 function getInitials(name){
 
+  if(!name){
+    return "?";
+  }
 
-if(!name){
-
-return "?";
-
-}
-
-
-return name
-
-.split(" ")
-
-.map(
-word =>
-word.charAt(0)
-)
-
-.slice(0,2)
-
-.join("")
-
-.toUpperCase();
-
+  return name
+  .split(" ")
+  .map(
+    word =>
+    word.charAt(0)
+  )
+  .slice(0,2)
+  .join("")
+  .toUpperCase();
 
 }
-
 
 
 /* =========================
    RENDER EMPLOYEES
 ========================= */
 
-
 function renderEmployees(){
 
-
-const body =
-document.getElementById(
-"employeeBody"
-);
-
+  const body =
+  document.getElementById(
+    "employeeBody"
+  );
 
 
-const search =
-
-document
-
-.getElementById(
-"searchInput"
-)
-
-.value
-
-.toLowerCase();
+  const search =
+  document
+  .getElementById(
+    "searchInput"
+  )
+  .value
+  .toLowerCase()
+  .trim();
 
 
+  const filtered =
+  employeesData.filter(
+    employee => {
 
-const filtered =
+      return (
 
-employeesData.filter(
-employee => {
+        (
+          employee.employee_id ||
+          ""
+        )
+        .toLowerCase()
+        .includes(search)
 
+        ||
 
-return (
+        (
+          employee.name ||
+          ""
+        )
+        .toLowerCase()
+        .includes(search)
 
+        ||
 
-(employee.employee_id || "")
+        (
+          employee.department ||
+          ""
+        )
+        .toLowerCase()
+        .includes(search)
 
-.toLowerCase()
+      );
 
-.includes(search)
-
-
-||
-
-
-(employee.name || "")
-
-.toLowerCase()
-
-.includes(search)
-
-
-||
-
-
-(employee.department || "")
-
-.toLowerCase()
-
-.includes(search)
+    }
+  );
 
 
-);
+  document
+  .getElementById(
+    "recordCount"
+  )
+  .textContent =
+  `${filtered.length} Employees`;
 
+
+  if(
+    filtered.length === 0
+  ){
+
+    body.innerHTML = `
+      <tr>
+        <td
+          colspan="4"
+          class="loading"
+        >
+          No employees found.
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  body.innerHTML =
+  filtered.map(
+    employee => `
+
+      <tr>
+
+
+        <td>
+
+          <div class="employee-info">
+
+            ${
+              employee.photo_url
+
+              ?
+
+              `
+                <img
+                  src="${employee.photo_url}"
+                  class="employee-photo"
+                  alt="${employee.name}"
+                >
+              `
+
+              :
+
+              `
+                <div class="photo-placeholder">
+                  ${getInitials(employee.name)}
+                </div>
+              `
+
+            }
+
+
+            <div>
+
+              <div class="employee-name">
+                ${employee.name || "—"}
+              </div>
+
+              <div class="employee-sub">
+                Gayatri Industries
+              </div>
+
+            </div>
+
+          </div>
+
+        </td>
+
+
+        <td>
+
+          <span class="id-badge">
+
+            ${
+              employee.employee_id ||
+              "—"
+            }
+
+          </span>
+
+        </td>
+
+
+        <td>
+
+          <span class="department-badge">
+
+            ${
+              employee.department ||
+              "Not Assigned"
+            }
+
+          </span>
+
+        </td>
+
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="action-btn edit-btn"
+              onclick="editEmployee('${employee.employee_id}')"
+            >
+              ✏ Edit
+            </button>
+
+
+            <button
+              class="action-btn delete-btn"
+              onclick="deleteEmployee('${employee.employee_id}')"
+            >
+              🗑 Delete
+            </button>
+
+          </div>
+
+        </td>
+
+
+      </tr>
+
+    `
+  )
+  .join("");
 
 }
-
-);
-
-
-
-if(
-filtered.length === 0
-){
-
-
-body.innerHTML = `
-
-<tr>
-
-<td
-colspan="5"
-class="loading"
->
-
-No employees found.
-
-</td>
-
-</tr>
-
-`;
-
-
-return;
-
-
-}
-
-
-
-body.innerHTML =
-
-filtered.map(
-employee => `
-
-
-<tr>
-
-
-<td>
-
-
-${
-
-employee.photo_url
-
-?
-
-`
-
-<img
-
-src="${employee.photo_url}"
-
-class="employee-photo"
-
-alt="${employee.name}"
-
->
-
-`
-
-:
-
-`
-
-<div class="photo-placeholder">
-
-${getInitials(
-employee.name
-)}
-
-</div>
-
-`
-
-}
-
-
-</td>
-
-
-
-<td>
-
-${employee.employee_id || "—"}
-
-</td>
-
-
-
-<td>
-
-${employee.name || "—"}
-
-</td>
-
-
-
-<td>
-
-${employee.department || "—"}
-
-</td>
-
-
-
-<td>
-
-
-<button
-
-class="action-btn edit-btn"
-
-onclick="editEmployee('${employee.employee_id}')"
-
->
-
-Edit
-
-</button>
-
-
-
-<button
-
-class="action-btn delete-btn"
-
-onclick="deleteEmployee('${employee.employee_id}')"
-
->
-
-Delete
-
-</button>
-
-
-</td>
-
-
-</tr>
-
-
-`
-
-)
-
-.join("");
-
-
-}
-
 
 
 /* =========================
    PHOTO PREVIEW
 ========================= */
 
-
 function previewPhoto(event){
 
-
-const file =
-event.target.files[0];
-
-
-if(!file){
-
-return;
-
-}
+  const file =
+  event.target.files[0];
 
 
-selectedPhotoFile =
-file;
+  if(!file){
+    return;
+  }
 
 
-
-const preview =
-
-document.getElementById(
-"photoPreview"
-);
+  selectedPhotoFile =
+  file;
 
 
-const placeholder =
-
-document.getElementById(
-"photoPlaceholder"
-);
-
+  const preview =
+  document.getElementById(
+    "photoPreview"
+  );
 
 
-preview.src =
-
-URL.createObjectURL(
-file
-);
-
+  const placeholder =
+  document.getElementById(
+    "photoPlaceholder"
+  );
 
 
-preview.style.display =
-"block";
+  preview.src =
+  URL.createObjectURL(
+    file
+  );
 
 
-placeholder.style.display =
-"none";
+  preview.style.display =
+  "block";
 
+
+  placeholder.style.display =
+  "none";
 
 }
-
 
 
 /* =========================
    RESET PHOTO
 ========================= */
 
-
 function resetPhoto(){
 
-
-selectedPhotoFile =
-null;
-
-
-existingPhotoUrl =
-null;
+  selectedPhotoFile =
+  null;
 
 
-
-document
-
-.getElementById(
-"employeePhoto"
-)
-
-.value = "";
+  existingPhotoUrl =
+  null;
 
 
-
-const preview =
-
-document.getElementById(
-"photoPreview"
-);
-
+  document
+  .getElementById(
+    "employeePhoto"
+  )
+  .value = "";
 
 
-preview.src = "";
+  const preview =
+  document.getElementById(
+    "photoPreview"
+  );
 
 
-preview.style.display =
-"none";
+  preview.src = "";
 
 
-
-const placeholder =
-
-document.getElementById(
-"photoPlaceholder"
-);
+  preview.style.display =
+  "none";
 
 
+  const placeholder =
+  document.getElementById(
+    "photoPlaceholder"
+  );
 
-placeholder.style.display =
-"grid";
+
+  placeholder.style.display =
+  "grid";
 
 
-placeholder.textContent =
-"👤";
-
+  placeholder.textContent =
+  "👤";
 
 }
-
 
 
 /* =========================
    OPEN ADD MODAL
 ========================= */
 
-
 function openAddModal(){
 
-
-editingEmployeeId =
-null;
-
+  editingEmployeeId =
+  null;
 
 
-document
-
-.getElementById(
-"modalTitle"
-)
-
-.textContent =
-
-"Add Employee";
+  document
+  .getElementById(
+    "modalTitle"
+  )
+  .textContent =
+  "Add Employee";
 
 
-
-document
-
-.getElementById(
-"employeeId"
-)
-
-.value = "";
+  document
+  .getElementById(
+    "employeeId"
+  )
+  .value = "";
 
 
-
-document
-
-.getElementById(
-"employeeName"
-)
-
-.value = "";
+  document
+  .getElementById(
+    "employeeName"
+  )
+  .value = "";
 
 
-
-document
-
-.getElementById(
-"department"
-)
-
-.value = "";
+  document
+  .getElementById(
+    "department"
+  )
+  .value = "";
 
 
-
-document
-
-.getElementById(
-"employeeId"
-)
-
-.disabled =
-false;
+  document
+  .getElementById(
+    "employeeId"
+  )
+  .disabled =
+  false;
 
 
-
-document
-
-.getElementById(
-"saveBtn"
-)
-
-.textContent =
-
-"Save Employee";
+  document
+  .getElementById(
+    "saveBtn"
+  )
+  .textContent =
+  "Save Employee";
 
 
-
-resetPhoto();
-
+  resetPhoto();
 
 
-document
-
-.getElementById(
-"employeeModal"
-)
-
-.classList.add(
-"show"
-);
-
+  document
+  .getElementById(
+    "employeeModal"
+  )
+  .classList.add(
+    "show"
+  );
 
 }
-
 
 
 /* =========================
    EDIT EMPLOYEE
 ========================= */
 
-
 function editEmployee(employeeId){
 
-
-const employee =
-
-employeesData.find(
-
-item =>
-
-item.employee_id ===
-employeeId
-
-);
+  const employee =
+  employeesData.find(
+    item =>
+    item.employee_id ===
+    employeeId
+  );
 
 
+  if(!employee){
+    return;
+  }
 
-if(!employee){
 
-return;
+  editingEmployeeId =
+  employee.employee_id;
+
+
+  existingPhotoUrl =
+  employee.photo_url ||
+  null;
+
+
+  selectedPhotoFile =
+  null;
+
+
+  document
+  .getElementById(
+    "modalTitle"
+  )
+  .textContent =
+  "Edit Employee";
+
+
+  document
+  .getElementById(
+    "employeeId"
+  )
+  .value =
+  employee.employee_id;
+
+
+  document
+  .getElementById(
+    "employeeName"
+  )
+  .value =
+  employee.name ||
+  "";
+
+
+  document
+  .getElementById(
+    "department"
+  )
+  .value =
+  employee.department ||
+  "";
+
+
+  document
+  .getElementById(
+    "employeeId"
+  )
+  .disabled =
+  true;
+
+
+  document
+  .getElementById(
+    "saveBtn"
+  )
+  .textContent =
+  "Update Employee";
+
+
+  document
+  .getElementById(
+    "employeePhoto"
+  )
+  .value = "";
+
+
+  const preview =
+  document.getElementById(
+    "photoPreview"
+  );
+
+
+  const placeholder =
+  document.getElementById(
+    "photoPlaceholder"
+  );
+
+
+  if(existingPhotoUrl){
+
+    preview.src =
+    existingPhotoUrl;
+
+    preview.style.display =
+    "block";
+
+    placeholder.style.display =
+    "none";
+
+  }
+
+  else{
+
+    preview.src = "";
+
+    preview.style.display =
+    "none";
+
+    placeholder.style.display =
+    "grid";
+
+    placeholder.textContent =
+    getInitials(
+      employee.name
+    );
+
+  }
+
+
+  document
+  .getElementById(
+    "employeeModal"
+  )
+  .classList.add(
+    "show"
+  );
 
 }
-
-
-
-editingEmployeeId =
-employee.employee_id;
-
-
-
-existingPhotoUrl =
-employee.photo_url ||
-null;
-
-
-
-selectedPhotoFile =
-null;
-
-
-
-document
-
-.getElementById(
-"modalTitle"
-)
-
-.textContent =
-
-"Edit Employee";
-
-
-
-document
-
-.getElementById(
-"employeeId"
-)
-
-.value =
-
-employee.employee_id;
-
-
-
-document
-
-.getElementById(
-"employeeName"
-)
-
-.value =
-
-employee.name ||
-"";
-
-
-
-document
-
-.getElementById(
-"department"
-)
-
-.value =
-
-employee.department ||
-"";
-
-
-
-document
-
-.getElementById(
-"employeeId"
-)
-
-.disabled =
-true;
-
-
-
-document
-
-.getElementById(
-"saveBtn"
-)
-
-.textContent =
-
-"Update Employee";
-
-
-
-const preview =
-
-document.getElementById(
-"photoPreview"
-);
-
-
-const placeholder =
-
-document.getElementById(
-"photoPlaceholder"
-);
-
-
-
-document
-
-.getElementById(
-"employeePhoto"
-)
-
-.value = "";
-
-
-
-if(existingPhotoUrl){
-
-
-preview.src =
-existingPhotoUrl;
-
-
-preview.style.display =
-"block";
-
-
-placeholder.style.display =
-"none";
-
-
-}
-
-
-else{
-
-
-preview.src = "";
-
-
-preview.style.display =
-"none";
-
-
-placeholder.style.display =
-"grid";
-
-
-placeholder.textContent =
-
-getInitials(
-employee.name
-);
-
-
-}
-
-
-
-document
-
-.getElementById(
-"employeeModal"
-)
-
-.classList.add(
-"show"
-);
-
-
-}
-
 
 
 /* =========================
    CLOSE MODAL
 ========================= */
 
-
 function closeModal(){
 
-
-document
-
-.getElementById(
-"employeeModal"
-)
-
-.classList.remove(
-"show"
-);
-
+  document
+  .getElementById(
+    "employeeModal"
+  )
+  .classList.remove(
+    "show"
+  );
 
 }
-
 
 
 /* =========================
    UPLOAD PHOTO
 ========================= */
 
-
 async function uploadPhoto(employeeId){
 
+  if(!selectedPhotoFile){
 
-if(
-!selectedPhotoFile
-){
+    return existingPhotoUrl;
 
-
-return existingPhotoUrl;
+  }
 
 
-}
+  const extension =
+  selectedPhotoFile.name
+  .split(".")
+  .pop();
 
 
-
-const extension =
-
-selectedPhotoFile.name
-
-.split(".")
-
-.pop();
+  const fileName =
+  `${employeeId}-${Date.now()}.${extension}`;
 
 
-
-const fileName =
-
-`${employeeId}-${Date.now()}.${extension}`;
+  const filePath =
+  `employees/${fileName}`;
 
 
+  const {
+    error:uploadError
+  } =
+  await supabaseClient
+  .storage
+  .from("employee-photos")
+  .upload(
+    filePath,
+    selectedPhotoFile,
+    {
+      upsert:false
+    }
+  );
 
-const filePath =
 
-`employees/${fileName}`;
+  if(uploadError){
+    throw uploadError;
+  }
 
 
+  const {
+    data
+  } =
+  supabaseClient
+  .storage
+  .from("employee-photos")
+  .getPublicUrl(
+    filePath
+  );
 
-const {
 
-error:
-uploadError
-
-}
-
-=
-
-await supabaseClient
-
-.storage
-
-.from(
-"employee-photos"
-)
-
-.upload(
-
-filePath,
-
-selectedPhotoFile,
-
-{
-
-upsert:false
+  return data.publicUrl;
 
 }
-
-);
-
-
-
-if(uploadError){
-
-
-throw uploadError;
-
-
-}
-
-
-
-const {
-
-data
-
-}
-
-=
-
-supabaseClient
-
-.storage
-
-.from(
-"employee-photos"
-)
-
-.getPublicUrl(
-filePath
-);
-
-
-
-return
-data.publicUrl;
-
-
-}
-
 
 
 /* =========================
    SAVE EMPLOYEE
 ========================= */
 
-
 async function saveEmployee(){
 
-
-const employeeId =
-
-document
-
-.getElementById(
-"employeeId"
-)
-
-.value
-
-.trim();
+  const employeeId =
+  document
+  .getElementById(
+    "employeeId"
+  )
+  .value
+  .trim();
 
 
-
-const name =
-
-document
-
-.getElementById(
-"employeeName"
-)
-
-.value
-
-.trim();
+  const name =
+  document
+  .getElementById(
+    "employeeName"
+  )
+  .value
+  .trim();
 
 
-
-const department =
-
-document
-
-.getElementById(
-"department"
-)
-
-.value
-
-.trim();
+  const department =
+  document
+  .getElementById(
+    "department"
+  )
+  .value
+  .trim();
 
 
+  if(
+    !employeeId ||
+    !name
+  ){
 
-if(
+    alert(
+      "Please enter Employee ID and Name."
+    );
 
-!employeeId ||
+    return;
 
-!name
-
-){
-
-
-alert(
-"Please enter Employee ID and Name."
-);
+  }
 
 
-return;
+  const saveBtn =
+  document.getElementById(
+    "saveBtn"
+  );
 
+
+  saveBtn.disabled =
+  true;
+
+
+  saveBtn.textContent =
+  "Saving...";
+
+
+  try{
+
+    let photoUrl =
+    existingPhotoUrl;
+
+
+    if(selectedPhotoFile){
+
+      saveBtn.textContent =
+      "Uploading photo...";
+
+
+      photoUrl =
+      await uploadPhoto(
+        employeeId
+      );
+
+    }
+
+
+    let error;
+
+
+    if(!editingEmployeeId){
+
+      const result =
+      await supabaseClient
+      .from("employees")
+      .insert([
+        {
+          employee_id:employeeId,
+          name:name,
+          department:department,
+          photo_url:photoUrl
+        }
+      ]);
+
+
+      error =
+      result.error;
+
+    }
+
+    else{
+
+      const result =
+      await supabaseClient
+      .from("employees")
+      .update({
+        name:name,
+        department:department,
+        photo_url:photoUrl
+      })
+      .eq(
+        "employee_id",
+        editingEmployeeId
+      );
+
+
+      error =
+      result.error;
+
+    }
+
+
+    if(error){
+      throw error;
+    }
+
+
+    alert(
+      editingEmployeeId
+      ?
+      "Employee updated successfully!"
+      :
+      "Employee added successfully!"
+    );
+
+
+    closeModal();
+
+
+    await loadEmployees();
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "Error: " +
+      error.message
+    );
+
+  }
+
+  finally{
+
+    saveBtn.disabled =
+    false;
+
+
+    saveBtn.textContent =
+    editingEmployeeId
+    ?
+    "Update Employee"
+    :
+    "Save Employee";
+
+  }
 
 }
-
-
-
-const saveBtn =
-
-document.getElementById(
-"saveBtn"
-);
-
-
-
-saveBtn.disabled =
-true;
-
-
-
-saveBtn.textContent =
-"Saving...";
-
-
-
-try{
-
-
-let photoUrl =
-existingPhotoUrl;
-
-
-
-if(selectedPhotoFile){
-
-
-saveBtn.textContent =
-"Uploading photo...";
-
-
-photoUrl =
-
-await uploadPhoto(
-employeeId
-);
-
-
-}
-
-
-
-saveBtn.textContent =
-"Saving employee...";
-
-
-
-let error;
-
-
-
-/* ADD EMPLOYEE */
-
-
-if(
-!editingEmployeeId
-){
-
-
-const result =
-
-await supabaseClient
-
-.from("employees")
-
-.insert([
-
-{
-
-employee_id:
-employeeId,
-
-name:
-name,
-
-department:
-department,
-
-photo_url:
-photoUrl
-
-}
-
-]);
-
-
-
-error =
-result.error;
-
-
-}
-
-
-
-/* UPDATE EMPLOYEE */
-
-
-else{
-
-
-const result =
-
-await supabaseClient
-
-.from("employees")
-
-.update({
-
-name:
-name,
-
-department:
-department,
-
-photo_url:
-photoUrl
-
-})
-
-.eq(
-
-"employee_id",
-
-editingEmployeeId
-
-);
-
-
-
-error =
-result.error;
-
-
-}
-
-
-
-if(error){
-
-throw error;
-
-}
-
-
-
-alert(
-
-editingEmployeeId
-
-?
-
-"Employee updated successfully!"
-
-:
-
-"Employee added successfully!"
-
-);
-
-
-
-closeModal();
-
-
-
-await loadEmployees();
-
-
-}
-
-
-catch(error){
-
-
-console.error(error);
-
-
-alert(
-
-"Error: " +
-error.message
-
-);
-
-
-}
-
-
-finally{
-
-
-saveBtn.disabled =
-false;
-
-
-
-saveBtn.textContent =
-
-editingEmployeeId
-
-?
-
-"Update Employee"
-
-:
-
-"Save Employee";
-
-
-}
-
-
-}
-
 
 
 /* =========================
    DELETE EMPLOYEE
 ========================= */
 
-
 async function deleteEmployee(employeeId){
 
-
-const confirmDelete =
-
-confirm(
-
-"Are you sure you want to delete employee " +
-
-employeeId +
-
-"?"
-
-);
+  const confirmDelete =
+  confirm(
+    "Are you sure you want to delete employee " +
+    employeeId +
+    "?"
+  );
 
 
-
-if(!confirmDelete){
-
-return;
-
-}
+  if(!confirmDelete){
+    return;
+  }
 
 
-
-const {
-
-error
-
-}
-
-=
-
-await supabaseClient
-
-.from("employees")
-
-.delete()
-
-.eq(
-
-"employee_id",
-
-employeeId
-
-);
+  const {
+    error
+  } =
+  await supabaseClient
+  .from("employees")
+  .delete()
+  .eq(
+    "employee_id",
+    employeeId
+  );
 
 
+  if(error){
 
-if(error){
-
-
-console.error(error);
+    console.error(error);
 
 
-alert(
+    alert(
+      "Delete failed: " +
+      error.message
+    );
 
-"Delete failed: " +
-error.message
+    return;
 
-);
+  }
 
 
-return;
+  alert(
+    "Employee deleted successfully!"
+  );
 
+
+  await loadEmployees();
 
 }
-
-
-
-alert(
-"Employee deleted successfully!"
-);
-
-
-
-await loadEmployees();
-
-
-}
-
 
 
 /* =========================
    SEARCH
 ========================= */
 
-
 document
-
 .getElementById(
-"searchInput"
+  "searchInput"
 )
-
 .addEventListener(
-
-"input",
-
-renderEmployees
-
+  "input",
+  renderEmployees
 );
-
 
 
 /* =========================
    LOGOUT
 ========================= */
 
-
 async function logout(){
 
-
-if(
-
-!confirm(
-"Are you sure you want to logout?"
-)
-
-){
-
-return;
-
-}
+  if(
+    !confirm(
+      "Are you sure you want to logout?"
+    )
+  ){
+    return;
+  }
 
 
-
-await supabaseClient
-
-.auth
-
-.signOut();
+  await supabaseClient
+  .auth
+  .signOut();
 
 
-
-window.location.replace(
-"./login.html"
-);
-
+  window.location.replace(
+    "./login.html"
+  );
 
 }
-
 
 
 /* =========================
    INITIALIZE
 ========================= */
 
-
 async function initialize(){
 
-
-const loggedIn =
-
-await checkAdminLogin();
+  const loggedIn =
+  await checkAdminLogin();
 
 
-
-if(!loggedIn){
-
-return;
-
-}
+  if(!loggedIn){
+    return;
+  }
 
 
-
-await loadEmployees();
-
+  await loadEmployees();
 
 }
-
 
 
 initialize();
 
-
 </script>
 
-
 </body>
-
 </html>
