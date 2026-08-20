@@ -8,6 +8,7 @@
   <title>Gayatri Attendance | Gayatri Industries</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -19,7 +20,7 @@
     }
 
     body {
-      font-family: Inter, Segoe UI, Arial, sans-serif;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
       background: #020711;
       color: #eef6ff;
       overflow-x: hidden;
@@ -94,15 +95,27 @@
       gap: 12px;
     }
 
+    /* UPDATED LOGO */
+
     .logo {
       width: 58px;
       height: 58px;
       border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-size: 28px;
-      background: linear-gradient(135deg, #0d67bd, #05213f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #061426;
       border: 1px solid rgba(90, 170, 255, .25);
+      overflow: hidden;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .brand h2 {
@@ -140,6 +153,7 @@
       border-radius: 30px;
       color: #63e6a8;
       font-size: 12px;
+      white-space: nowrap;
     }
 
     .dot {
@@ -165,7 +179,7 @@
     .hero {
       max-width: 1450px;
       margin: auto;
-      padding: 70px 6% 45px;
+      padding: 70px 6% 80px;
       display: grid;
       grid-template-columns: 1fr 1.08fr;
       gap: 45px;
@@ -349,12 +363,12 @@
 
     .visual {
       position: relative;
-      height: 560px;
+      height: 600px;
     }
 
     .attendance-box {
       position: absolute;
-      inset: 0 50px 0 20px;
+      inset: 0 50px 40px 20px;
       border-radius: 34px;
       overflow: hidden;
       border: 1px solid rgba(56, 163, 255, .24);
@@ -496,16 +510,20 @@
       color: #50e49c !important;
     }
 
+    /* UPDATED CLOCK - NO OVERLAP */
+
     .clock {
       position: absolute;
-      left: -5px;
-      bottom: 25px;
+      left: 20px;
+      bottom: 0;
       padding: 14px 18px;
+      min-width: 195px;
       border: 1px solid rgba(44, 154, 255, .28);
-      background: rgba(4, 16, 33, .9);
+      background: rgba(4, 16, 33, .95);
       border-radius: 16px;
       backdrop-filter: blur(15px);
-      z-index: 6;
+      z-index: 10;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .35);
     }
 
     .clock small {
@@ -515,12 +533,14 @@
 
     .clock h3 {
       font-size: 18px;
-      margin: 3px 0;
+      margin: 4px 0;
+      white-space: nowrap;
     }
 
     .clock p {
       font-size: 9px;
       color: #718197;
+      white-space: nowrap;
     }
 
     /* STATS */
@@ -612,9 +632,11 @@
       padding: 22px;
       border-radius: 17px;
       background:
-        linear-gradient(145deg,
+        linear-gradient(
+          145deg,
           rgba(13, 31, 57, .9),
-          rgba(4, 13, 26, .9));
+          rgba(4, 13, 26, .9)
+        );
       border: 1px solid rgba(67, 147, 255, .17);
       transition: .3s;
     }
@@ -660,14 +682,26 @@
       gap: 10px;
     }
 
+    /* UPDATED FOOTER LOGO */
+
     .footbrand .footer-logo {
       width: 48px;
       height: 48px;
       border-radius: 13px;
-      display: grid;
-      place-items: center;
-      background: #0b315c;
-      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #061426;
+      overflow: hidden;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .footbrand strong {
@@ -711,6 +745,7 @@
       .feature-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
 
     @media(max-width:650px) {
@@ -725,7 +760,7 @@
       }
 
       .hero {
-        padding: 45px 5%;
+        padding: 45px 5% 80px;
       }
 
       .actions {
@@ -733,11 +768,11 @@
       }
 
       .visual {
-        height: 500px;
+        height: 550px;
       }
 
       .attendance-box {
-        inset: 0;
+        inset: 0 0 35px 0;
       }
 
       .verify {
@@ -748,6 +783,8 @@
 
       .clock {
         left: 10px;
+        bottom: 0;
+        min-width: 180px;
       }
 
       .stats {
@@ -774,7 +811,9 @@
       h1 {
         letter-spacing: -2px;
       }
+
     }
+
   </style>
 </head>
 
@@ -790,7 +829,9 @@
 
     <div class="brand">
 
-      <div class="logo">📍</div>
+      <div class="logo">
+        <img src="./gayatri-logo.png" alt="Gayatri Industries Logo">
+      </div>
 
       <div>
         <h2>Gayatri <b>Attendance</b></h2>
@@ -866,9 +907,6 @@
 
       </div>
 
-
-      <!-- ACTION BUTTONS -->
-
       <div class="actions">
 
         <a href="./attendance.html" class="action employee">
@@ -910,8 +948,6 @@
 
     </section>
 
-
-    <!-- RIGHT SIDE VISUAL -->
 
     <section class="visual">
 
@@ -1062,7 +1098,6 @@
         </p>
       </div>
 
-
       <div class="feature-card">
         <div class="big">📍</div>
         <h3>Location Verification</h3>
@@ -1071,7 +1106,6 @@
           is within the authorized company area.
         </p>
       </div>
-
 
       <div class="feature-card">
         <div class="big">🟢</div>
@@ -1082,7 +1116,6 @@
         </p>
       </div>
 
-
       <div class="feature-card">
         <div class="big">🔴</div>
         <h3>Check-Out</h3>
@@ -1091,7 +1124,6 @@
           their daily attendance record.
         </p>
       </div>
-
 
       <div class="feature-card">
         <div class="big">📊</div>
@@ -1113,7 +1145,9 @@
 
     <div class="footbrand">
 
-      <div class="footer-logo">📍</div>
+      <div class="footer-logo">
+        <img src="./gayatri-logo.png" alt="Gayatri Industries Logo">
+      </div>
 
       <div>
         <strong>Gayatri <b>Attendance</b></strong>
@@ -1156,10 +1190,7 @@
 
     updateClock();
 
-    setInterval(
-      updateClock,
-      1000
-    );
+    setInterval(updateClock, 1000);
 
   </script>
 
