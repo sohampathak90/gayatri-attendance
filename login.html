@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -15,7 +14,6 @@
   <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
   <style>
 
     * {
@@ -23,7 +21,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
 
     :root {
       --primary: #2563eb;
@@ -37,7 +34,6 @@
       --danger: #dc2626;
     }
 
-
     body {
       font-family: Inter, "Segoe UI", Arial, sans-serif;
       min-height: 100vh;
@@ -48,7 +44,6 @@
       justify-content: center;
       padding: 24px;
     }
-
 
     .page {
       width: 100%;
@@ -61,9 +56,6 @@
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(31, 41, 55, 0.12);
     }
-
-
-    /* LEFT SIDE */
 
     .welcome-side {
       background: linear-gradient(
@@ -84,7 +76,6 @@
       overflow: hidden;
     }
 
-
     .welcome-side::before,
     .welcome-side::after {
       content: "";
@@ -93,7 +84,6 @@
       background: rgba(255,255,255,0.08);
     }
 
-
     .welcome-side::before {
       width: 280px;
       height: 280px;
@@ -101,14 +91,12 @@
       right: -100px;
     }
 
-
     .welcome-side::after {
       width: 350px;
       height: 350px;
       bottom: -180px;
       left: -130px;
     }
-
 
     .brand {
       position: relative;
@@ -118,7 +106,6 @@
       align-items: center;
       gap: 12px;
     }
-
 
     .brand-logo {
       width: 48px;
@@ -136,11 +123,9 @@
       font-weight: bold;
     }
 
-
     .brand-text h2 {
       font-size: 18px;
     }
-
 
     .brand-text p {
       font-size: 10px;
@@ -149,12 +134,10 @@
       letter-spacing: 1px;
     }
 
-
     .welcome-content {
       position: relative;
       z-index: 1;
     }
-
 
     .welcome-content h1 {
       font-size: 42px;
@@ -162,11 +145,9 @@
       margin-bottom: 18px;
     }
 
-
     .welcome-content h1 span {
       color: #fed7aa;
     }
-
 
     .welcome-content p {
       max-width: 390px;
@@ -174,7 +155,6 @@
       line-height: 1.7;
       color: rgba(255,255,255,0.78);
     }
-
 
     .feature-list {
       position: relative;
@@ -185,7 +165,6 @@
       gap: 12px;
     }
 
-
     .feature {
       display: flex;
       align-items: center;
@@ -195,23 +174,17 @@
       color: rgba(255,255,255,0.9);
     }
 
-
     .check {
       width: 25px;
       height: 25px;
-
       border-radius: 50%;
 
       background: rgba(255,255,255,0.16);
 
       display: grid;
       place-items: center;
-
       font-size: 12px;
     }
-
-
-    /* RIGHT SIDE */
 
     .login-side {
       padding: 55px;
@@ -221,17 +194,14 @@
       justify-content: center;
     }
 
-
     .mobile-brand {
       display: none;
     }
-
 
     .login-header h2 {
       font-size: 30px;
       margin-bottom: 8px;
     }
-
 
     .login-header p {
       color: var(--muted);
@@ -240,11 +210,9 @@
       line-height: 1.6;
     }
 
-
     .field {
       margin-bottom: 20px;
     }
-
 
     .field label {
       display: block;
@@ -254,23 +222,18 @@
       color: #374151;
     }
 
-
     .input-wrap {
       position: relative;
     }
-
 
     .input-icon {
       position: absolute;
       left: 15px;
       top: 50%;
-
       transform: translateY(-50%);
-
       font-size: 16px;
       opacity: 0.6;
     }
-
 
     .field input {
       width: 100%;
@@ -282,24 +245,19 @@
       border-radius: 12px;
 
       outline: none;
-
       font-size: 14px;
       color: var(--text);
-
       background: #fff;
     }
-
 
     .field input:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
     }
 
-
     .login-btn {
       width: 100%;
       height: 52px;
-
       margin-top: 6px;
 
       border: none;
@@ -310,39 +268,30 @@
 
       font-size: 14px;
       font-weight: 600;
-
       cursor: pointer;
     }
-
 
     .login-btn:hover {
       background: var(--primary-dark);
     }
-
 
     .login-btn:disabled {
       opacity: 0.65;
       cursor: not-allowed;
     }
 
-
     .message {
       display: none;
-
       margin-top: 18px;
       padding: 13px 15px;
-
       border-radius: 10px;
-
       font-size: 12px;
       line-height: 1.5;
     }
 
-
     .message.show {
       display: block;
     }
-
 
     .error {
       background: #fef2f2;
@@ -350,19 +299,16 @@
       border: 1px solid #fecaca;
     }
 
-
     .success {
       background: #f0fdf4;
       color: var(--success);
       border: 1px solid #bbf7d0;
     }
 
-
     .back {
       margin-top: 28px;
       text-align: center;
     }
-
 
     .back a {
       text-decoration: none;
@@ -370,11 +316,9 @@
       font-size: 13px;
     }
 
-
     .back a:hover {
       color: var(--primary);
     }
-
 
     @media (max-width: 800px) {
 
@@ -383,16 +327,13 @@
         max-width: 480px;
       }
 
-
       .welcome-side {
         display: none;
       }
 
-
       .login-side {
         padding: 40px 28px;
       }
-
 
       .mobile-brand {
         display: flex;
@@ -400,7 +341,6 @@
         gap: 10px;
         margin-bottom: 40px;
       }
-
 
       .mobile-logo {
         width: 45px;
@@ -415,11 +355,9 @@
         place-items: center;
       }
 
-
       .mobile-brand h3 {
         font-size: 16px;
       }
-
 
       .mobile-brand p {
         font-size: 9px;
@@ -429,24 +367,20 @@
 
     }
 
-
     @media (max-width: 450px) {
 
       body {
         padding: 0;
       }
 
-
       .page {
         min-height: 100vh;
         border-radius: 0;
       }
 
-
       .login-side {
         padding: 35px 22px;
       }
-
 
       .login-header h2 {
         font-size: 26px;
@@ -455,42 +389,24 @@
     }
 
   </style>
-
 </head>
-
 
 <body>
 
-
   <main class="page">
-
-
-    <!-- LEFT SIDE -->
 
     <section class="welcome-side">
 
       <div class="brand">
 
-        <div class="brand-logo">
-          GI
-        </div>
-
+        <div class="brand-logo">GI</div>
 
         <div class="brand-text">
-
-          <h2>
-            Gayatri Industries
-          </h2>
-
-          <p>
-            SMART ATTENDANCE SYSTEM
-          </p>
-
+          <h2>Gayatri Industries</h2>
+          <p>SMART ATTENDANCE SYSTEM</p>
         </div>
 
       </div>
-
-
 
       <div class="welcome-content">
 
@@ -498,7 +414,6 @@
           Welcome back to your
           <span>workspace.</span>
         </h1>
-
 
         <p>
           Manage employee attendance, monitor daily activity
@@ -508,8 +423,6 @@
 
       </div>
 
-
-
       <div class="feature-list">
 
         <div class="feature">
@@ -517,12 +430,10 @@
           Live employee attendance tracking
         </div>
 
-
         <div class="feature">
           <div class="check">✓</div>
           Manage employees and records
         </div>
-
 
         <div class="feature">
           <div class="check">✓</div>
@@ -534,41 +445,22 @@
     </section>
 
 
-
-    <!-- LOGIN SIDE -->
-
     <section class="login-side">
-
 
       <div class="mobile-brand">
 
-        <div class="mobile-logo">
-          GI
-        </div>
-
+        <div class="mobile-logo">GI</div>
 
         <div>
-
-          <h3>
-            Gayatri Industries
-          </h3>
-
-          <p>
-            SMART ATTENDANCE SYSTEM
-          </p>
-
+          <h3>Gayatri Industries</h3>
+          <p>SMART ATTENDANCE SYSTEM</p>
         </div>
 
       </div>
 
-
-
       <div class="login-header">
 
-        <h2>
-          Admin Login
-        </h2>
-
+        <h2>Admin Login</h2>
 
         <p>
           Enter your administrator credentials to access
@@ -578,22 +470,13 @@
       </div>
 
 
-
-      <!-- EMAIL -->
-
       <div class="field">
 
-        <label>
-          EMAIL ADDRESS
-        </label>
-
+        <label>EMAIL ADDRESS</label>
 
         <div class="input-wrap">
 
-          <span class="input-icon">
-            ✉
-          </span>
-
+          <span class="input-icon">✉</span>
 
           <input
             type="email"
@@ -607,22 +490,13 @@
       </div>
 
 
-
-      <!-- PASSWORD -->
-
       <div class="field">
 
-        <label>
-          PASSWORD
-        </label>
-
+        <label>PASSWORD</label>
 
         <div class="input-wrap">
 
-          <span class="input-icon">
-            🔒
-          </span>
-
+          <span class="input-icon">🔒</span>
 
           <input
             type="password"
@@ -636,10 +510,8 @@
       </div>
 
 
-
-      <!-- LOGIN BUTTON -->
-
       <button
+        type="button"
         class="login-btn"
         id="loginBtn"
       >
@@ -647,14 +519,10 @@
       </button>
 
 
-
-      <!-- MESSAGE -->
-
       <div
         class="message"
         id="message"
       ></div>
-
 
 
       <div class="back">
@@ -665,28 +533,22 @@
 
       </div>
 
-
     </section>
-
 
   </main>
 
 
-
   <script>
-
 
     /* =========================
        SUPABASE CONFIG
     ========================= */
 
     const SUPABASE_URL =
-    "https://ysdpsndophokczdqysiw.supabase.co";
-
+      "https://ysdpsndophokczdqysiw.supabase.co";
 
     const SUPABASE_ANON_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWJhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
-
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
 
     /* =========================
@@ -694,26 +556,19 @@
     ========================= */
 
     const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY,
-      {
-        auth: {
-
-          persistSession: true,
-
-          autoRefreshToken: true,
-
-          detectSessionInUrl: false,
-
-          storage: window.localStorage,
-
-          storageKey: "gayatri-admin-auth"
-
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: false,
+            storage: window.localStorage,
+            storageKey: "gayatri-admin-auth"
+          }
         }
-      }
-    );
-
+      );
 
 
     /* =========================
@@ -723,18 +578,14 @@
     function showMessage(text, type) {
 
       const message =
-      document.getElementById(
-        "message"
-      );
+        document.getElementById("message");
 
-      message.textContent =
-      text;
+      message.textContent = text;
 
       message.className =
-      "message show " + type;
+        "message show " + type;
 
     }
-
 
 
     /* =========================
@@ -743,37 +594,22 @@
 
     async function login() {
 
-
       const email =
-      document
-        .getElementById(
-          "email"
-        )
-        .value
-        .trim();
-
+        document
+          .getElementById("email")
+          .value
+          .trim();
 
       const password =
-      document
-        .getElementById(
-          "password"
-        )
-        .value;
-
+        document
+          .getElementById("password")
+          .value;
 
       const button =
-      document.getElementById(
-        "loginBtn"
-      );
+        document.getElementById("loginBtn");
 
 
-
-      /* CHECK EMPTY */
-
-      if (
-        !email ||
-        !password
-      ) {
+      if (!email || !password) {
 
         showMessage(
           "Please enter both email and password.",
@@ -785,34 +621,24 @@
       }
 
 
-
-      button.disabled =
-      true;
-
+      button.disabled = true;
 
       button.textContent =
-      "Logging you in...";
-
+        "Logging you in...";
 
 
       try {
-
-
-        /* =========================
-           SIGN IN
-        ========================= */
 
         const {
           data,
           error
         } =
-        await supabaseClient
-          .auth
-          .signInWithPassword({
-            email: email,
-            password: password
-          });
-
+          await supabaseClient
+            .auth
+            .signInWithPassword({
+              email: email,
+              password: password
+            });
 
 
         if (error) {
@@ -820,51 +646,14 @@
         }
 
 
-
-        if (
-          !data ||
-          !data.session
-        ) {
+        if (!data || !data.session) {
 
           throw new Error(
-            "Login successful but session could not be created."
+            "Login successful but session was not created."
           );
 
         }
 
-
-
-        /* =========================
-           VERIFY SESSION
-        ========================= */
-
-        const {
-          data: sessionData,
-          error: sessionError
-        } =
-        await supabaseClient
-          .auth
-          .getSession();
-
-
-
-        if (
-          sessionError ||
-          !sessionData ||
-          !sessionData.session
-        ) {
-
-          throw new Error(
-            "Session verification failed."
-          );
-
-        }
-
-
-
-        /* =========================
-           SUCCESS
-        ========================= */
 
         showMessage(
           "Login successful! Opening dashboard...",
@@ -872,31 +661,22 @@
         );
 
 
+        setTimeout(() => {
 
-        /* Wait before redirect */
+          window.location.replace(
+            "./admin.html"
+          );
 
-        setTimeout(
-          function() {
-
-            window.location.replace(
-              "./admin.html"
-            );
-
-          },
-          1000
-        );
-
+        }, 800);
 
       }
 
       catch (error) {
 
-
         console.error(
           "LOGIN ERROR:",
           error
         );
-
 
         showMessage(
           error.message ||
@@ -904,53 +684,41 @@
           "error"
         );
 
-
-        button.disabled =
-        false;
-
+        button.disabled = false;
 
         button.textContent =
-        "Login to Dashboard →";
+          "Login to Dashboard →";
 
       }
 
     }
 
 
-
     /* =========================
-       LOGIN BUTTON
+       BUTTON CLICK
     ========================= */
 
     document
-      .getElementById(
-        "loginBtn"
-      )
+      .getElementById("loginBtn")
       .addEventListener(
         "click",
         login
       );
 
 
-
     /* =========================
-       ENTER KEY - EMAIL
+       ENTER KEY
     ========================= */
 
     document
-      .getElementById(
-        "email"
-      )
+      .getElementById("email")
       .addEventListener(
         "keydown",
         function(event) {
 
-          if (
-            event.key === "Enter"
-          ) {
+          if (event.key === "Enter") {
 
             event.preventDefault();
-
             login();
 
           }
@@ -959,32 +727,21 @@
       );
 
 
-
-    /* =========================
-       ENTER KEY - PASSWORD
-    ========================= */
-
     document
-      .getElementById(
-        "password"
-      )
+      .getElementById("password")
       .addEventListener(
         "keydown",
         function(event) {
 
-          if (
-            event.key === "Enter"
-          ) {
+          if (event.key === "Enter") {
 
             event.preventDefault();
-
             login();
 
           }
 
         }
       );
-
 
 
     /* =========================
@@ -995,15 +752,13 @@
 
       try {
 
-
         const {
           data,
           error
         } =
-        await supabaseClient
-          .auth
-          .getSession();
-
+          await supabaseClient
+            .auth
+            .getSession();
 
 
         if (
@@ -1018,13 +773,12 @@
 
         }
 
-
       }
 
       catch (error) {
 
         console.error(
-          "SESSION CHECK ERROR:",
+          "SESSION ERROR:",
           error
         );
 
@@ -1033,17 +787,13 @@
     }
 
 
-
     /* =========================
        START
     ========================= */
 
     checkSession();
 
-
   </script>
 
-
 </body>
-
 </html>
