@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Employees | Gayatri Industries</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <style>
+
+/* ================= GLOBAL ================= */
 
 *{
   margin:0;
@@ -32,6 +41,7 @@ body{
   color:#111111;
   min-height:100vh;
 }
+
 
 /* ================= HEADER ================= */
 
@@ -59,8 +69,9 @@ body{
   align-items:center;
   justify-content:center;
   background:#111111;
-  color:white;
-  font-size:19px;
+  color:#ffffff;
+  font-size:15px;
+  font-weight:bold;
 }
 
 .brand h2{
@@ -80,6 +91,7 @@ body{
   align-items:center;
   gap:10px;
 }
+
 
 /* ================= BUTTONS ================= */
 
@@ -114,6 +126,7 @@ body{
   padding:12px 18px;
 }
 
+
 /* ================= MAIN ================= */
 
 .main{
@@ -140,6 +153,7 @@ body{
   font-size:12px;
   color:var(--secondary);
 }
+
 
 /* ================= STATS ================= */
 
@@ -173,6 +187,7 @@ body{
   color:var(--muted);
   letter-spacing:.5px;
 }
+
 
 /* ================= SEARCH ================= */
 
@@ -209,6 +224,7 @@ body{
 .search-box:focus{
   border-color:#111111;
 }
+
 
 /* ================= TABLE ================= */
 
@@ -275,6 +291,7 @@ tbody tr:hover{
   background:#fafafa;
 }
 
+
 /* ================= EMPLOYEE ================= */
 
 .employee-info{
@@ -314,6 +331,7 @@ tbody tr:hover{
   color:var(--muted);
 }
 
+
 /* ================= BADGES ================= */
 
 .id-badge{
@@ -334,6 +352,7 @@ tbody tr:hover{
   font-size:10px;
 }
 
+
 /* ================= ACTIONS ================= */
 
 .action-buttons{
@@ -349,7 +368,6 @@ tbody tr:hover{
   border-radius:7px;
   cursor:pointer;
   font-size:10px;
-  transition:.2s;
 }
 
 .action-btn:hover{
@@ -360,6 +378,7 @@ tbody tr:hover{
   color:var(--danger);
 }
 
+
 /* ================= LOADING ================= */
 
 .loading{
@@ -368,10 +387,6 @@ tbody tr:hover{
   color:var(--secondary);
 }
 
-.empty-icon{
-  font-size:30px;
-  margin-bottom:10px;
-}
 
 /* ================= MODAL ================= */
 
@@ -411,7 +426,6 @@ tbody tr:hover{
 
 .modal-header h2{
   font-size:20px;
-  font-weight:600;
 }
 
 .close-modal{
@@ -423,6 +437,7 @@ tbody tr:hover{
   cursor:pointer;
   font-size:18px;
 }
+
 
 /* ================= PHOTO ================= */
 
@@ -465,10 +480,6 @@ tbody tr:hover{
   font-weight:600;
 }
 
-.photo-upload-label:hover{
-  background:#f7f7f7;
-}
-
 .photo-upload-label input{
   display:none;
 }
@@ -478,6 +489,7 @@ tbody tr:hover{
   color:var(--muted);
   margin-top:8px;
 }
+
 
 /* ================= FORM ================= */
 
@@ -512,6 +524,7 @@ tbody tr:hover{
   background:#f5f5f5;
 }
 
+
 /* ================= MODAL BUTTONS ================= */
 
 .modal-actions{
@@ -531,6 +544,7 @@ tbody tr:hover{
   background:#111111;
   color:#ffffff;
 }
+
 
 /* ================= MOBILE ================= */
 
@@ -589,22 +603,35 @@ tbody tr:hover{
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <header class="header">
 
   <div class="brand">
 
-    <div class="logo">GI</div>
+    <div class="logo">
+      GI
+    </div>
 
     <div>
-      <h2>Gayatri Industries</h2>
-      <p>EMPLOYEE MANAGEMENT SYSTEM</p>
+
+      <h2>
+        Gayatri Industries
+      </h2>
+
+      <p>
+        EMPLOYEE MANAGEMENT SYSTEM
+      </p>
+
     </div>
 
   </div>
+
 
   <div class="header-actions">
 
@@ -614,6 +641,7 @@ tbody tr:hover{
     >
       ← Dashboard
     </button>
+
 
     <button
       class="btn logout-btn"
@@ -627,17 +655,24 @@ tbody tr:hover{
 </header>
 
 
+
 <main class="main">
+
 
   <div class="page-top">
 
     <div>
-      <h1>Employee Management</h1>
+
+      <h1>
+        Employee Management
+      </h1>
 
       <p>
         Manage employee records, departments and profile details.
       </p>
+
     </div>
+
 
     <button
       class="btn add-btn"
@@ -649,11 +684,15 @@ tbody tr:hover{
   </div>
 
 
+
   <div class="stats">
+
 
     <div class="stat-card">
 
-      <div class="stat-icon">👥</div>
+      <div class="stat-icon">
+        👥
+      </div>
 
       <div
         class="stat-number"
@@ -669,9 +708,12 @@ tbody tr:hover{
     </div>
 
 
+
     <div class="stat-card">
 
-      <div class="stat-icon">▦</div>
+      <div class="stat-icon">
+        ▦
+      </div>
 
       <div
         class="stat-number"
@@ -687,9 +729,12 @@ tbody tr:hover{
     </div>
 
 
+
     <div class="stat-card">
 
-      <div class="stat-icon">◉</div>
+      <div class="stat-icon">
+        ◉
+      </div>
 
       <div
         class="stat-number"
@@ -704,14 +749,18 @@ tbody tr:hover{
 
     </div>
 
+
   </div>
+
 
 
   <div class="controls-card">
 
     <div class="search-wrapper">
 
-      <span class="search-icon">⌕</span>
+      <span class="search-icon">
+        🔍
+      </span>
 
       <input
         type="text"
@@ -725,13 +774,17 @@ tbody tr:hover{
   </div>
 
 
+
   <div class="table-card">
+
 
     <div class="table-header">
 
       <div class="table-title">
 
-        <h3>All Employees</h3>
+        <h3>
+          All Employees
+        </h3>
 
         <span
           class="record-count"
@@ -745,6 +798,7 @@ tbody tr:hover{
     </div>
 
 
+
     <div class="table-wrapper">
 
       <table>
@@ -752,20 +806,28 @@ tbody tr:hover{
         <thead>
 
           <tr>
+
             <th>EMPLOYEE</th>
             <th>EMPLOYEE ID</th>
             <th>DEPARTMENT</th>
             <th>ACTIONS</th>
+
           </tr>
 
         </thead>
 
+
         <tbody id="employeeBody">
 
           <tr>
-            <td colspan="4" class="loading">
+
+            <td
+              colspan="4"
+              class="loading"
+            >
               Loading employees...
             </td>
+
           </tr>
 
         </tbody>
@@ -774,20 +836,30 @@ tbody tr:hover{
 
     </div>
 
+
   </div>
+
 
 </main>
 
 
-<!-- ================= MODAL ================= -->
 
-<div class="modal" id="employeeModal">
+<!-- ================= EMPLOYEE MODAL ================= -->
+
+<div
+  class="modal"
+  id="employeeModal"
+>
 
   <div class="modal-box">
 
+
     <div class="modal-header">
 
-      <h2 id="modalTitle">Add Employee</h2>
+      <h2 id="modalTitle">
+        Add Employee
+      </h2>
+
 
       <button
         class="close-modal"
@@ -799,7 +871,9 @@ tbody tr:hover{
     </div>
 
 
+
     <div class="photo-section">
+
 
       <div
         id="photoPlaceholder"
@@ -807,6 +881,7 @@ tbody tr:hover{
       >
         +
       </div>
+
 
       <img
         id="photoPreview"
@@ -828,16 +903,21 @@ tbody tr:hover{
 
       </label>
 
+
       <div class="photo-note">
         JPG, PNG or WEBP recommended
       </div>
 
+
     </div>
+
 
 
     <div class="field">
 
-      <label>EMPLOYEE ID</label>
+      <label>
+        EMPLOYEE ID
+      </label>
 
       <input
         type="text"
@@ -848,9 +928,12 @@ tbody tr:hover{
     </div>
 
 
+
     <div class="field">
 
-      <label>EMPLOYEE NAME</label>
+      <label>
+        EMPLOYEE NAME
+      </label>
 
       <input
         type="text"
@@ -861,9 +944,12 @@ tbody tr:hover{
     </div>
 
 
+
     <div class="field">
 
-      <label>DEPARTMENT</label>
+      <label>
+        DEPARTMENT
+      </label>
 
       <input
         type="text"
@@ -872,6 +958,7 @@ tbody tr:hover{
       >
 
     </div>
+
 
 
     <div class="modal-actions">
@@ -883,6 +970,7 @@ tbody tr:hover{
         Cancel
       </button>
 
+
       <button
         class="btn save-btn"
         id="saveBtn"
@@ -893,9 +981,11 @@ tbody tr:hover{
 
     </div>
 
+
   </div>
 
 </div>
+
 
 
 <script>
@@ -907,6 +997,7 @@ tbody tr:hover{
 const SUPABASE_URL =
 "https://ysdpsndophokczdqysiw.supabase.co";
 
+
 const SUPABASE_ANON_KEY =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWJhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
@@ -917,14 +1008,21 @@ window.supabase.createClient(
   SUPABASE_ANON_KEY,
   {
     auth:{
+
       persistSession:true,
+
       autoRefreshToken:true,
+
       detectSessionInUrl:false,
+
       storage:window.localStorage,
+
       storageKey:"gayatri-admin-auth"
+
     }
   }
 );
+
 
 
 /* =====================================
@@ -932,9 +1030,13 @@ window.supabase.createClient(
 ===================================== */
 
 let editingEmployeeId = null;
+
 let employeesData = [];
+
 let selectedPhotoFile = null;
+
 let existingPhotoUrl = null;
+
 
 
 /* =====================================
@@ -943,17 +1045,22 @@ let existingPhotoUrl = null;
 
 function getInitials(name){
 
-  if(!name) return "?";
+  if(!name){
+    return "?";
+  }
 
   return name
     .split(" ")
     .filter(Boolean)
-    .map(word => word.charAt(0))
+    .map(
+      word => word.charAt(0)
+    )
     .slice(0,2)
     .join("")
     .toUpperCase();
 
 }
+
 
 
 /* =====================================
@@ -963,29 +1070,52 @@ function getInitials(name){
 async function loadEmployees(){
 
   const body =
-  document.getElementById("employeeBody");
+  document.getElementById(
+    "employeeBody"
+  );
+
 
   body.innerHTML = `
     <tr>
-      <td colspan="4" class="loading">
+      <td
+        colspan="4"
+        class="loading"
+      >
         Loading employees...
       </td>
     </tr>
   `;
 
-  const { data, error } =
+
+  const {
+    data,
+    error
+  } =
   await supabaseClient
     .from("employees")
     .select("*")
-    .order("employee_id",{ascending:true});
+    .order(
+      "employee_id",
+      {
+        ascending:true
+      }
+    );
+
 
   if(error){
 
-    console.error(error);
+    console.error(
+      "LOAD ERROR:",
+      error
+    );
+
 
     body.innerHTML = `
       <tr>
-        <td colspan="4" class="loading">
+        <td
+          colspan="4"
+          class="loading"
+        >
           Error loading employees.<br><br>
           ${error.message}
         </td>
@@ -993,14 +1123,20 @@ async function loadEmployees(){
     `;
 
     return;
+
   }
 
-  employeesData = data || [];
+
+  employeesData =
+  data || [];
+
 
   updateStats();
+
   renderEmployees();
 
 }
+
 
 
 /* =====================================
@@ -1009,33 +1145,43 @@ async function loadEmployees(){
 
 function updateStats(){
 
-  const total = employeesData.length;
+  document.getElementById(
+    "totalEmployeeCount"
+  ).textContent =
+  employeesData.length;
+
 
   const departments =
   new Set(
     employeesData
-      .map(employee => employee.department)
+      .map(
+        employee =>
+        employee.department
+      )
       .filter(Boolean)
   );
 
-  const photos =
-  employeesData.filter(
-    employee => employee.photo_url
-  ).length;
-
-  document.getElementById(
-    "totalEmployeeCount"
-  ).textContent = total;
 
   document.getElementById(
     "departmentCount"
-  ).textContent = departments.size;
+  ).textContent =
+  departments.size;
+
+
+  const photoCount =
+  employeesData.filter(
+    employee =>
+    employee.photo_url
+  ).length;
+
 
   document.getElementById(
     "photoCount"
-  ).textContent = photos;
+  ).textContent =
+  photoCount;
 
 }
+
 
 
 /* =====================================
@@ -1045,144 +1191,211 @@ function updateStats(){
 function renderEmployees(){
 
   const body =
-  document.getElementById("employeeBody");
+  document.getElementById(
+    "employeeBody"
+  );
+
 
   const search =
-  document.getElementById("searchInput")
+  document
+    .getElementById(
+      "searchInput"
+    )
     .value
     .toLowerCase()
     .trim();
 
+
   const filtered =
-  employeesData.filter(employee => {
+  employeesData.filter(
+    employee => {
 
-    return (
+      return(
 
-      String(employee.employee_id || "")
+        String(
+          employee.employee_id || ""
+        )
         .toLowerCase()
         .includes(search)
 
-      ||
+        ||
 
-      String(employee.name || "")
+        String(
+          employee.name || ""
+        )
         .toLowerCase()
         .includes(search)
 
-      ||
+        ||
 
-      String(employee.department || "")
+        String(
+          employee.department || ""
+        )
         .toLowerCase()
         .includes(search)
 
-    );
+      );
 
-  });
+    }
+  );
+
 
   document.getElementById(
     "recordCount"
   ).textContent =
   `${filtered.length} Records`;
 
-  if(filtered.length === 0){
+
+  if(
+    filtered.length === 0
+  ){
 
     body.innerHTML = `
       <tr>
-        <td colspan="4" class="loading">
-          <div class="empty-icon">⌂</div>
+        <td
+          colspan="4"
+          class="loading"
+        >
           No employees found.
         </td>
       </tr>
     `;
 
     return;
+
   }
 
 
   body.innerHTML =
-  filtered.map(employee => `
+  filtered
+    .map(
+      employee => `
 
-    <tr>
+        <tr>
 
-      <td>
 
-        <div class="employee-info">
+          <td>
 
-          ${
-            employee.photo_url
-            ?
-            `
-              <img
-                src="${employee.photo_url}"
-                class="employee-photo"
-                alt="${employee.name || "Employee"}"
-              >
-            `
-            :
-            `
-              <div class="photo-placeholder">
-                ${getInitials(employee.name)}
+            <div class="employee-info">
+
+              ${
+                employee.photo_url
+
+                ?
+
+                `
+                  <img
+                    src="${employee.photo_url}"
+                    class="employee-photo"
+                    alt="Employee"
+                  >
+                `
+
+                :
+
+                `
+                  <div class="photo-placeholder">
+
+                    ${getInitials(
+                      employee.name
+                    )}
+
+                  </div>
+                `
+
+              }
+
+
+              <div>
+
+                <div class="employee-name">
+
+                  ${
+                    employee.name ||
+                    "Unnamed Employee"
+                  }
+
+                </div>
+
+
+                <div class="employee-sub">
+
+                  Gayatri Industries
+
+                </div>
+
               </div>
-            `
-          }
 
-          <div>
-
-            <div class="employee-name">
-              ${employee.name || "Unnamed Employee"}
             </div>
 
-            <div class="employee-sub">
-              Company Employee
+          </td>
+
+
+
+          <td>
+
+            <span class="id-badge">
+
+              ${
+                employee.employee_id ||
+                "—"
+              }
+
+            </span>
+
+          </td>
+
+
+
+          <td>
+
+            <span class="department-badge">
+
+              ${
+                employee.department ||
+                "Not Assigned"
+              }
+
+            </span>
+
+          </td>
+
+
+
+          <td>
+
+            <div class="action-buttons">
+
+
+              <button
+                class="action-btn"
+                onclick="editEmployee('${employee.employee_id}')"
+              >
+                Edit
+              </button>
+
+
+              <button
+                class="action-btn delete-btn"
+                onclick="deleteEmployee('${employee.employee_id}')"
+              >
+                Delete
+              </button>
+
+
             </div>
 
-          </div>
-
-        </div>
-
-      </td>
+          </td>
 
 
-      <td>
-        <span class="id-badge">
-          ${employee.employee_id || "—"}
-        </span>
-      </td>
+        </tr>
 
-
-      <td>
-        <span class="department-badge">
-          ${employee.department || "Not Assigned"}
-        </span>
-      </td>
-
-
-      <td>
-
-        <div class="action-buttons">
-
-          <button
-            class="action-btn"
-            onclick="editEmployee('${employee.employee_id}')"
-          >
-            Edit
-          </button>
-
-          <button
-            class="action-btn delete-btn"
-            onclick="deleteEmployee('${employee.employee_id}')"
-          >
-            Delete
-          </button>
-
-        </div>
-
-      </td>
-
-    </tr>
-
-  `).join("");
+      `
+    )
+    .join("");
 
 }
+
 
 
 /* =====================================
@@ -1191,26 +1404,46 @@ function renderEmployees(){
 
 function previewPhoto(event){
 
-  const file = event.target.files[0];
+  const file =
+  event.target.files[0];
 
-  if(!file) return;
 
-  selectedPhotoFile = file;
+  if(!file){
+    return;
+  }
+
+
+  selectedPhotoFile =
+  file;
+
 
   const preview =
-  document.getElementById("photoPreview");
+  document.getElementById(
+    "photoPreview"
+  );
+
 
   const placeholder =
-  document.getElementById("photoPlaceholder");
+  document.getElementById(
+    "photoPlaceholder"
+  );
+
 
   preview.src =
-  URL.createObjectURL(file);
+  URL.createObjectURL(
+    file
+  );
 
-  preview.style.display = "block";
 
-  placeholder.style.display = "none";
+  preview.style.display =
+  "block";
+
+
+  placeholder.style.display =
+  "none";
 
 }
+
 
 
 /* =====================================
@@ -1220,25 +1453,42 @@ function previewPhoto(event){
 function resetPhoto(){
 
   selectedPhotoFile = null;
+
   existingPhotoUrl = null;
+
 
   document.getElementById(
     "employeePhoto"
   ).value = "";
 
+
   const preview =
-  document.getElementById("photoPreview");
+  document.getElementById(
+    "photoPreview"
+  );
+
 
   preview.src = "";
-  preview.style.display = "none";
+
+  preview.style.display =
+  "none";
+
 
   const placeholder =
-  document.getElementById("photoPlaceholder");
+  document.getElementById(
+    "photoPlaceholder"
+  );
 
-  placeholder.style.display = "grid";
-  placeholder.textContent = "+";
+
+  placeholder.style.display =
+  "grid";
+
+
+  placeholder.textContent =
+  "+";
 
 }
+
 
 
 /* =====================================
@@ -1249,39 +1499,51 @@ function openAddModal(){
 
   editingEmployeeId = null;
 
+
   document.getElementById(
     "modalTitle"
   ).textContent =
   "Add New Employee";
 
+
   document.getElementById(
     "employeeId"
   ).value = "";
+
 
   document.getElementById(
     "employeeName"
   ).value = "";
 
+
   document.getElementById(
     "department"
   ).value = "";
 
+
   document.getElementById(
     "employeeId"
-  ).disabled = false;
+  ).disabled =
+  false;
+
 
   document.getElementById(
     "saveBtn"
   ).textContent =
   "Save Employee";
 
+
   resetPhoto();
+
 
   document.getElementById(
     "employeeModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
+
 
 
 /* =====================================
@@ -1292,83 +1554,127 @@ function editEmployee(employeeId){
 
   const employee =
   employeesData.find(
-    item => item.employee_id === employeeId
+    item =>
+    item.employee_id ===
+    employeeId
   );
 
-  if(!employee) return;
+
+  if(!employee){
+    return;
+  }
+
 
   editingEmployeeId =
   employee.employee_id;
 
-  existingPhotoUrl =
-  employee.photo_url || null;
 
-  selectedPhotoFile = null;
+  existingPhotoUrl =
+  employee.photo_url ||
+  null;
+
+
+  selectedPhotoFile =
+  null;
+
 
   document.getElementById(
     "modalTitle"
   ).textContent =
   "Edit Employee";
 
+
   document.getElementById(
     "employeeId"
   ).value =
   employee.employee_id;
+
 
   document.getElementById(
     "employeeName"
   ).value =
   employee.name || "";
 
+
   document.getElementById(
     "department"
   ).value =
   employee.department || "";
 
+
   document.getElementById(
     "employeeId"
-  ).disabled = true;
+  ).disabled =
+  true;
+
 
   document.getElementById(
     "saveBtn"
   ).textContent =
   "Update Employee";
 
+
   document.getElementById(
     "employeePhoto"
   ).value = "";
 
+
   const preview =
-  document.getElementById("photoPreview");
+  document.getElementById(
+    "photoPreview"
+  );
+
 
   const placeholder =
-  document.getElementById("photoPlaceholder");
+  document.getElementById(
+    "photoPlaceholder"
+  );
+
 
   if(existingPhotoUrl){
 
-    preview.src = existingPhotoUrl;
-    preview.style.display = "block";
+    preview.src =
+    existingPhotoUrl;
 
-    placeholder.style.display = "none";
+
+    preview.style.display =
+    "block";
+
+
+    placeholder.style.display =
+    "none";
 
   }
+
   else{
 
     preview.src = "";
-    preview.style.display = "none";
 
-    placeholder.style.display = "grid";
+
+    preview.style.display =
+    "none";
+
+
+    placeholder.style.display =
+    "grid";
+
 
     placeholder.textContent =
-    getInitials(employee.name);
+    getInitials(
+      employee.name
+    );
 
   }
 
+
   document.getElementById(
     "employeeModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
+
 
 
 /* =====================================
@@ -1379,9 +1685,12 @@ function closeModal(){
 
   document.getElementById(
     "employeeModal"
-  ).classList.remove("show");
+  ).classList.remove(
+    "show"
+  );
 
 }
+
 
 
 /* =====================================
@@ -1396,18 +1705,24 @@ async function uploadPhoto(employeeId){
 
   }
 
+
   const extension =
   selectedPhotoFile.name
     .split(".")
     .pop();
 
+
   const fileName =
   `${employeeId}-${Date.now()}.${extension}`;
+
 
   const filePath =
   `employees/${fileName}`;
 
-  const { error:uploadError } =
+
+  const {
+    error:uploadError
+  } =
   await supabaseClient
     .storage
     .from("employee-photos")
@@ -1419,19 +1734,29 @@ async function uploadPhoto(employeeId){
       }
     );
 
+
   if(uploadError){
+
     throw uploadError;
+
   }
 
-  const { data } =
+
+  const {
+    data
+  } =
   supabaseClient
     .storage
     .from("employee-photos")
-    .getPublicUrl(filePath);
+    .getPublicUrl(
+      filePath
+    );
+
 
   return data.publicUrl;
 
 }
+
 
 
 /* =====================================
@@ -1441,56 +1766,82 @@ async function uploadPhoto(employeeId){
 async function saveEmployee(){
 
   const employeeId =
-  document.getElementById("employeeId")
+  document
+    .getElementById(
+      "employeeId"
+    )
     .value
     .trim();
+
 
   const name =
-  document.getElementById("employeeName")
+  document
+    .getElementById(
+      "employeeName"
+    )
     .value
     .trim();
+
 
   const department =
-  document.getElementById("department")
+  document
+    .getElementById(
+      "department"
+    )
     .value
     .trim();
 
-  if(!employeeId || !name){
+
+  if(
+    !employeeId ||
+    !name
+  ){
 
     alert(
       "Please enter Employee ID and Employee Name."
     );
 
     return;
+
   }
 
+
   const saveBtn =
-  document.getElementById("saveBtn");
+  document.getElementById(
+    "saveBtn"
+  );
 
-  saveBtn.disabled = true;
 
-  saveBtn.textContent =
-  "Saving...";
+  saveBtn.disabled =
+  true;
+
 
   try{
 
+    saveBtn.textContent =
+    "Saving...";
+
+
     let photoUrl =
     existingPhotoUrl;
+
 
     if(selectedPhotoFile){
 
       saveBtn.textContent =
       "Uploading Photo...";
 
+
       photoUrl =
-      await uploadPhoto(employeeId);
+      await uploadPhoto(
+        employeeId
+      );
 
     }
 
-    saveBtn.textContent =
-    "Saving Employee...";
 
     let error;
+
 
     if(!editingEmployeeId){
 
@@ -1506,9 +1857,12 @@ async function saveEmployee(){
           }
         ]);
 
-      error = result.error;
+
+      error =
+      result.error;
 
     }
+
     else{
 
       const result =
@@ -1524,13 +1878,19 @@ async function saveEmployee(){
           editingEmployeeId
         );
 
-      error = result.error;
+
+      error =
+      result.error;
 
     }
+
 
     if(error){
+
       throw error;
+
     }
+
 
     alert(
       editingEmployeeId
@@ -1540,11 +1900,14 @@ async function saveEmployee(){
       "Employee added successfully!"
     );
 
+
     closeModal();
+
 
     await loadEmployees();
 
   }
+
   catch(error){
 
     console.error(
@@ -1552,15 +1915,19 @@ async function saveEmployee(){
       error
     );
 
+
     alert(
       "Error: " +
       error.message
     );
 
   }
+
   finally{
 
-    saveBtn.disabled = false;
+    saveBtn.disabled =
+    false;
+
 
     saveBtn.textContent =
     editingEmployeeId
@@ -1574,6 +1941,7 @@ async function saveEmployee(){
 }
 
 
+
 /* =====================================
    DELETE EMPLOYEE
 ===================================== */
@@ -1585,11 +1953,17 @@ async function deleteEmployee(employeeId){
     `Are you sure you want to delete employee ${employeeId}?`
   );
 
-  if(!confirmDelete) return;
+
+  if(!confirmDelete){
+    return;
+  }
+
 
   try{
 
-    const { error } =
+    const {
+      error
+    } =
     await supabaseClient
       .from("employees")
       .delete()
@@ -1598,23 +1972,30 @@ async function deleteEmployee(employeeId){
         employeeId
       );
 
+
     if(error){
+
       throw error;
+
     }
+
 
     alert(
       "Employee deleted successfully!"
     );
 
+
     await loadEmployees();
 
   }
+
   catch(error){
 
     console.error(
       "DELETE ERROR:",
       error
     );
+
 
     alert(
       "Delete failed: " +
@@ -1626,16 +2007,20 @@ async function deleteEmployee(employeeId){
 }
 
 
+
 /* =====================================
    SEARCH
 ===================================== */
 
 document
-.getElementById("searchInput")
-.addEventListener(
-  "input",
-  renderEmployees
-);
+  .getElementById(
+    "searchInput"
+  )
+  .addEventListener(
+    "input",
+    renderEmployees
+  );
+
 
 
 /* =====================================
@@ -1649,7 +2034,11 @@ async function logout(){
     "Are you sure you want to logout?"
   );
 
-  if(!confirmLogout) return;
+
+  if(!confirmLogout){
+    return;
+  }
+
 
   try{
 
@@ -1657,11 +2046,13 @@ async function logout(){
       .auth
       .signOut();
 
+
     window.location.replace(
       "./login.html"
     );
 
   }
+
   catch(error){
 
     console.error(
@@ -1669,11 +2060,15 @@ async function logout(){
       error
     );
 
-    alert("Logout failed.");
+
+    alert(
+      "Logout failed."
+    );
 
   }
 
 }
+
 
 
 /* =====================================
@@ -1684,30 +2079,43 @@ async function initialize(){
 
   try{
 
-    const { data, error } =
+    const {
+      data,
+      error
+    } =
     await supabaseClient
       .auth
       .getSession();
 
+
     if(error){
+
       console.error(
         "SESSION ERROR:",
         error
       );
+
     }
 
-    if(!data || !data.session){
+
+    if(
+      !data ||
+      !data.session
+    ){
 
       window.location.replace(
         "./login.html"
       );
 
       return;
+
     }
+
 
     await loadEmployees();
 
   }
+
   catch(error){
 
     console.error(
@@ -1720,6 +2128,7 @@ async function initialize(){
 }
 
 
+
 /* =====================================
    START
 ===================================== */
@@ -1728,5 +2137,7 @@ initialize();
 
 </script>
 
+
 </body>
+
 </html>
