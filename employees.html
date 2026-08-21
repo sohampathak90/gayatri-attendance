@@ -21,14 +21,22 @@
   --bg2:#061326;
   --card:#071426;
   --card2:#0a1b31;
-  --border:rgba(70,140,255,.16);
+
+  --border:rgba(70,140,255,.14);
+
   --text:#edf5ff;
   --muted:#8192a8;
+
   --blue:#137ee9;
   --blue-dark:#0b57a4;
+
   --red:#e5484d;
+  --red-dark:#a91d27;
+
   --green:#45e29a;
 }
+
+/* ================= BODY ================= */
 
 body{
   font-family:Arial,Segoe UI,sans-serif;
@@ -42,9 +50,18 @@ body::before{
   position:fixed;
   inset:0;
   z-index:-2;
+
   background:
-    radial-gradient(circle at 8% 8%,rgba(0,115,255,.18),transparent 30%),
-    radial-gradient(circle at 92% 90%,rgba(255,100,0,.10),transparent 32%),
+    radial-gradient(
+      circle at 8% 5%,
+      rgba(0,115,255,.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 92% 90%,
+      rgba(0,100,255,.08),
+      transparent 35%
+    ),
     #030914;
 }
 
@@ -55,29 +72,41 @@ body::before{
   pointer-events:none;
 
   background-image:
-    linear-gradient(rgba(70,150,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(70,150,255,.04) 1px,transparent 1px);
+    linear-gradient(
+      rgba(70,150,255,.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(70,150,255,.035) 1px,
+      transparent 1px
+    );
 
   background-size:42px 42px;
 }
 
+
 /* ================= HEADER ================= */
 
 .header{
-  height:78px;
+  height:76px;
   padding:0 6%;
+
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:
+    1px solid rgba(255,255,255,.07);
 
-  background:rgba(3,9,20,.78);
+  background:
+    rgba(3,9,20,.78);
 
   backdrop-filter:blur(18px);
 
   position:sticky;
   top:0;
+
   z-index:100;
 }
 
@@ -88,47 +117,49 @@ body::before{
 }
 
 .logo{
-  width:46px;
-  height:46px;
+  width:45px;
+  height:45px;
 
-  border-radius:14px;
+  border-radius:13px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:22px;
+  font-size:21px;
 
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #062b55
-  );
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #062b55
+    );
 
   box-shadow:
-  0 10px 30px
-  rgba(0,100,255,.25);
+    0 10px 28px
+    rgba(0,100,255,.25);
 }
 
 .brand h2{
   font-size:17px;
+  font-weight:700;
 }
 
 .brand p{
   color:var(--muted);
   font-size:9px;
   margin-top:4px;
-  letter-spacing:1.3px;
+  letter-spacing:1.2px;
 }
+
+
+/* ================= HEADER ACTIONS ================= */
 
 .header-actions{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
 }
-
-/* ================= BUTTONS ================= */
 
 .btn{
   border:none;
@@ -143,14 +174,14 @@ body::before{
   font-weight:bold;
 
   transition:
-  transform .2s,
-  opacity .2s,
-  background .2s;
+    transform .2s,
+    opacity .2s,
+    box-shadow .2s;
 }
 
 .btn:hover{
   transform:translateY(-1px);
-  opacity:.92;
+  opacity:.95;
 }
 
 .btn:disabled{
@@ -161,91 +192,125 @@ body::before{
 
 .dashboard-btn{
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #0b57a4
-  );
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #0b57a4
+    );
+
+  box-shadow:
+    0 5px 18px
+    rgba(19,126,233,.16);
 }
 
 .logout-btn{
   background:
-  linear-gradient(
-    135deg,
-    #e5484d,
-    #a91d27
-  );
+    rgba(229,72,77,.12);
+
+  border:
+    1px solid
+    rgba(229,72,77,.25);
+
+  color:#ff8589;
 }
 
-.add-btn{
-  padding:13px 20px;
-
+.logout-btn:hover{
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #0b57a4
-  );
-
-  box-shadow:
-  0 8px 25px
-  rgba(19,126,233,.22);
+    rgba(229,72,77,.2);
 }
+
 
 /* ================= MAIN ================= */
 
 .main{
   width:90%;
   max-width:1250px;
-  margin:35px auto 60px;
+
+  margin:
+    38px auto
+    70px;
 }
+
+
+/* ================= PAGE TITLE ================= */
 
 .page-top{
   display:flex;
-  justify-content:space-between;
   align-items:flex-end;
+  justify-content:space-between;
 
-  margin-bottom:25px;
+  margin-bottom:28px;
 }
 
 .page-top h1{
   font-size:30px;
-  letter-spacing:-.5px;
+  letter-spacing:-.6px;
 }
 
 .page-top p{
-  margin-top:7px;
+  margin-top:8px;
   color:var(--muted);
   font-size:12px;
 }
+
+.add-btn{
+  padding:13px 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #0b57a4
+    );
+
+  box-shadow:
+    0 8px 24px
+    rgba(19,126,233,.2);
+}
+
 
 /* ================= STATS ================= */
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:16px;
 
-  margin-bottom:25px;
+  margin-bottom:22px;
 }
 
 .stat-card{
   position:relative;
 
-  padding:20px;
+  padding:21px;
 
   border-radius:18px;
 
   background:
-  linear-gradient(
-    145deg,
-    #0a1b31,
-    #061222
-  );
+    linear-gradient(
+      145deg,
+      #0a1b31,
+      #061222
+    );
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 
   overflow:hidden;
+
+  transition:
+    transform .2s,
+    border .2s;
+}
+
+.stat-card:hover{
+  transform:translateY(-2px);
+
+  border-color:
+    rgba(19,126,233,.28);
 }
 
 .stat-card::after{
@@ -253,16 +318,16 @@ body::before{
 
   position:absolute;
 
-  width:100px;
-  height:100px;
+  width:110px;
+  height:110px;
 
   border-radius:50%;
 
-  right:-35px;
-  top:-35px;
+  right:-38px;
+  top:-40px;
 
   background:
-  rgba(19,126,233,.06);
+    rgba(19,126,233,.05);
 }
 
 .stat-icon{
@@ -276,26 +341,29 @@ body::before{
 }
 
 .stat-title{
-  margin-top:5px;
+  margin-top:6px;
 
   font-size:10px;
 
   color:var(--muted);
 
-  letter-spacing:.6px;
+  letter-spacing:.7px;
 }
+
 
 /* ================= SEARCH ================= */
 
 .controls-card{
-  padding:14px;
+  padding:13px;
 
   border-radius:16px;
 
   background:
-  rgba(7,20,38,.85);
+    rgba(7,20,38,.85);
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 
   margin-bottom:20px;
 }
@@ -310,7 +378,8 @@ body::before{
   left:15px;
   top:50%;
 
-  transform:translateY(-50%);
+  transform:
+    translateY(-50%);
 
   font-size:14px;
 
@@ -320,13 +389,14 @@ body::before{
 .search-box{
   width:100%;
 
-  padding:14px 15px 14px 42px;
+  padding:
+    14px 15px 14px 43px;
 
   border-radius:11px;
 
   border:
-  1px solid
-  rgba(70,140,255,.2);
+    1px solid
+    rgba(70,140,255,.16);
 
   background:#061326;
 
@@ -336,13 +406,20 @@ body::before{
 
   font-size:12px;
 
-  transition:border .2s;
+  transition:
+    border .2s,
+    box-shadow .2s;
 }
 
 .search-box:focus{
   border-color:
-  rgba(19,126,233,.75);
+    rgba(19,126,233,.7);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(19,126,233,.06);
 }
+
 
 /* ================= TABLE ================= */
 
@@ -353,7 +430,9 @@ body::before{
 
   background:#071426;
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 }
 
 .table-header{
@@ -364,8 +443,8 @@ body::before{
   align-items:center;
 
   border-bottom:
-  1px solid
-  rgba(255,255,255,.06);
+    1px solid
+    rgba(255,255,255,.055);
 }
 
 .table-title{
@@ -388,11 +467,11 @@ body::before{
   border-radius:20px;
 
   background:
-  rgba(19,126,233,.08);
+    rgba(19,126,233,.07);
 
   border:
-  1px solid
-  rgba(19,126,233,.15);
+    1px solid
+    rgba(19,126,233,.13);
 }
 
 .table-wrapper{
@@ -418,27 +497,29 @@ th{
   letter-spacing:.7px;
 
   background:
-  rgba(255,255,255,.02);
+    rgba(255,255,255,.018);
 }
 
 td{
-  padding:15px 20px;
+  padding:16px 20px;
 
   font-size:12px;
 
   border-top:
-  1px solid
-  rgba(255,255,255,.05);
+    1px solid
+    rgba(255,255,255,.045);
 }
 
-tr{
-  transition:background .2s;
+tbody tr{
+  transition:
+    background .2s;
 }
 
 tbody tr:hover{
   background:
-  rgba(19,126,233,.035);
+    rgba(19,126,233,.03);
 }
+
 
 /* ================= EMPLOYEE ================= */
 
@@ -457,8 +538,8 @@ tbody tr:hover{
   object-fit:cover;
 
   border:
-  1px solid
-  rgba(255,255,255,.15);
+    1px solid
+    rgba(255,255,255,.14);
 }
 
 .photo-placeholder{
@@ -471,30 +552,35 @@ tbody tr:hover{
   place-items:center;
 
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #062b55
-  );
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #062b55
+    );
 
   font-size:12px;
   font-weight:bold;
 }
 
 .employee-name{
-  font-weight:bold;
   font-size:12px;
+  font-weight:bold;
 }
 
 .employee-sub{
-  color:var(--muted);
-  font-size:10px;
   margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:10px;
 }
+
 
 /* ================= BADGES ================= */
 
 .id-badge{
+  display:inline-block;
+
   padding:6px 10px;
 
   border-radius:8px;
@@ -504,11 +590,11 @@ tbody tr:hover{
   color:#8ebeff;
 
   background:
-  rgba(19,126,233,.08);
+    rgba(19,126,233,.07);
 
   border:
-  1px solid
-  rgba(19,126,233,.13);
+    1px solid
+    rgba(19,126,233,.13);
 }
 
 .department-badge{
@@ -521,12 +607,17 @@ tbody tr:hover{
   font-size:10px;
 
   background:
-  rgba(69,226,154,.08);
+    rgba(69,226,154,.07);
 
   color:#66e6a5;
+
+  border:
+    1px solid
+    rgba(69,226,154,.08);
 }
 
-/* ================= ACTIONS ================= */
+
+/* ================= ACTION BUTTONS ================= */
 
 .action-buttons{
   display:flex;
@@ -545,46 +636,54 @@ tbody tr:hover{
   cursor:pointer;
 
   font-size:10px;
+  font-weight:600;
 
-  transition:.2s;
+  transition:
+    transform .2s,
+    opacity .2s;
 }
 
 .action-btn:hover{
   transform:translateY(-1px);
+  opacity:.9;
 }
 
 .edit-btn{
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #0b57a4
-  );
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #0b57a4
+    );
 }
 
 .delete-btn{
   background:
-  linear-gradient(
-    135deg,
-    #e5484d,
-    #a91d27
-  );
+    rgba(229,72,77,.13);
+
+  border:
+    1px solid
+    rgba(229,72,77,.2);
+
+  color:#ff8589;
 }
+
+
+/* ================= LOADING ================= */
 
 .loading{
   text-align:center;
 
-  padding:45px;
+  padding:50px;
 
   color:var(--muted);
 }
-
-/* ================= EMPTY ================= */
 
 .empty-icon{
   font-size:32px;
   margin-bottom:10px;
 }
+
 
 /* ================= MODAL ================= */
 
@@ -596,9 +695,9 @@ tbody tr:hover{
   inset:0;
 
   background:
-  rgba(0,0,0,.75);
+    rgba(0,0,0,.72);
 
-  backdrop-filter:blur(5px);
+  backdrop-filter:blur(7px);
 
   align-items:center;
   justify-content:center;
@@ -620,32 +719,31 @@ tbody tr:hover{
 
   overflow-y:auto;
 
-  padding:25px;
+  padding:26px;
 
   border-radius:22px;
 
   background:
-  linear-gradient(
-    145deg,
-    #0a1b31,
-    #061222
-  );
+    linear-gradient(
+      145deg,
+      #0a1b31,
+      #061222
+    );
 
   border:
-  1px solid
-  rgba(70,140,255,.22);
+    1px solid
+    rgba(70,140,255,.2);
 
   box-shadow:
-  0 30px 80px
-  rgba(0,0,0,.5);
+    0 30px 80px
+    rgba(0,0,0,.55);
 }
 
 .modal-header{
   display:flex;
 
-  justify-content:space-between;
-
   align-items:center;
+  justify-content:space-between;
 
   margin-bottom:24px;
 }
@@ -655,8 +753,8 @@ tbody tr:hover{
 }
 
 .close-modal{
-  width:32px;
-  height:32px;
+  width:33px;
+  height:33px;
 
   border:none;
 
@@ -668,14 +766,20 @@ tbody tr:hover{
 
   cursor:pointer;
 
-  font-size:16px;
+  font-size:18px;
+
+  transition:.2s;
 }
+
+.close-modal:hover{
+  background:#1b304a;
+}
+
 
 /* ================= PHOTO ================= */
 
 .photo-section{
   display:flex;
-
   flex-direction:column;
 
   align-items:center;
@@ -696,8 +800,8 @@ tbody tr:hover{
   margin-bottom:12px;
 
   border:
-  2px solid
-  rgba(19,126,233,.5);
+    2px solid
+    rgba(19,126,233,.5);
 }
 
 .photo-placeholder.large{
@@ -718,15 +822,14 @@ tbody tr:hover{
   display:inline-flex;
 
   align-items:center;
-
   gap:7px;
 
   background:
-  rgba(19,126,233,.12);
+    rgba(19,126,233,.1);
 
   border:
-  1px solid
-  rgba(19,126,233,.3);
+    1px solid
+    rgba(19,126,233,.25);
 
   color:#8ebeff;
 
@@ -739,6 +842,13 @@ tbody tr:hover{
   font-size:11px;
 
   font-weight:bold;
+
+  transition:.2s;
+}
+
+.photo-upload-label:hover{
+  background:
+    rgba(19,126,233,.17);
 }
 
 .photo-upload-label input{
@@ -752,6 +862,7 @@ tbody tr:hover{
 
   margin-top:8px;
 }
+
 
 /* ================= FORM ================= */
 
@@ -779,8 +890,8 @@ tbody tr:hover{
   border-radius:11px;
 
   border:
-  1px solid
-  rgba(70,140,255,.2);
+    1px solid
+    rgba(70,140,255,.16);
 
   background:#061326;
 
@@ -789,17 +900,26 @@ tbody tr:hover{
   outline:none;
 
   font-size:12px;
+
+  transition:
+    border .2s,
+    box-shadow .2s;
 }
 
 .field input:focus{
   border-color:
-  rgba(19,126,233,.75);
+    rgba(19,126,233,.7);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(19,126,233,.06);
 }
 
 .field input:disabled{
-  opacity:.65;
+  opacity:.6;
   cursor:not-allowed;
 }
+
 
 /* ================= MODAL ACTIONS ================= */
 
@@ -810,7 +930,7 @@ tbody tr:hover{
 
   gap:10px;
 
-  margin-top:24px;
+  margin-top:25px;
 }
 
 .cancel-btn{
@@ -819,19 +939,21 @@ tbody tr:hover{
 
 .save-btn{
   background:
-  linear-gradient(
-    135deg,
-    #137ee9,
-    #0b57a4
-  );
+    linear-gradient(
+      135deg,
+      #137ee9,
+      #0b57a4
+    );
 }
+
 
 /* ================= MOBILE ================= */
 
 @media(max-width:850px){
 
   .stats{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
 }
@@ -840,7 +962,12 @@ tbody tr:hover{
 
   .header{
     height:auto;
+
     padding:14px 16px;
+  }
+
+  .brand{
+    gap:9px;
   }
 
   .brand h2{
@@ -848,7 +975,7 @@ tbody tr:hover{
   }
 
   .brand p{
-    font-size:8px;
+    font-size:7px;
   }
 
   .logo{
@@ -861,18 +988,17 @@ tbody tr:hover{
   }
 
   .header-actions .btn{
-    padding:9px 10px;
+    padding:9px 9px;
     font-size:9px;
   }
 
   .main{
     width:92%;
-    margin-top:25px;
+    margin-top:26px;
   }
 
   .page-top{
     flex-direction:column;
-
     align-items:flex-start;
 
     gap:16px;
@@ -888,11 +1014,19 @@ tbody tr:hover{
   }
 
   .stat-card{
-    padding:16px;
+    padding:17px;
   }
 
   .modal-box{
     padding:20px;
+  }
+
+  .modal-actions{
+    flex-direction:column-reverse;
+  }
+
+  .modal-actions .btn{
+    width:100%;
   }
 
 }
@@ -903,6 +1037,7 @@ tbody tr:hover{
 <body>
 
 <div class="grid"></div>
+
 
 <!-- ================= HEADER ================= -->
 
@@ -947,13 +1082,11 @@ tbody tr:hover{
   <div class="page-top">
 
     <div>
-
       <h1>Employee Management</h1>
 
       <p>
         Manage your workforce, employee details and profile records.
       </p>
-
     </div>
 
     <button
@@ -1087,14 +1220,12 @@ tbody tr:hover{
         <tbody id="employeeBody">
 
           <tr>
-
             <td
               colspan="4"
               class="loading"
             >
               Loading employees...
             </td>
-
           </tr>
 
         </tbody>
@@ -1167,9 +1298,7 @@ tbody tr:hover{
 
 
       <div class="photo-note">
-
         JPG, PNG or WEBP recommended
-
       </div>
 
     </div>
@@ -1220,8 +1349,6 @@ tbody tr:hover{
     </div>
 
 
-    <!-- BUTTONS -->
-
     <div class="modal-actions">
 
       <button
@@ -1257,7 +1384,7 @@ const SUPABASE_URL =
 "https://ysdpsndophokczdqysiw.supabase.co";
 
 const SUPABASE_ANON_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWIiLCJyZWYiOiJ5c2Rwc25kb3Bob2tjemRxeXNpdyIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzg3MTQxODkzLCJleHAiOjIxMDI3MTc4OTN9.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
 
 /* =====================================
@@ -1285,11 +1412,8 @@ window.supabase.createClient(
 ===================================== */
 
 let editingEmployeeId = null;
-
 let employeesData = [];
-
 let selectedPhotoFile = null;
-
 let existingPhotoUrl = null;
 
 
@@ -1304,12 +1428,12 @@ function getInitials(name){
   }
 
   return name
-  .split(" ")
-  .filter(Boolean)
-  .map(word => word.charAt(0))
-  .slice(0,2)
-  .join("")
-  .toUpperCase();
+    .split(" ")
+    .filter(Boolean)
+    .map(word => word.charAt(0))
+    .slice(0,2)
+    .join("")
+    .toUpperCase();
 
 }
 
@@ -1321,35 +1445,27 @@ function getInitials(name){
 async function loadEmployees(){
 
   const body =
-  document.getElementById(
-    "employeeBody"
-  );
+  document.getElementById("employeeBody");
 
   body.innerHTML = `
     <tr>
-      <td
-        colspan="4"
-        class="loading"
-      >
+      <td colspan="4" class="loading">
         Loading employees...
       </td>
     </tr>
   `;
 
 
-  const {
-    data,
-    error
-  } =
+  const {data,error} =
   await supabaseClient
-  .from("employees")
-  .select("*")
-  .order(
-    "employee_id",
-    {
-      ascending:true
-    }
-  );
+    .from("employees")
+    .select("*")
+    .order(
+      "employee_id",
+      {
+        ascending:true
+      }
+    );
 
 
   if(error){
@@ -1361,10 +1477,7 @@ async function loadEmployees(){
 
     body.innerHTML = `
       <tr>
-        <td
-          colspan="4"
-          class="loading"
-        >
+        <td colspan="4" class="loading">
           Error loading employees.
           <br><br>
           ${error.message}
@@ -1377,12 +1490,9 @@ async function loadEmployees(){
   }
 
 
-  employeesData =
-  data || [];
-
+  employeesData = data || [];
 
   updateStats();
-
   renderEmployees();
 
 }
@@ -1401,43 +1511,30 @@ function updateStats(){
   const departments =
   new Set(
     employeesData
-    .map(
-      employee =>
-      employee.department
-    )
-    .filter(Boolean)
+      .map(employee => employee.department)
+      .filter(Boolean)
   );
 
 
   const photos =
   employeesData.filter(
-    employee =>
-    employee.photo_url
+    employee => employee.photo_url
   ).length;
 
 
   document
-  .getElementById(
-    "totalEmployeeCount"
-  )
-  .textContent =
-  total;
+    .getElementById("totalEmployeeCount")
+    .textContent = total;
 
 
   document
-  .getElementById(
-    "departmentCount"
-  )
-  .textContent =
-  departments.size;
+    .getElementById("departmentCount")
+    .textContent = departments.size;
 
 
   document
-  .getElementById(
-    "photoCount"
-  )
-  .textContent =
-  photos;
+    .getElementById("photoCount")
+    .textContent = photos;
 
 }
 
@@ -1449,78 +1546,61 @@ function updateStats(){
 function renderEmployees(){
 
   const body =
-  document.getElementById(
-    "employeeBody"
-  );
+  document.getElementById("employeeBody");
 
 
   const search =
   document
-  .getElementById(
-    "searchInput"
-  )
-  .value
-  .toLowerCase()
-  .trim();
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
 
 
   const filtered =
-  employeesData.filter(
-    employee => {
+  employeesData.filter(employee => {
 
-      return (
+    return(
 
-        String(
-          employee.employee_id || ""
-        )
+      String(employee.employee_id || "")
         .toLowerCase()
         .includes(search)
 
-        ||
+      ||
 
-        String(
-          employee.name || ""
-        )
+      String(employee.name || "")
         .toLowerCase()
         .includes(search)
 
-        ||
+      ||
 
-        String(
-          employee.department || ""
-        )
+      String(employee.department || "")
         .toLowerCase()
         .includes(search)
 
-      );
+    );
 
-    }
-  );
+  });
 
 
   document
-  .getElementById(
-    "recordCount"
-  )
-  .textContent =
-  `${filtered.length} Records`;
+    .getElementById("recordCount")
+    .textContent =
+    `${filtered.length} Records`;
 
 
-  if(
-    filtered.length === 0
-  ){
+  if(filtered.length === 0){
 
     body.innerHTML = `
       <tr>
-        <td
-          colspan="4"
-          class="loading"
-        >
+        <td colspan="4" class="loading">
+
           <div class="empty-icon">
             👥
           </div>
 
           No employees found.
+
         </td>
       </tr>
     `;
@@ -1531,10 +1611,9 @@ function renderEmployees(){
 
 
   body.innerHTML =
-  filtered.map(
-    employee => {
+  filtered.map(employee => {
 
-      return `
+    return `
 
       <tr>
 
@@ -1564,16 +1643,11 @@ function renderEmployees(){
             <div>
 
               <div class="employee-name">
-
                 ${employee.name || "Unnamed Employee"}
-
               </div>
 
-
               <div class="employee-sub">
-
                 Company Employee
-
               </div>
 
             </div>
@@ -1586,9 +1660,7 @@ function renderEmployees(){
         <td>
 
           <span class="id-badge">
-
             ${employee.employee_id || "—"}
-
           </span>
 
         </td>
@@ -1597,9 +1669,7 @@ function renderEmployees(){
         <td>
 
           <span class="department-badge">
-
             ${employee.department || "Not Assigned"}
-
           </span>
 
         </td>
@@ -1630,11 +1700,9 @@ function renderEmployees(){
 
       </tr>
 
-      `;
+    `;
 
-    }
-  )
-  .join("");
+  }).join("");
 
 }
 
@@ -1648,40 +1716,26 @@ function previewPhoto(event){
   const file =
   event.target.files[0];
 
-
   if(!file){
     return;
   }
 
-
-  selectedPhotoFile =
-  file;
+  selectedPhotoFile = file;
 
 
   const preview =
-  document.getElementById(
-    "photoPreview"
-  );
-
+  document.getElementById("photoPreview");
 
   const placeholder =
-  document.getElementById(
-    "photoPlaceholder"
-  );
+  document.getElementById("photoPlaceholder");
 
 
   preview.src =
-  URL.createObjectURL(
-    file
-  );
+  URL.createObjectURL(file);
 
+  preview.style.display = "block";
 
-  preview.style.display =
-  "block";
-
-
-  placeholder.style.display =
-  "none";
+  placeholder.style.display = "none";
 
 }
 
@@ -1692,45 +1746,27 @@ function previewPhoto(event){
 
 function resetPhoto(){
 
-  selectedPhotoFile =
-  null;
-
-
-  existingPhotoUrl =
-  null;
+  selectedPhotoFile = null;
+  existingPhotoUrl = null;
 
 
   document
-  .getElementById(
-    "employeePhoto"
-  )
-  .value = "";
+    .getElementById("employeePhoto")
+    .value = "";
 
 
   const preview =
-  document.getElementById(
-    "photoPreview"
-  );
-
+  document.getElementById("photoPreview");
 
   preview.src = "";
-
-  preview.style.display =
-  "none";
+  preview.style.display = "none";
 
 
   const placeholder =
-  document.getElementById(
-    "photoPlaceholder"
-  );
+  document.getElementById("photoPlaceholder");
 
-
-  placeholder.style.display =
-  "grid";
-
-
-  placeholder.textContent =
-  "👤";
+  placeholder.style.display = "grid";
+  placeholder.textContent = "👤";
 
 }
 
@@ -1741,68 +1777,47 @@ function resetPhoto(){
 
 function openAddModal(){
 
-  editingEmployeeId =
-  null;
+  editingEmployeeId = null;
 
 
   document
-  .getElementById(
-    "modalTitle"
-  )
-  .textContent =
-  "Add New Employee";
+    .getElementById("modalTitle")
+    .textContent =
+    "Add New Employee";
 
 
   document
-  .getElementById(
-    "employeeId"
-  )
-  .value =
-  "";
+    .getElementById("employeeId")
+    .value = "";
 
 
   document
-  .getElementById(
-    "employeeName"
-  )
-  .value =
-  "";
+    .getElementById("employeeName")
+    .value = "";
 
 
   document
-  .getElementById(
-    "department"
-  )
-  .value =
-  "";
+    .getElementById("department")
+    .value = "";
 
 
   document
-  .getElementById(
-    "employeeId"
-  )
-  .disabled =
-  false;
+    .getElementById("employeeId")
+    .disabled = false;
 
 
   document
-  .getElementById(
-    "saveBtn"
-  )
-  .textContent =
-  "Save Employee";
+    .getElementById("saveBtn")
+    .textContent =
+    "Save Employee";
 
 
   resetPhoto();
 
 
   document
-  .getElementById(
-    "employeeModal"
-  )
-  .classList.add(
-    "show"
-  );
+    .getElementById("employeeModal")
+    .classList.add("show");
 
 }
 
@@ -1833,76 +1848,55 @@ function editEmployee(employeeId){
   employee.photo_url || null;
 
 
-  selectedPhotoFile =
-  null;
+  selectedPhotoFile = null;
 
 
   document
-  .getElementById(
-    "modalTitle"
-  )
-  .textContent =
-  "Edit Employee";
+    .getElementById("modalTitle")
+    .textContent =
+    "Edit Employee";
 
 
   document
-  .getElementById(
-    "employeeId"
-  )
-  .value =
-  employee.employee_id;
+    .getElementById("employeeId")
+    .value =
+    employee.employee_id;
 
 
   document
-  .getElementById(
-    "employeeName"
-  )
-  .value =
-  employee.name || "";
+    .getElementById("employeeName")
+    .value =
+    employee.name || "";
 
 
   document
-  .getElementById(
-    "department"
-  )
-  .value =
-  employee.department || "";
+    .getElementById("department")
+    .value =
+    employee.department || "";
 
 
   document
-  .getElementById(
-    "employeeId"
-  )
-  .disabled =
-  true;
+    .getElementById("employeeId")
+    .disabled = true;
 
 
   document
-  .getElementById(
-    "saveBtn"
-  )
-  .textContent =
-  "Update Employee";
+    .getElementById("saveBtn")
+    .textContent =
+    "Update Employee";
 
 
   document
-  .getElementById(
-    "employeePhoto"
-  )
-  .value =
-  "";
+    .getElementById("employeePhoto")
+    .value = "";
 
 
   const preview =
-  document.getElementById(
-    "photoPreview"
-  );
+  document.getElementById("photoPreview");
 
 
   const placeholder =
-  document.getElementById(
-    "photoPlaceholder"
-  );
+  document.getElementById("photoPlaceholder");
 
 
   if(existingPhotoUrl){
@@ -1910,10 +1904,8 @@ function editEmployee(employeeId){
     preview.src =
     existingPhotoUrl;
 
-
     preview.style.display =
     "block";
-
 
     placeholder.style.display =
     "none";
@@ -1921,33 +1913,23 @@ function editEmployee(employeeId){
   }
   else{
 
-    preview.src =
-    "";
-
+    preview.src = "";
 
     preview.style.display =
     "none";
 
-
     placeholder.style.display =
     "grid";
 
-
     placeholder.textContent =
-    getInitials(
-      employee.name
-    );
+    getInitials(employee.name);
 
   }
 
 
   document
-  .getElementById(
-    "employeeModal"
-  )
-  .classList.add(
-    "show"
-  );
+    .getElementById("employeeModal")
+    .classList.add("show");
 
 }
 
@@ -1959,12 +1941,8 @@ function editEmployee(employeeId){
 function closeModal(){
 
   document
-  .getElementById(
-    "employeeModal"
-  )
-  .classList.remove(
-    "show"
-  );
+    .getElementById("employeeModal")
+    .classList.remove("show");
 
 }
 
@@ -1976,16 +1954,14 @@ function closeModal(){
 async function uploadPhoto(employeeId){
 
   if(!selectedPhotoFile){
-
     return existingPhotoUrl;
-
   }
 
 
   const extension =
   selectedPhotoFile.name
-  .split(".")
-  .pop();
+    .split(".")
+    .pop();
 
 
   const fileName =
@@ -1996,41 +1972,29 @@ async function uploadPhoto(employeeId){
   `employees/${fileName}`;
 
 
-  const {
-    error:uploadError
-  } =
+  const {error:uploadError} =
   await supabaseClient
-  .storage
-  .from(
-    "employee-photos"
-  )
-  .upload(
-    filePath,
-    selectedPhotoFile,
-    {
-      upsert:false
-    }
-  );
+    .storage
+    .from("employee-photos")
+    .upload(
+      filePath,
+      selectedPhotoFile,
+      {
+        upsert:false
+      }
+    );
 
 
   if(uploadError){
-
     throw uploadError;
-
   }
 
 
-  const {
-    data
-  } =
+  const {data} =
   supabaseClient
-  .storage
-  .from(
-    "employee-photos"
-  )
-  .getPublicUrl(
-    filePath
-  );
+    .storage
+    .from("employee-photos")
+    .getPublicUrl(filePath);
 
 
   return data.publicUrl;
@@ -2046,35 +2010,26 @@ async function saveEmployee(){
 
   const employeeId =
   document
-  .getElementById(
-    "employeeId"
-  )
-  .value
-  .trim();
+    .getElementById("employeeId")
+    .value
+    .trim();
 
 
   const name =
   document
-  .getElementById(
-    "employeeName"
-  )
-  .value
-  .trim();
+    .getElementById("employeeName")
+    .value
+    .trim();
 
 
   const department =
   document
-  .getElementById(
-    "department"
-  )
-  .value
-  .trim();
+    .getElementById("department")
+    .value
+    .trim();
 
 
-  if(
-    !employeeId ||
-    !name
-  ){
+  if(!employeeId || !name){
 
     alert(
       "Please enter Employee ID and Employee Name."
@@ -2086,14 +2041,10 @@ async function saveEmployee(){
 
 
   const saveBtn =
-  document.getElementById(
-    "saveBtn"
-  );
+  document.getElementById("saveBtn");
 
 
-  saveBtn.disabled =
-  true;
-
+  saveBtn.disabled = true;
 
   saveBtn.textContent =
   "Saving...";
@@ -2112,9 +2063,7 @@ async function saveEmployee(){
 
 
       photoUrl =
-      await uploadPhoto(
-        employeeId
-      );
+      await uploadPhoto(employeeId);
 
     }
 
@@ -2130,49 +2079,43 @@ async function saveEmployee(){
 
       const result =
       await supabaseClient
-      .from("employees")
-      .insert([
-        {
-          employee_id:employeeId,
-          name:name,
-          department:department,
-          photo_url:photoUrl
-        }
-      ]);
+        .from("employees")
+        .insert([
+          {
+            employee_id:employeeId,
+            name:name,
+            department:department,
+            photo_url:photoUrl
+          }
+        ]);
 
 
-      error =
-      result.error;
+      error = result.error;
 
     }
     else{
 
       const result =
       await supabaseClient
-      .from("employees")
-      .update(
-        {
+        .from("employees")
+        .update({
           name:name,
           department:department,
           photo_url:photoUrl
-        }
-      )
-      .eq(
-        "employee_id",
-        editingEmployeeId
-      );
+        })
+        .eq(
+          "employee_id",
+          editingEmployeeId
+        );
 
 
-      error =
-      result.error;
+      error = result.error;
 
     }
 
 
     if(error){
-
       throw error;
-
     }
 
 
@@ -2186,7 +2129,6 @@ async function saveEmployee(){
 
 
     closeModal();
-
 
     await loadEmployees();
 
@@ -2207,8 +2149,7 @@ async function saveEmployee(){
   }
   finally{
 
-    saveBtn.disabled =
-    false;
+    saveBtn.disabled = false;
 
 
     saveBtn.textContent =
@@ -2236,30 +2177,24 @@ async function deleteEmployee(employeeId){
 
 
   if(!confirmDelete){
-
     return;
-
   }
 
 
   try{
 
-    const {
-      error
-    } =
+    const {error} =
     await supabaseClient
-    .from("employees")
-    .delete()
-    .eq(
-      "employee_id",
-      employeeId
-    );
+      .from("employees")
+      .delete()
+      .eq(
+        "employee_id",
+        employeeId
+      );
 
 
     if(error){
-
       throw error;
-
     }
 
 
@@ -2294,13 +2229,11 @@ async function deleteEmployee(employeeId){
 ===================================== */
 
 document
-.getElementById(
-  "searchInput"
-)
-.addEventListener(
-  "input",
-  renderEmployees
-);
+  .getElementById("searchInput")
+  .addEventListener(
+    "input",
+    renderEmployees
+  );
 
 
 /* =====================================
@@ -2316,17 +2249,15 @@ async function logout(){
 
 
   if(!confirmLogout){
-
     return;
-
   }
 
 
   try{
 
     await supabaseClient
-    .auth
-    .signOut();
+      .auth
+      .signOut();
 
 
     window.location.replace(
@@ -2341,7 +2272,6 @@ async function logout(){
       error
     );
 
-
     alert(
       "Logout failed."
     );
@@ -2352,20 +2282,17 @@ async function logout(){
 
 
 /* =====================================
-   SESSION CHECK
+   INITIALIZE
 ===================================== */
 
 async function initialize(){
 
   try{
 
-    const {
-      data,
-      error
-    } =
+    const {data,error} =
     await supabaseClient
-    .auth
-    .getSession();
+      .auth
+      .getSession();
 
 
     if(error){
