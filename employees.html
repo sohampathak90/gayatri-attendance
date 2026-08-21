@@ -2,614 +2,608 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Employees | Gayatri Industries</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <style>
-
-    /* ================= GLOBAL ================= */
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    :root{
-      --primary:#111111;
-      --secondary:#666666;
-      --muted:#8a8a8a;
-      --border:#e8e8e8;
-      --bg:#ffffff;
-      --soft:#f7f7f7;
-      --danger:#dc2626;
-    }
-
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      background:#ffffff;
-      color:#111111;
-      min-height:100vh;
-    }
-
-
-    /* ================= HEADER ================= */
-
-    .header{
-      height:72px;
-      padding:0 6%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--border);
-      background:#ffffff;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .logo{
-      width:42px;
-      height:42px;
-      border-radius:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#111111;
-      color:#ffffff;
-      font-size:15px;
-      font-weight:bold;
-    }
-
-    .brand h2{
-      font-size:16px;
-      font-weight:600;
-    }
-
-    .brand p{
-      font-size:9px;
-      color:var(--muted);
-      margin-top:4px;
-      letter-spacing:1px;
-    }
-
-    .header-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-
-    /* ================= BUTTONS ================= */
-
-    .btn{
-      border:none;
-      cursor:pointer;
-      padding:10px 16px;
-      border-radius:8px;
-      font-size:11px;
-      font-weight:600;
-      transition:0.2s;
-    }
-
-    .btn:hover{
-      opacity:.8;
-    }
-
-    .btn:disabled{
-      opacity:.6;
-      cursor:not-allowed;
-    }
-
-    .dashboard-btn{
-      background:#f3f3f3;
-      color:#111111;
-      border:1px solid var(--border);
-    }
-
-    .logout-btn{
-      background:#111111;
-      color:#ffffff;
-    }
-
-    .add-btn{
-      background:#111111;
-      color:#ffffff;
-      padding:12px 18px;
-    }
-
-
-    /* ================= MAIN ================= */
-
-    .main{
-      width:90%;
-      max-width:1250px;
-      margin:40px auto 60px;
-    }
-
-    .page-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      margin-bottom:30px;
-    }
-
-    .page-top h1{
-      font-size:30px;
-      font-weight:600;
-      letter-spacing:-1px;
-    }
-
-    .page-top p{
-      margin-top:8px;
-      font-size:12px;
-      color:var(--secondary);
-    }
-
-
-    /* ================= STATS ================= */
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-bottom:25px;
-    }
-
-    .stat-card{
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:20px;
-      background:#ffffff;
-    }
-
-    .stat-icon{
-      font-size:20px;
-      margin-bottom:15px;
-    }
-
-    .stat-number{
-      font-size:28px;
-      font-weight:600;
-    }
-
-    .stat-title{
-      margin-top:5px;
-      font-size:10px;
-      color:var(--muted);
-      letter-spacing:.5px;
-    }
-
-
-    /* ================= SEARCH ================= */
-
-    .controls-card{
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:12px;
-      margin-bottom:20px;
-      background:#ffffff;
-    }
-
-    .search-wrapper{
-      position:relative;
-    }
-
-    .search-icon{
-      position:absolute;
-      left:14px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:14px;
-    }
-
-    .search-box{
-      width:100%;
-      padding:13px 15px 13px 40px;
-      border:1px solid var(--border);
-      border-radius:8px;
-      outline:none;
-      font-size:12px;
-      background:#ffffff;
-    }
-
-    .search-box:focus{
-      border-color:#111111;
-    }
-
-
-    /* ================= TABLE ================= */
-
-    .table-card{
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-      background:#ffffff;
-    }
-
-    .table-header{
-      padding:18px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--border);
-    }
-
-    .table-title{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .table-title h3{
-      font-size:14px;
-    }
-
-    .record-count{
-      font-size:10px;
-      color:#666;
-      background:#f5f5f5;
-      padding:6px 10px;
-      border-radius:20px;
-    }
-
-    .table-wrapper{
-      overflow-x:auto;
-    }
-
-    table{
-      width:100%;
-      min-width:850px;
-      border-collapse:collapse;
-    }
-
-    th{
-      text-align:left;
-      padding:14px 20px;
-      font-size:10px;
-      color:#888;
-      font-weight:600;
-      background:#fafafa;
-      letter-spacing:.5px;
-    }
-
-    td{
-      padding:16px 20px;
-      font-size:12px;
-      border-top:1px solid var(--border);
-    }
-
-    tbody tr:hover{
-      background:#fafafa;
-    }
-
-
-    /* ================= EMPLOYEE ================= */
-
-    .employee-info{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .employee-photo{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      object-fit:cover;
-      border:1px solid var(--border);
-    }
-
-    .photo-placeholder{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:#111111;
-      color:#ffffff;
-      font-size:11px;
-      font-weight:600;
-      flex-shrink:0;
-    }
-
-    .employee-name{
-      font-size:12px;
-      font-weight:600;
-    }
-
-    .employee-sub{
-      margin-top:4px;
-      font-size:10px;
-      color:var(--muted);
-    }
-
-
-    /* ================= BADGES ================= */
-
-    .id-badge{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:6px;
-      background:#f5f5f5;
-      font-size:10px;
-      color:#444;
-    }
-
-    .department-badge{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:20px;
-      background:#f5f5f5;
-      color:#444;
-      font-size:10px;
-    }
-
-
-    /* ================= ACTIONS ================= */
-
-    .action-buttons{
-      display:flex;
-      gap:7px;
-    }
-
-    .action-btn{
-      border:1px solid var(--border);
-      background:#ffffff;
-      color:#111111;
-      padding:7px 10px;
-      border-radius:7px;
-      cursor:pointer;
-      font-size:10px;
-    }
-
-    .action-btn:hover{
-      background:#f5f5f5;
-    }
-
-    .delete-btn{
-      color:var(--danger);
-    }
-
-
-    /* ================= LOADING ================= */
-
-    .loading{
-      text-align:center;
-      padding:45px;
-      color:var(--secondary);
-    }
-
-
-    /* ================= MODAL ================= */
-
-    .modal{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.35);
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      z-index:1000;
-    }
-
-    .modal.show{
-      display:flex;
-    }
-
-    .modal-box{
-      width:100%;
-      max-width:520px;
-      max-height:90vh;
-      overflow-y:auto;
-      background:#ffffff;
-      border-radius:14px;
-      padding:25px;
-      border:1px solid var(--border);
-      box-shadow:0 20px 60px rgba(0,0,0,.15);
-    }
-
-    .modal-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:25px;
-    }
-
-    .modal-header h2{
-      font-size:20px;
-    }
-
-    .close-modal{
-      width:32px;
-      height:32px;
-      border:1px solid var(--border);
-      border-radius:7px;
-      background:#ffffff;
-      cursor:pointer;
-      font-size:18px;
-    }
-
-
-    /* ================= PHOTO ================= */
-
-    .photo-section{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      margin-bottom:25px;
-    }
-
-    .photo-preview{
-      width:105px;
-      height:105px;
-      border-radius:50%;
-      object-fit:cover;
-      display:none;
-      margin-bottom:12px;
-      border:1px solid var(--border);
-    }
-
-    .photo-placeholder.large{
-      width:105px;
-      height:105px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:#111111;
-      color:white;
-      font-size:32px;
-      margin-bottom:12px;
-    }
-
-    .photo-upload-label{
-      padding:10px 15px;
-      border:1px solid var(--border);
-      border-radius:8px;
-      background:#ffffff;
-      cursor:pointer;
-      font-size:11px;
-      font-weight:600;
-    }
-
-    .photo-upload-label input{
-      display:none;
-    }
-
-    .photo-note{
-      font-size:9px;
-      color:var(--muted);
-      margin-top:8px;
-    }
-
-
-    /* ================= FORM ================= */
-
-    .field{
-      margin-bottom:16px;
-    }
-
-    .field label{
-      display:block;
-      margin-bottom:8px;
-      font-size:10px;
-      color:#555;
-      font-weight:600;
-      letter-spacing:.4px;
-    }
-
-    .field input{
-      width:100%;
-      padding:13px;
-      border:1px solid var(--border);
-      border-radius:8px;
-      background:#ffffff;
-      outline:none;
-      font-size:12px;
-    }
-
-    .field input:focus{
-      border-color:#111111;
-    }
-
-    .field input:disabled{
-      background:#f5f5f5;
-    }
-
-
-    /* ================= MODAL BUTTONS ================= */
-
-    .modal-actions{
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      margin-top:25px;
-    }
-
-    .cancel-btn{
-      background:#f3f3f3;
-      color:#111111;
-      border:1px solid var(--border);
-    }
-
-    .save-btn{
-      background:#111111;
-      color:#ffffff;
-    }
-
-
-    /* ================= MOBILE ================= */
-
-    @media(max-width:850px){
-
-      .stats{
-        grid-template-columns:1fr 1fr;
-      }
-
-    }
-
-    @media(max-width:600px){
-
-      .header{
-        height:auto;
-        padding:14px 16px;
-      }
-
-      .brand h2{
-        font-size:14px;
-      }
-
-      .brand p{
-        font-size:7px;
-      }
-
-      .logo{
-        width:38px;
-        height:38px;
-      }
-
-      .header-actions .btn{
-        padding:9px 10px;
-        font-size:9px;
-      }
-
-      .main{
-        width:92%;
-        margin-top:25px;
-      }
-
-      .page-top{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:16px;
-      }
-
-      .page-top h1{
-        font-size:25px;
-      }
-
-      .stats{
-        grid-template-columns:1fr;
-      }
-
-    }
-
-  </style>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Employees | Gayatri Industries</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#111111;
+  --secondary:#666666;
+  --muted:#8a8a8a;
+  --border:#e8e8e8;
+  --bg:#ffffff;
+  --soft:#f7f7f7;
+  --danger:#dc2626;
+}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#ffffff;
+  color:#111111;
+  min-height:100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.header{
+  height:72px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:#ffffff;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#111111;
+  color:#ffffff;
+  font-size:15px;
+  font-weight:bold;
+}
+
+.brand h2{
+  font-size:16px;
+  font-weight:600;
+}
+
+.brand p{
+  font-size:9px;
+  color:var(--muted);
+  margin-top:4px;
+  letter-spacing:1px;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.btn{
+  border:none;
+  cursor:pointer;
+  padding:10px 16px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.btn:hover{
+  opacity:.8;
+}
+
+.dashboard-btn{
+  background:#f3f3f3;
+  color:#111111;
+  border:1px solid var(--border);
+}
+
+.logout-btn{
+  background:#111111;
+  color:#ffffff;
+}
+
+.add-btn{
+  background:#111111;
+  color:#ffffff;
+  padding:12px 18px;
+}
+
+
+/* ================= MAIN ================= */
+
+.main{
+  width:90%;
+  max-width:1250px;
+  margin:40px auto 60px;
+}
+
+.page-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:30px;
+}
+
+.page-top h1{
+  font-size:30px;
+  font-weight:600;
+  letter-spacing:-1px;
+}
+
+.page-top p{
+  margin-top:8px;
+  font-size:12px;
+  color:var(--secondary);
+}
+
+
+/* ================= STATS ================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  background:#ffffff;
+}
+
+.stat-icon{
+  font-size:20px;
+  margin-bottom:15px;
+}
+
+.stat-number{
+  font-size:28px;
+  font-weight:600;
+}
+
+.stat-title{
+  margin-top:5px;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.5px;
+}
+
+
+/* ================= SEARCH ================= */
+
+.controls-card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:20px;
+  background:#ffffff;
+}
+
+.search-wrapper{
+  position:relative;
+}
+
+.search-icon{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+}
+
+.search-box{
+  width:100%;
+  padding:13px 15px 13px 40px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  outline:none;
+  font-size:12px;
+  background:#ffffff;
+}
+
+.search-box:focus{
+  border-color:#111111;
+}
+
+
+/* ================= TABLE ================= */
+
+.table-card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  background:#ffffff;
+}
+
+.table-header{
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.table-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.table-title h3{
+  font-size:14px;
+}
+
+.record-count{
+  font-size:10px;
+  color:#666;
+  background:#f5f5f5;
+  padding:6px 10px;
+  border-radius:20px;
+}
+
+.table-wrapper{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  min-width:850px;
+  border-collapse:collapse;
+}
+
+th{
+  text-align:left;
+  padding:14px 20px;
+  font-size:10px;
+  color:#888;
+  font-weight:600;
+  background:#fafafa;
+  letter-spacing:.5px;
+}
+
+td{
+  padding:16px 20px;
+  font-size:12px;
+  border-top:1px solid var(--border);
+}
+
+tbody tr:hover{
+  background:#fafafa;
+}
+
+
+/* ================= EMPLOYEE ================= */
+
+.employee-info{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.employee-photo{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid var(--border);
+}
+
+.photo-placeholder{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#111111;
+  color:#ffffff;
+  font-size:11px;
+  font-weight:600;
+}
+
+.employee-name{
+  font-size:12px;
+  font-weight:600;
+}
+
+.employee-sub{
+  margin-top:4px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+
+/* ================= BADGES ================= */
+
+.id-badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:6px;
+  background:#f5f5f5;
+  font-size:10px;
+  color:#444;
+}
+
+.department-badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  background:#f5f5f5;
+  color:#444;
+  font-size:10px;
+}
+
+
+/* ================= ACTIONS ================= */
+
+.action-buttons{
+  display:flex;
+  gap:7px;
+}
+
+.action-btn{
+  border:1px solid var(--border);
+  background:#ffffff;
+  color:#111111;
+  padding:7px 10px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:10px;
+}
+
+.action-btn:hover{
+  background:#f5f5f5;
+}
+
+.delete-btn{
+  color:var(--danger);
+}
+
+
+/* ================= LOADING ================= */
+
+.loading{
+  text-align:center;
+  padding:45px;
+  color:var(--secondary);
+}
+
+
+/* ================= MODAL ================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:1000;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:520px;
+  max-height:90vh;
+  overflow-y:auto;
+  background:#ffffff;
+  border-radius:14px;
+  padding:25px;
+  border:1px solid var(--border);
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.modal-header h2{
+  font-size:20px;
+}
+
+.close-modal{
+  width:32px;
+  height:32px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:#ffffff;
+  cursor:pointer;
+  font-size:18px;
+}
+
+
+/* ================= PHOTO ================= */
+
+.photo-section{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.photo-preview{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  object-fit:cover;
+  display:none;
+  margin-bottom:12px;
+  border:1px solid var(--border);
+}
+
+.photo-placeholder.large{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#111111;
+  color:white;
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.photo-upload-label{
+  padding:10px 15px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:#ffffff;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:600;
+}
+
+.photo-upload-label input{
+  display:none;
+}
+
+.photo-note{
+  font-size:9px;
+  color:var(--muted);
+  margin-top:8px;
+}
+
+
+/* ================= FORM ================= */
+
+.field{
+  margin-bottom:16px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:8px;
+  font-size:10px;
+  color:#555;
+  font-weight:600;
+  letter-spacing:.4px;
+}
+
+.field input{
+  width:100%;
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:#ffffff;
+  outline:none;
+  font-size:12px;
+}
+
+.field input:focus{
+  border-color:#111111;
+}
+
+.field input:disabled{
+  background:#f5f5f5;
+}
+
+
+/* ================= MODAL BUTTONS ================= */
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:25px;
+}
+
+.cancel-btn{
+  background:#f3f3f3;
+  color:#111111;
+  border:1px solid var(--border);
+}
+
+.save-btn{
+  background:#111111;
+  color:#ffffff;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .header{
+    height:auto;
+    padding:14px 16px;
+  }
+
+  .brand h2{
+    font-size:14px;
+  }
+
+  .brand p{
+    font-size:7px;
+  }
+
+  .logo{
+    width:38px;
+    height:38px;
+  }
+
+  .header-actions .btn{
+    padding:9px 10px;
+    font-size:9px;
+  }
+
+  .main{
+    width:92%;
+    margin-top:25px;
+  }
+
+  .page-top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  .page-top h1{
+    font-size:25px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
 
 </head>
-
 
 <body>
 
@@ -642,7 +636,6 @@
       ← Dashboard
     </button>
 
-
     <button
       class="btn logout-btn"
       onclick="logout()"
@@ -653,7 +646,6 @@
   </div>
 
 </header>
-
 
 
 <main class="main">
@@ -680,7 +672,6 @@
     </button>
 
   </div>
-
 
 
   <div class="stats">
@@ -741,7 +732,6 @@
   </div>
 
 
-
   <div class="controls-card">
 
     <div class="search-wrapper">
@@ -760,7 +750,6 @@
     </div>
 
   </div>
-
 
 
   <div class="table-card">
@@ -790,12 +779,10 @@
         <thead>
 
           <tr>
-
             <th>EMPLOYEE</th>
             <th>EMPLOYEE ID</th>
             <th>DEPARTMENT</th>
             <th>ACTIONS</th>
-
           </tr>
 
         </thead>
@@ -825,7 +812,6 @@
 </main>
 
 
-
 <!-- ================= EMPLOYEE MODAL ================= -->
 
 <div
@@ -835,13 +821,11 @@
 
   <div class="modal-box">
 
-
     <div class="modal-header">
 
       <h2 id="modalTitle">
         Add Employee
       </h2>
-
 
       <button
         class="close-modal"
@@ -853,7 +837,6 @@
     </div>
 
 
-
     <div class="photo-section">
 
       <div
@@ -863,13 +846,11 @@
         +
       </div>
 
-
       <img
         id="photoPreview"
         class="photo-preview"
         alt="Employee Photo"
       >
-
 
       <label class="photo-upload-label">
 
@@ -884,13 +865,11 @@
 
       </label>
 
-
       <div class="photo-note">
         JPG, PNG or WEBP recommended
       </div>
 
     </div>
-
 
 
     <div class="field">
@@ -906,7 +885,6 @@
     </div>
 
 
-
     <div class="field">
 
       <label>EMPLOYEE NAME</label>
@@ -918,7 +896,6 @@
       >
 
     </div>
-
 
 
     <div class="field">
@@ -934,7 +911,6 @@
     </div>
 
 
-
     <div class="modal-actions">
 
       <button
@@ -943,7 +919,6 @@
       >
         Cancel
       </button>
-
 
       <button
         class="btn save-btn"
@@ -960,7 +935,6 @@
 </div>
 
 
-
 <script>
 
 /* =====================================
@@ -969,7 +943,6 @@
 
 const SUPABASE_URL =
 "https://ysdpsndophokczdqysiw.supabase.co";
-
 
 const SUPABASE_ANON_KEY =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWJhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
@@ -992,32 +965,42 @@ window.supabase.createClient(
 
 
 /* =====================================
+   AUTH STATE CHANGE
+===================================== */
+
+supabaseClient.auth.onAuthStateChange(
+  (event, session) => {
+
+    console.log(
+      "AUTH EVENT:",
+      event
+    );
+
+    console.log(
+      "SESSION:",
+      session
+    );
+
+    if(event === "SIGNED_OUT"){
+
+      window.location.replace(
+        "./login.html"
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================
    VARIABLES
 ===================================== */
 
 let editingEmployeeId = null;
-
 let employeesData = [];
-
 let selectedPhotoFile = null;
-
 let existingPhotoUrl = null;
-
-
-/* =====================================
-   ESCAPE HTML
-===================================== */
-
-function escapeHTML(value){
-
-  return String(value || "")
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
-
-}
 
 
 /* =====================================
@@ -1033,7 +1016,9 @@ function getInitials(name){
   return name
     .split(" ")
     .filter(Boolean)
-    .map(word => word.charAt(0))
+    .map(
+      word => word.charAt(0)
+    )
     .slice(0,2)
     .join("")
     .toUpperCase();
@@ -1048,12 +1033,17 @@ function getInitials(name){
 async function loadEmployees(){
 
   const body =
-  document.getElementById("employeeBody");
+  document.getElementById(
+    "employeeBody"
+  );
 
 
   body.innerHTML = `
     <tr>
-      <td colspan="4" class="loading">
+      <td
+        colspan="4"
+        class="loading"
+      >
         Loading employees...
       </td>
     </tr>
@@ -1067,14 +1057,14 @@ async function loadEmployees(){
       error
     } =
     await supabaseClient
-    .from("employees")
-    .select("*")
-    .order(
-      "employee_id",
-      {
-        ascending:true
-      }
-    );
+      .from("employees")
+      .select("*")
+      .order(
+        "employee_id",
+        {
+          ascending:true
+        }
+      );
 
 
     if(error){
@@ -1082,7 +1072,8 @@ async function loadEmployees(){
     }
 
 
-    employeesData = data || [];
+    employeesData =
+    data || [];
 
 
     updateStats();
@@ -1101,10 +1092,12 @@ async function loadEmployees(){
 
     body.innerHTML = `
       <tr>
-        <td colspan="4" class="loading">
-          Error loading employees.
-          <br><br>
-          ${escapeHTML(error.message)}
+        <td
+          colspan="4"
+          class="loading"
+        >
+          Error loading employees.<br><br>
+          ${error.message}
         </td>
       </tr>
     `;
@@ -1129,13 +1122,11 @@ function updateStats(){
   const departments =
   new Set(
     employeesData
-    .map(
-      employee =>
-      String(employee.department || "")
-      .trim()
-      .toLowerCase()
-    )
-    .filter(Boolean)
+      .map(
+        employee =>
+        employee.department
+      )
+      .filter(Boolean)
   );
 
 
@@ -1174,45 +1165,46 @@ function renderEmployees(){
 
   const search =
   document
-  .getElementById(
-    "searchInput"
-  )
-  .value
-  .toLowerCase()
-  .trim();
+    .getElementById(
+      "searchInput"
+    )
+    .value
+    .toLowerCase()
+    .trim();
 
 
   const filtered =
-  employeesData.filter(employee => {
+  employeesData.filter(
+    employee => {
 
-    const employeeId =
-    String(
-      employee.employee_id || ""
-    )
-    .toLowerCase();
+      return(
 
+        String(
+          employee.employee_id || ""
+        )
+        .toLowerCase()
+        .includes(search)
 
-    const name =
-    String(
-      employee.name || ""
-    )
-    .toLowerCase();
+        ||
 
+        String(
+          employee.name || ""
+        )
+        .toLowerCase()
+        .includes(search)
 
-    const department =
-    String(
-      employee.department || ""
-    )
-    .toLowerCase();
+        ||
 
+        String(
+          employee.department || ""
+        )
+        .toLowerCase()
+        .includes(search)
 
-    return (
-      employeeId.includes(search) ||
-      name.includes(search) ||
-      department.includes(search)
-    );
+      );
 
-  });
+    }
+  );
 
 
   document.getElementById(
@@ -1221,7 +1213,9 @@ function renderEmployees(){
   `${filtered.length} Records`;
 
 
-  if(filtered.length === 0){
+  if(
+    filtered.length === 0
+  ){
 
     body.innerHTML = `
       <tr>
@@ -1240,134 +1234,122 @@ function renderEmployees(){
 
 
   body.innerHTML =
-  filtered.map(employee => {
+  filtered
+    .map(
+      employee => `
 
+        <tr>
 
-    const safeId =
-    escapeHTML(
-      employee.employee_id
-    );
+          <td>
 
+            <div class="employee-info">
 
-    const safeName =
-    escapeHTML(
-      employee.name ||
-      "Unnamed Employee"
-    );
+              ${
+                employee.photo_url
 
+                ?
 
-    const safeDepartment =
-    escapeHTML(
-      employee.department ||
-      "Not Assigned"
-    );
+                `
+                  <img
+                    src="${employee.photo_url}"
+                    class="employee-photo"
+                    alt="Employee"
+                  >
+                `
 
+                :
 
-    const initials =
-    getInitials(
-      employee.name
-    );
+                `
+                  <div class="photo-placeholder">
 
+                    ${getInitials(
+                      employee.name
+                    )}
 
-    const photoHTML =
-    employee.photo_url
+                  </div>
+                `
 
-    ?
+              }
 
-    `
-      <img
-        src="${escapeHTML(employee.photo_url)}"
-        class="employee-photo"
-        alt="Employee Photo"
-        onerror="this.style.display='none'"
-      >
-    `
+              <div>
 
-    :
+                <div class="employee-name">
 
-    `
-      <div class="photo-placeholder">
-        ${escapeHTML(initials)}
-      </div>
-    `;
+                  ${
+                    employee.name ||
+                    "Unnamed Employee"
+                  }
 
+                </div>
 
-    return `
+                <div class="employee-sub">
 
-      <tr>
+                  Gayatri Industries
 
-        <td>
+                </div>
 
-          <div class="employee-info">
-
-            ${photoHTML}
-
-
-            <div>
-
-              <div class="employee-name">
-                ${safeName}
-              </div>
-
-
-              <div class="employee-sub">
-                Gayatri Industries
               </div>
 
             </div>
 
-          </div>
-
-        </td>
+          </td>
 
 
-        <td>
+          <td>
 
-          <span class="id-badge">
-            ${safeId || "—"}
-          </span>
+            <span class="id-badge">
 
-        </td>
+              ${
+                employee.employee_id ||
+                "—"
+              }
 
+            </span>
 
-        <td>
-
-          <span class="department-badge">
-            ${safeDepartment}
-          </span>
-
-        </td>
+          </td>
 
 
-        <td>
+          <td>
 
-          <div class="action-buttons">
+            <span class="department-badge">
 
-            <button
-              class="action-btn"
-              onclick="editEmployee(${JSON.stringify(employee.employee_id)})"
-            >
-              Edit
-            </button>
+              ${
+                employee.department ||
+                "Not Assigned"
+              }
+
+            </span>
+
+          </td>
 
 
-            <button
-              class="action-btn delete-btn"
-              onclick="deleteEmployee(${JSON.stringify(employee.employee_id)})"
-            >
-              Delete
-            </button>
+          <td>
 
-          </div>
+            <div class="action-buttons">
 
-        </td>
+              <button
+                class="action-btn"
+                onclick="editEmployee('${employee.employee_id}')"
+              >
+                Edit
+              </button>
 
-      </tr>
+              <button
+                class="action-btn delete-btn"
+                onclick="deleteEmployee('${employee.employee_id}')"
+              >
+                Delete
+              </button>
 
-    `;
+            </div>
 
-  })
-  .join("");
+          </td>
+
+        </tr>
+
+      `
+    )
+    .join("");
 
 }
 
@@ -1387,20 +1369,8 @@ function previewPhoto(event){
   }
 
 
-  if(!file.type.startsWith("image/")){
-
-    alert(
-      "Please select a valid image file."
-    );
-
-    event.target.value = "";
-
-    return;
-
-  }
-
-
-  selectedPhotoFile = file;
+  selectedPhotoFile =
+  file;
 
 
   const preview =
@@ -1415,25 +1385,10 @@ function previewPhoto(event){
   );
 
 
-  if(preview.dataset.objectUrl){
-
-    URL.revokeObjectURL(
-      preview.dataset.objectUrl
-    );
-
-  }
-
-
-  const objectUrl =
-  URL.createObjectURL(file);
-
-
   preview.src =
-  objectUrl;
-
-
-  preview.dataset.objectUrl =
-  objectUrl;
+  URL.createObjectURL(
+    file
+  );
 
 
   preview.style.display =
@@ -1457,29 +1412,15 @@ function resetPhoto(){
   existingPhotoUrl = null;
 
 
-  const fileInput =
   document.getElementById(
     "employeePhoto"
-  );
-
-  fileInput.value = "";
+  ).value = "";
 
 
   const preview =
   document.getElementById(
     "photoPreview"
   );
-
-
-  if(preview.dataset.objectUrl){
-
-    URL.revokeObjectURL(
-      preview.dataset.objectUrl
-    );
-
-    delete preview.dataset.objectUrl;
-
-  }
 
 
   preview.src = "";
@@ -1567,18 +1508,13 @@ function editEmployee(employeeId){
   const employee =
   employeesData.find(
     item =>
-    item.employee_id === employeeId
+    item.employee_id ===
+    employeeId
   );
 
 
   if(!employee){
-
-    alert(
-      "Employee not found."
-    );
-
     return;
-
   }
 
 
@@ -1667,6 +1603,7 @@ function editEmployee(employeeId){
 
     preview.src = "";
 
+
     preview.style.display =
     "none";
 
@@ -1704,9 +1641,6 @@ function closeModal(){
     "show"
   );
 
-
-  resetPhoto();
-
 }
 
 
@@ -1725,17 +1659,12 @@ async function uploadPhoto(employeeId){
 
   const extension =
   selectedPhotoFile.name
-  .split(".")
-  .pop()
-  .toLowerCase();
-
-
-  const safeExtension =
-  extension || "jpg";
+    .split(".")
+    .pop();
 
 
   const fileName =
-  `${employeeId}-${Date.now()}.${safeExtension}`;
+  `${employeeId}-${Date.now()}.${extension}`;
 
 
   const filePath =
@@ -1746,22 +1675,19 @@ async function uploadPhoto(employeeId){
     error:uploadError
   } =
   await supabaseClient
-  .storage
-  .from("employee-photos")
-  .upload(
-    filePath,
-    selectedPhotoFile,
-    {
-      upsert:false,
-      contentType:selectedPhotoFile.type
-    }
-  );
+    .storage
+    .from("employee-photos")
+    .upload(
+      filePath,
+      selectedPhotoFile,
+      {
+        upsert:false
+      }
+    );
 
 
   if(uploadError){
-
     throw uploadError;
-
   }
 
 
@@ -1769,11 +1695,11 @@ async function uploadPhoto(employeeId){
     data
   } =
   supabaseClient
-  .storage
-  .from("employee-photos")
-  .getPublicUrl(
-    filePath
-  );
+    .storage
+    .from("employee-photos")
+    .getPublicUrl(
+      filePath
+    );
 
 
   return data.publicUrl;
@@ -1789,29 +1715,29 @@ async function saveEmployee(){
 
   const employeeId =
   document
-  .getElementById(
-    "employeeId"
-  )
-  .value
-  .trim();
+    .getElementById(
+      "employeeId"
+    )
+    .value
+    .trim();
 
 
   const name =
   document
-  .getElementById(
-    "employeeName"
-  )
-  .value
-  .trim();
+    .getElementById(
+      "employeeName"
+    )
+    .value
+    .trim();
 
 
   const department =
   document
-  .getElementById(
-    "department"
-  )
-  .value
-  .trim();
+    .getElementById(
+      "department"
+    )
+    .value
+    .trim();
 
 
   if(
@@ -1862,74 +1788,63 @@ async function saveEmployee(){
     }
 
 
+    let error;
+
+
     if(!editingEmployeeId){
 
-      const {
-        error
-      } =
+      const result =
       await supabaseClient
-      .from("employees")
-      .insert([
-        {
-          employee_id:employeeId,
-          name:name,
-          department:department || null,
-          photo_url:photoUrl || null
-        }
-      ]);
+        .from("employees")
+        .insert([
+          {
+            employee_id:employeeId,
+            name:name,
+            department:department,
+            photo_url:photoUrl
+          }
+        ]);
 
 
-      if(error){
-
-        if(
-          error.code === "23505"
-        ){
-
-          throw new Error(
-            "This Employee ID already exists."
-          );
-
-        }
-
-        throw error;
-
-      }
-
-
-      alert(
-        "Employee added successfully!"
-      );
+      error =
+      result.error;
 
     }
 
     else{
 
-      const {
-        error
-      } =
+      const result =
       await supabaseClient
-      .from("employees")
-      .update({
-        name:name,
-        department:department || null,
-        photo_url:photoUrl || null
-      })
-      .eq(
-        "employee_id",
-        editingEmployeeId
-      );
+        .from("employees")
+        .update({
+          name:name,
+          department:department,
+          photo_url:photoUrl
+        })
+        .eq(
+          "employee_id",
+          editingEmployeeId
+        );
 
 
-      if(error){
-        throw error;
-      }
-
-
-      alert(
-        "Employee updated successfully!"
-      );
+      error =
+      result.error;
 
     }
+
+
+    if(error){
+      throw error;
+    }
+
+
+    alert(
+      editingEmployeeId
+      ?
+      "Employee updated successfully!"
+      :
+      "Employee added successfully!"
+    );
 
 
     closeModal();
@@ -1980,7 +1895,7 @@ async function deleteEmployee(employeeId){
 
   const confirmDelete =
   confirm(
-    `Are you sure you want to delete employee ${employeeId}?\n\nRelated attendance records will also be removed.`
+    `Are you sure you want to delete employee ${employeeId}?`
   );
 
 
@@ -1991,52 +1906,20 @@ async function deleteEmployee(employeeId){
 
   try{
 
-    /*
-      First delete attendance records
-      so employee deletion does not leave
-      unwanted attendance data behind.
-    */
-
     const {
-      error:attendanceError
+      error
     } =
     await supabaseClient
-    .from("attendance")
-    .delete()
-    .eq(
-      "employee_id",
-      employeeId
-    );
-
-
-    if(attendanceError){
-
-      console.warn(
-        "Attendance delete warning:",
-        attendanceError
+      .from("employees")
+      .delete()
+      .eq(
+        "employee_id",
+        employeeId
       );
 
-    }
 
-
-    /*
-      Delete employee
-    */
-
-    const {
-      error:employeeError
-    } =
-    await supabaseClient
-    .from("employees")
-    .delete()
-    .eq(
-      "employee_id",
-      employeeId
-    );
-
-
-    if(employeeError){
-      throw employeeError;
+    if(error){
+      throw error;
     }
 
 
@@ -2072,37 +1955,13 @@ async function deleteEmployee(employeeId){
 ===================================== */
 
 document
-.getElementById(
-  "searchInput"
-)
-.addEventListener(
-  "input",
-  renderEmployees
-);
-
-
-/* =====================================
-   CLOSE MODAL ON OUTSIDE CLICK
-===================================== */
-
-document
-.getElementById(
-  "employeeModal"
-)
-.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target === this
-    ){
-
-      closeModal();
-
-    }
-
-  }
-);
+  .getElementById(
+    "searchInput"
+  )
+  .addEventListener(
+    "input",
+    renderEmployees
+  );
 
 
 /* =====================================
@@ -2128,8 +1987,8 @@ async function logout(){
       error
     } =
     await supabaseClient
-    .auth
-    .signOut();
+      .auth
+      .signOut();
 
 
     if(error){
@@ -2169,20 +2028,50 @@ async function initialize(){
 
   try{
 
+    /*
+      Wait briefly so Supabase can restore
+      the saved session from localStorage.
+    */
+
+    await new Promise(
+      resolve =>
+      setTimeout(resolve,500)
+    );
+
+
     const {
-      data,
+      data:{
+        session
+      },
       error
     } =
     await supabaseClient
-    .auth
-    .getSession();
+      .auth
+      .getSession();
 
 
-    if(
-      error ||
-      !data ||
-      !data.session
-    ){
+    if(error){
+
+      console.error(
+        "SESSION ERROR:",
+        error
+      );
+
+    }
+
+
+    console.log(
+      "CURRENT SESSION:",
+      session
+    );
+
+
+    if(!session){
+
+      console.log(
+        "No active session found."
+      );
+
 
       window.location.replace(
         "./login.html"
@@ -2203,17 +2092,6 @@ async function initialize(){
       "INITIALIZE ERROR:",
       error
     );
-
-
-    document.getElementById(
-      "employeeBody"
-    ).innerHTML = `
-      <tr>
-        <td colspan="4" class="loading">
-          Failed to initialize employee management.
-        </td>
-      </tr>
-    `;
 
   }
 
