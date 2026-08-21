@@ -17,355 +17,171 @@
 }
 
 :root{
-  --bg:#030914;
-  --bg2:#061326;
-  --card:#071426;
-  --card2:#0a1b31;
-
-  --border:rgba(70,140,255,.14);
-
-  --text:#edf5ff;
-  --muted:#8192a8;
-
-  --blue:#137ee9;
-  --blue-dark:#0b57a4;
-
-  --red:#e5484d;
-  --red-dark:#a91d27;
-
-  --green:#45e29a;
+  --primary:#111111;
+  --secondary:#666666;
+  --muted:#8a8a8a;
+  --border:#e8e8e8;
+  --bg:#ffffff;
+  --soft:#f7f7f7;
+  --danger:#dc2626;
 }
-
-/* ================= BODY ================= */
 
 body{
-  font-family:Arial,Segoe UI,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family:Arial, Helvetica, sans-serif;
+  background:#ffffff;
+  color:#111111;
   min-height:100vh;
 }
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-
-  background:
-    radial-gradient(
-      circle at 8% 5%,
-      rgba(0,115,255,.16),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 92% 90%,
-      rgba(0,100,255,.08),
-      transparent 35%
-    ),
-    #030914;
-}
-
-.grid{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-
-  background-image:
-    linear-gradient(
-      rgba(70,150,255,.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(70,150,255,.035) 1px,
-      transparent 1px
-    );
-
-  background-size:42px 42px;
-}
-
 
 /* ================= HEADER ================= */
 
 .header{
-  height:76px;
+  height:72px;
   padding:0 6%;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  border-bottom:
-    1px solid rgba(255,255,255,.07);
-
-  background:
-    rgba(3,9,20,.78);
-
-  backdrop-filter:blur(18px);
-
-  position:sticky;
-  top:0;
-
-  z-index:100;
+  border-bottom:1px solid var(--border);
+  background:#ffffff;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:13px;
+  gap:12px;
 }
 
 .logo{
-  width:45px;
-  height:45px;
-
-  border-radius:13px;
-
+  width:42px;
+  height:42px;
+  border-radius:10px;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  font-size:21px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #062b55
-    );
-
-  box-shadow:
-    0 10px 28px
-    rgba(0,100,255,.25);
+  background:#111111;
+  color:white;
+  font-size:19px;
 }
 
 .brand h2{
-  font-size:17px;
-  font-weight:700;
+  font-size:16px;
+  font-weight:600;
 }
 
 .brand p{
-  color:var(--muted);
   font-size:9px;
+  color:var(--muted);
   margin-top:4px;
-  letter-spacing:1.2px;
+  letter-spacing:1px;
 }
-
-
-/* ================= HEADER ACTIONS ================= */
 
 .header-actions{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:10px;
 }
+
+/* ================= BUTTONS ================= */
 
 .btn{
   border:none;
-  color:white;
   cursor:pointer;
-
-  padding:10px 15px;
-
-  border-radius:10px;
-
+  padding:10px 16px;
+  border-radius:8px;
   font-size:11px;
-  font-weight:bold;
-
-  transition:
-    transform .2s,
-    opacity .2s,
-    box-shadow .2s;
+  font-weight:600;
+  transition:0.2s;
 }
 
 .btn:hover{
-  transform:translateY(-1px);
-  opacity:.95;
-}
-
-.btn:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-  transform:none;
+  opacity:.8;
 }
 
 .dashboard-btn{
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #0b57a4
-    );
-
-  box-shadow:
-    0 5px 18px
-    rgba(19,126,233,.16);
+  background:#f3f3f3;
+  color:#111111;
+  border:1px solid var(--border);
 }
 
 .logout-btn{
-  background:
-    rgba(229,72,77,.12);
-
-  border:
-    1px solid
-    rgba(229,72,77,.25);
-
-  color:#ff8589;
+  background:#111111;
+  color:#ffffff;
 }
 
-.logout-btn:hover{
-  background:
-    rgba(229,72,77,.2);
+.add-btn{
+  background:#111111;
+  color:#ffffff;
+  padding:12px 18px;
 }
-
 
 /* ================= MAIN ================= */
 
 .main{
   width:90%;
   max-width:1250px;
-
-  margin:
-    38px auto
-    70px;
+  margin:40px auto 60px;
 }
-
-
-/* ================= PAGE TITLE ================= */
 
 .page-top{
   display:flex;
-  align-items:flex-end;
   justify-content:space-between;
-
-  margin-bottom:28px;
+  align-items:flex-end;
+  margin-bottom:30px;
 }
 
 .page-top h1{
   font-size:30px;
-  letter-spacing:-.6px;
+  font-weight:600;
+  letter-spacing:-1px;
 }
 
 .page-top p{
   margin-top:8px;
-  color:var(--muted);
   font-size:12px;
+  color:var(--secondary);
 }
-
-.add-btn{
-  padding:13px 20px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #0b57a4
-    );
-
-  box-shadow:
-    0 8px 24px
-    rgba(19,126,233,.2);
-}
-
 
 /* ================= STATS ================= */
 
 .stats{
   display:grid;
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:16px;
-
-  margin-bottom:22px;
+  margin-bottom:25px;
 }
 
 .stat-card{
-  position:relative;
-
-  padding:21px;
-
-  border-radius:18px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #0a1b31,
-      #061222
-    );
-
-  border:
-    1px solid
-    var(--border);
-
-  overflow:hidden;
-
-  transition:
-    transform .2s,
-    border .2s;
-}
-
-.stat-card:hover{
-  transform:translateY(-2px);
-
-  border-color:
-    rgba(19,126,233,.28);
-}
-
-.stat-card::after{
-  content:"";
-
-  position:absolute;
-
-  width:110px;
-  height:110px;
-
-  border-radius:50%;
-
-  right:-38px;
-  top:-40px;
-
-  background:
-    rgba(19,126,233,.05);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  background:#ffffff;
 }
 
 .stat-icon{
-  font-size:22px;
-  margin-bottom:12px;
+  font-size:20px;
+  margin-bottom:15px;
 }
 
 .stat-number{
   font-size:28px;
-  font-weight:bold;
+  font-weight:600;
 }
 
 .stat-title{
-  margin-top:6px;
-
+  margin-top:5px;
   font-size:10px;
-
   color:var(--muted);
-
-  letter-spacing:.7px;
+  letter-spacing:.5px;
 }
-
 
 /* ================= SEARCH ================= */
 
 .controls-card{
-  padding:13px;
-
-  border-radius:16px;
-
-  background:
-    rgba(7,20,38,.85);
-
-  border:
-    1px solid
-    var(--border);
-
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
   margin-bottom:20px;
+  background:#ffffff;
 }
 
 .search-wrapper{
@@ -374,77 +190,41 @@ body::before{
 
 .search-icon{
   position:absolute;
-
-  left:15px;
+  left:14px;
   top:50%;
-
-  transform:
-    translateY(-50%);
-
+  transform:translateY(-50%);
   font-size:14px;
-
-  pointer-events:none;
 }
 
 .search-box{
   width:100%;
-
-  padding:
-    14px 15px 14px 43px;
-
-  border-radius:11px;
-
-  border:
-    1px solid
-    rgba(70,140,255,.16);
-
-  background:#061326;
-
-  color:white;
-
+  padding:13px 15px 13px 40px;
+  border:1px solid var(--border);
+  border-radius:8px;
   outline:none;
-
   font-size:12px;
-
-  transition:
-    border .2s,
-    box-shadow .2s;
+  background:#ffffff;
 }
 
 .search-box:focus{
-  border-color:
-    rgba(19,126,233,.7);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(19,126,233,.06);
+  border-color:#111111;
 }
-
 
 /* ================= TABLE ================= */
 
 .table-card{
-  border-radius:20px;
-
+  border:1px solid var(--border);
+  border-radius:12px;
   overflow:hidden;
-
-  background:#071426;
-
-  border:
-    1px solid
-    var(--border);
+  background:#ffffff;
 }
 
 .table-header{
   padding:18px 20px;
-
   display:flex;
-  justify-content:space-between;
   align-items:center;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.055);
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
 }
 
 .table-title{
@@ -459,19 +239,10 @@ body::before{
 
 .record-count{
   font-size:10px;
-
-  color:#8ebeff;
-
+  color:#666;
+  background:#f5f5f5;
   padding:6px 10px;
-
   border-radius:20px;
-
-  background:
-    rgba(19,126,233,.07);
-
-  border:
-    1px solid
-    rgba(19,126,233,.13);
 }
 
 .table-wrapper{
@@ -481,45 +252,28 @@ body::before{
 table{
   width:100%;
   min-width:850px;
-
   border-collapse:collapse;
 }
 
 th{
   text-align:left;
-
   padding:14px 20px;
-
   font-size:10px;
-
-  color:#7f91a8;
-
-  letter-spacing:.7px;
-
-  background:
-    rgba(255,255,255,.018);
+  color:#888;
+  font-weight:600;
+  background:#fafafa;
+  letter-spacing:.5px;
 }
 
 td{
   padding:16px 20px;
-
   font-size:12px;
-
-  border-top:
-    1px solid
-    rgba(255,255,255,.045);
-}
-
-tbody tr{
-  transition:
-    background .2s;
+  border-top:1px solid var(--border);
 }
 
 tbody tr:hover{
-  background:
-    rgba(19,126,233,.03);
+  background:#fafafa;
 }
-
 
 /* ================= EMPLOYEE ================= */
 
@@ -530,94 +284,57 @@ tbody tr:hover{
 }
 
 .employee-photo{
-  width:43px;
-  height:43px;
-
+  width:42px;
+  height:42px;
   border-radius:50%;
-
   object-fit:cover;
-
-  border:
-    1px solid
-    rgba(255,255,255,.14);
+  border:1px solid var(--border);
 }
 
 .photo-placeholder{
-  width:43px;
-  height:43px;
-
+  width:42px;
+  height:42px;
   border-radius:50%;
-
   display:grid;
   place-items:center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #062b55
-    );
-
-  font-size:12px;
-  font-weight:bold;
+  background:#111111;
+  color:#ffffff;
+  font-size:11px;
+  font-weight:600;
 }
 
 .employee-name{
   font-size:12px;
-  font-weight:bold;
+  font-weight:600;
 }
 
 .employee-sub{
   margin-top:4px;
-
-  color:var(--muted);
-
   font-size:10px;
+  color:var(--muted);
 }
-
 
 /* ================= BADGES ================= */
 
 .id-badge{
   display:inline-block;
-
   padding:6px 10px;
-
-  border-radius:8px;
-
+  border-radius:6px;
+  background:#f5f5f5;
   font-size:10px;
-
-  color:#8ebeff;
-
-  background:
-    rgba(19,126,233,.07);
-
-  border:
-    1px solid
-    rgba(19,126,233,.13);
+  color:#444;
 }
 
 .department-badge{
   display:inline-block;
-
   padding:6px 10px;
-
   border-radius:20px;
-
+  background:#f5f5f5;
+  color:#444;
   font-size:10px;
-
-  background:
-    rgba(69,226,154,.07);
-
-  color:#66e6a5;
-
-  border:
-    1px solid
-    rgba(69,226,154,.08);
 }
 
-
-/* ================= ACTION BUTTONS ================= */
+/* ================= ACTIONS ================= */
 
 .action-buttons{
   display:flex;
@@ -625,85 +342,47 @@ tbody tr:hover{
 }
 
 .action-btn{
-  border:none;
-
-  padding:8px 11px;
-
-  border-radius:8px;
-
-  color:white;
-
+  border:1px solid var(--border);
+  background:#ffffff;
+  color:#111111;
+  padding:7px 10px;
+  border-radius:7px;
   cursor:pointer;
-
   font-size:10px;
-  font-weight:600;
-
-  transition:
-    transform .2s,
-    opacity .2s;
+  transition:.2s;
 }
 
 .action-btn:hover{
-  transform:translateY(-1px);
-  opacity:.9;
-}
-
-.edit-btn{
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #0b57a4
-    );
+  background:#f5f5f5;
 }
 
 .delete-btn{
-  background:
-    rgba(229,72,77,.13);
-
-  border:
-    1px solid
-    rgba(229,72,77,.2);
-
-  color:#ff8589;
+  color:var(--danger);
 }
-
 
 /* ================= LOADING ================= */
 
 .loading{
   text-align:center;
-
-  padding:50px;
-
-  color:var(--muted);
+  padding:45px;
+  color:var(--secondary);
 }
 
 .empty-icon{
-  font-size:32px;
+  font-size:30px;
   margin-bottom:10px;
 }
-
 
 /* ================= MODAL ================= */
 
 .modal{
   display:none;
-
   position:fixed;
-
   inset:0;
-
-  background:
-    rgba(0,0,0,.72);
-
-  backdrop-filter:blur(7px);
-
+  background:rgba(0,0,0,.35);
   align-items:center;
   justify-content:center;
-
   padding:20px;
-
   z-index:1000;
 }
 
@@ -714,141 +393,80 @@ tbody tr:hover{
 .modal-box{
   width:100%;
   max-width:520px;
-
   max-height:90vh;
-
   overflow-y:auto;
-
-  padding:26px;
-
-  border-radius:22px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #0a1b31,
-      #061222
-    );
-
-  border:
-    1px solid
-    rgba(70,140,255,.2);
-
-  box-shadow:
-    0 30px 80px
-    rgba(0,0,0,.55);
+  background:#ffffff;
+  border-radius:14px;
+  padding:25px;
+  border:1px solid var(--border);
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
 }
 
 .modal-header{
   display:flex;
-
-  align-items:center;
   justify-content:space-between;
-
-  margin-bottom:24px;
+  align-items:center;
+  margin-bottom:25px;
 }
 
 .modal-header h2{
   font-size:20px;
+  font-weight:600;
 }
 
 .close-modal{
-  width:33px;
-  height:33px;
-
-  border:none;
-
-  border-radius:9px;
-
-  background:#13243a;
-
-  color:#9aacbf;
-
+  width:32px;
+  height:32px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:#ffffff;
   cursor:pointer;
-
   font-size:18px;
-
-  transition:.2s;
 }
-
-.close-modal:hover{
-  background:#1b304a;
-}
-
 
 /* ================= PHOTO ================= */
 
 .photo-section{
   display:flex;
   flex-direction:column;
-
   align-items:center;
-
-  margin-bottom:24px;
+  margin-bottom:25px;
 }
 
 .photo-preview{
-  width:110px;
-  height:110px;
-
+  width:105px;
+  height:105px;
   border-radius:50%;
-
   object-fit:cover;
-
   display:none;
-
   margin-bottom:12px;
-
-  border:
-    2px solid
-    rgba(19,126,233,.5);
+  border:1px solid var(--border);
 }
 
 .photo-placeholder.large{
-  width:110px;
-  height:110px;
-
+  width:105px;
+  height:105px;
   border-radius:50%;
-
   display:grid;
   place-items:center;
-
-  font-size:34px;
-
+  background:#111111;
+  color:white;
+  font-size:32px;
   margin-bottom:12px;
 }
 
 .photo-upload-label{
-  display:inline-flex;
-
-  align-items:center;
-  gap:7px;
-
-  background:
-    rgba(19,126,233,.1);
-
-  border:
-    1px solid
-    rgba(19,126,233,.25);
-
-  color:#8ebeff;
-
   padding:10px 15px;
-
-  border-radius:10px;
-
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:#ffffff;
   cursor:pointer;
-
   font-size:11px;
-
-  font-weight:bold;
-
-  transition:.2s;
+  font-weight:600;
 }
 
 .photo-upload-label:hover{
-  background:
-    rgba(19,126,233,.17);
+  background:#f7f7f7;
 }
 
 .photo-upload-label input{
@@ -857,12 +475,9 @@ tbody tr:hover{
 
 .photo-note{
   font-size:9px;
-
   color:var(--muted);
-
   margin-top:8px;
 }
-
 
 /* ================= FORM ================= */
 
@@ -872,88 +487,57 @@ tbody tr:hover{
 
 .field label{
   display:block;
-
   margin-bottom:8px;
-
   font-size:10px;
-
-  color:#9aacbf;
-
+  color:#555;
+  font-weight:600;
   letter-spacing:.4px;
 }
 
 .field input{
   width:100%;
-
-  padding:14px;
-
-  border-radius:11px;
-
-  border:
-    1px solid
-    rgba(70,140,255,.16);
-
-  background:#061326;
-
-  color:white;
-
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:#ffffff;
   outline:none;
-
   font-size:12px;
-
-  transition:
-    border .2s,
-    box-shadow .2s;
 }
 
 .field input:focus{
-  border-color:
-    rgba(19,126,233,.7);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(19,126,233,.06);
+  border-color:#111111;
 }
 
 .field input:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+  background:#f5f5f5;
 }
 
-
-/* ================= MODAL ACTIONS ================= */
+/* ================= MODAL BUTTONS ================= */
 
 .modal-actions{
   display:flex;
-
   justify-content:flex-end;
-
   gap:10px;
-
   margin-top:25px;
 }
 
 .cancel-btn{
-  background:#26384d;
+  background:#f3f3f3;
+  color:#111111;
+  border:1px solid var(--border);
 }
 
 .save-btn{
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #0b57a4
-    );
+  background:#111111;
+  color:#ffffff;
 }
-
 
 /* ================= MOBILE ================= */
 
 @media(max-width:850px){
 
   .stats{
-    grid-template-columns:
-      repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
   }
 
 }
@@ -962,12 +546,7 @@ tbody tr:hover{
 
   .header{
     height:auto;
-
     padding:14px 16px;
-  }
-
-  .brand{
-    gap:9px;
   }
 
   .brand h2{
@@ -979,28 +558,23 @@ tbody tr:hover{
   }
 
   .logo{
-    width:40px;
-    height:40px;
-  }
-
-  .header-actions{
-    gap:6px;
+    width:38px;
+    height:38px;
   }
 
   .header-actions .btn{
-    padding:9px 9px;
+    padding:9px 10px;
     font-size:9px;
   }
 
   .main{
     width:92%;
-    margin-top:26px;
+    margin-top:25px;
   }
 
   .page-top{
     flex-direction:column;
     align-items:flex-start;
-
     gap:16px;
   }
 
@@ -1010,23 +584,6 @@ tbody tr:hover{
 
   .stats{
     grid-template-columns:1fr;
-    gap:10px;
-  }
-
-  .stat-card{
-    padding:17px;
-  }
-
-  .modal-box{
-    padding:20px;
-  }
-
-  .modal-actions{
-    flex-direction:column-reverse;
-  }
-
-  .modal-actions .btn{
-    width:100%;
   }
 
 }
@@ -1036,16 +593,11 @@ tbody tr:hover{
 
 <body>
 
-<div class="grid"></div>
-
-
-<!-- ================= HEADER ================= -->
-
 <header class="header">
 
   <div class="brand">
 
-    <div class="logo">👥</div>
+    <div class="logo">GI</div>
 
     <div>
       <h2>Gayatri Industries</h2>
@@ -1075,8 +627,6 @@ tbody tr:hover{
 </header>
 
 
-<!-- ================= MAIN ================= -->
-
 <main class="main">
 
   <div class="page-top">
@@ -1085,7 +635,7 @@ tbody tr:hover{
       <h1>Employee Management</h1>
 
       <p>
-        Manage your workforce, employee details and profile records.
+        Manage employee records, departments and profile details.
       </p>
     </div>
 
@@ -1098,8 +648,6 @@ tbody tr:hover{
 
   </div>
 
-
-  <!-- ================= STATS ================= -->
 
   <div class="stats">
 
@@ -1123,7 +671,7 @@ tbody tr:hover{
 
     <div class="stat-card">
 
-      <div class="stat-icon">🏢</div>
+      <div class="stat-icon">▦</div>
 
       <div
         class="stat-number"
@@ -1141,7 +689,7 @@ tbody tr:hover{
 
     <div class="stat-card">
 
-      <div class="stat-icon">📸</div>
+      <div class="stat-icon">◉</div>
 
       <div
         class="stat-number"
@@ -1159,13 +707,11 @@ tbody tr:hover{
   </div>
 
 
-  <!-- ================= SEARCH ================= -->
-
   <div class="controls-card">
 
     <div class="search-wrapper">
 
-      <span class="search-icon">🔍</span>
+      <span class="search-icon">⌕</span>
 
       <input
         type="text"
@@ -1178,8 +724,6 @@ tbody tr:hover{
 
   </div>
 
-
-  <!-- ================= TABLE ================= -->
 
   <div class="table-card">
 
@@ -1216,14 +760,10 @@ tbody tr:hover{
 
         </thead>
 
-
         <tbody id="employeeBody">
 
           <tr>
-            <td
-              colspan="4"
-              class="loading"
-            >
+            <td colspan="4" class="loading">
               Loading employees...
             </td>
           </tr>
@@ -1241,18 +781,13 @@ tbody tr:hover{
 
 <!-- ================= MODAL ================= -->
 
-<div
-  class="modal"
-  id="employeeModal"
->
+<div class="modal" id="employeeModal">
 
   <div class="modal-box">
 
     <div class="modal-header">
 
-      <h2 id="modalTitle">
-        Add Employee
-      </h2>
+      <h2 id="modalTitle">Add Employee</h2>
 
       <button
         class="close-modal"
@@ -1264,17 +799,14 @@ tbody tr:hover{
     </div>
 
 
-    <!-- PHOTO -->
-
     <div class="photo-section">
 
       <div
         id="photoPlaceholder"
         class="photo-placeholder large"
       >
-        👤
+        +
       </div>
-
 
       <img
         id="photoPreview"
@@ -1285,7 +817,7 @@ tbody tr:hover{
 
       <label class="photo-upload-label">
 
-        📷 Upload Photo
+        Upload Photo
 
         <input
           type="file"
@@ -1296,15 +828,12 @@ tbody tr:hover{
 
       </label>
 
-
       <div class="photo-note">
         JPG, PNG or WEBP recommended
       </div>
 
     </div>
 
-
-    <!-- EMPLOYEE ID -->
 
     <div class="field">
 
@@ -1319,8 +848,6 @@ tbody tr:hover{
     </div>
 
 
-    <!-- NAME -->
-
     <div class="field">
 
       <label>EMPLOYEE NAME</label>
@@ -1333,8 +860,6 @@ tbody tr:hover{
 
     </div>
 
-
-    <!-- DEPARTMENT -->
 
     <div class="field">
 
@@ -1357,7 +882,6 @@ tbody tr:hover{
       >
         Cancel
       </button>
-
 
       <button
         class="btn save-btn"
@@ -1384,12 +908,8 @@ const SUPABASE_URL =
 "https://ysdpsndophokczdqysiw.supabase.co";
 
 const SUPABASE_ANON_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWIiLCJyZWYiOiJ5c2Rwc25kb3Bob2tjemRxeXNpdyIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzg3MTQxODkzLCJleHAiOjIxMDI3MTc4OTN9.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWJhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
-
-/* =====================================
-   SUPABASE CLIENT
-===================================== */
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1423,9 +943,7 @@ let existingPhotoUrl = null;
 
 function getInitials(name){
 
-  if(!name){
-    return "?";
-  }
+  if(!name) return "?";
 
   return name
     .split(" ")
@@ -1455,40 +973,27 @@ async function loadEmployees(){
     </tr>
   `;
 
-
-  const {data,error} =
+  const { data, error } =
   await supabaseClient
     .from("employees")
     .select("*")
-    .order(
-      "employee_id",
-      {
-        ascending:true
-      }
-    );
-
+    .order("employee_id",{ascending:true});
 
   if(error){
 
-    console.error(
-      "LOAD EMPLOYEES ERROR:",
-      error
-    );
+    console.error(error);
 
     body.innerHTML = `
       <tr>
         <td colspan="4" class="loading">
-          Error loading employees.
-          <br><br>
+          Error loading employees.<br><br>
           ${error.message}
         </td>
       </tr>
     `;
 
     return;
-
   }
-
 
   employeesData = data || [];
 
@@ -1504,9 +1009,7 @@ async function loadEmployees(){
 
 function updateStats(){
 
-  const total =
-  employeesData.length;
-
+  const total = employeesData.length;
 
   const departments =
   new Set(
@@ -1515,26 +1018,22 @@ function updateStats(){
       .filter(Boolean)
   );
 
-
   const photos =
   employeesData.filter(
     employee => employee.photo_url
   ).length;
 
+  document.getElementById(
+    "totalEmployeeCount"
+  ).textContent = total;
 
-  document
-    .getElementById("totalEmployeeCount")
-    .textContent = total;
+  document.getElementById(
+    "departmentCount"
+  ).textContent = departments.size;
 
-
-  document
-    .getElementById("departmentCount")
-    .textContent = departments.size;
-
-
-  document
-    .getElementById("photoCount")
-    .textContent = photos;
+  document.getElementById(
+    "photoCount"
+  ).textContent = photos;
 
 }
 
@@ -1548,19 +1047,16 @@ function renderEmployees(){
   const body =
   document.getElementById("employeeBody");
 
-
   const search =
-  document
-    .getElementById("searchInput")
+  document.getElementById("searchInput")
     .value
     .toLowerCase()
     .trim();
 
-
   const filtered =
   employeesData.filter(employee => {
 
-    return(
+    return (
 
       String(employee.employee_id || "")
         .toLowerCase()
@@ -1582,127 +1078,109 @@ function renderEmployees(){
 
   });
 
-
-  document
-    .getElementById("recordCount")
-    .textContent =
-    `${filtered.length} Records`;
-
+  document.getElementById(
+    "recordCount"
+  ).textContent =
+  `${filtered.length} Records`;
 
   if(filtered.length === 0){
 
     body.innerHTML = `
       <tr>
         <td colspan="4" class="loading">
-
-          <div class="empty-icon">
-            👥
-          </div>
-
+          <div class="empty-icon">⌂</div>
           No employees found.
-
         </td>
       </tr>
     `;
 
     return;
-
   }
 
 
   body.innerHTML =
-  filtered.map(employee => {
+  filtered.map(employee => `
 
-    return `
+    <tr>
 
-      <tr>
+      <td>
 
-        <td>
+        <div class="employee-info">
 
-          <div class="employee-info">
-
-            ${
-              employee.photo_url
-              ?
-              `
+          ${
+            employee.photo_url
+            ?
+            `
               <img
                 src="${employee.photo_url}"
                 class="employee-photo"
                 alt="${employee.name || "Employee"}"
               >
-              `
-              :
-              `
+            `
+            :
+            `
               <div class="photo-placeholder">
                 ${getInitials(employee.name)}
               </div>
-              `
-            }
+            `
+          }
 
+          <div>
 
-            <div>
+            <div class="employee-name">
+              ${employee.name || "Unnamed Employee"}
+            </div>
 
-              <div class="employee-name">
-                ${employee.name || "Unnamed Employee"}
-              </div>
-
-              <div class="employee-sub">
-                Company Employee
-              </div>
-
+            <div class="employee-sub">
+              Company Employee
             </div>
 
           </div>
 
-        </td>
+        </div>
+
+      </td>
 
 
-        <td>
-
-          <span class="id-badge">
-            ${employee.employee_id || "—"}
-          </span>
-
-        </td>
+      <td>
+        <span class="id-badge">
+          ${employee.employee_id || "—"}
+        </span>
+      </td>
 
 
-        <td>
-
-          <span class="department-badge">
-            ${employee.department || "Not Assigned"}
-          </span>
-
-        </td>
+      <td>
+        <span class="department-badge">
+          ${employee.department || "Not Assigned"}
+        </span>
+      </td>
 
 
-        <td>
+      <td>
 
-          <div class="action-buttons">
+        <div class="action-buttons">
 
-            <button
-              class="action-btn edit-btn"
-              onclick="editEmployee('${employee.employee_id}')"
-            >
-              ✏ Edit
-            </button>
+          <button
+            class="action-btn"
+            onclick="editEmployee('${employee.employee_id}')"
+          >
+            Edit
+          </button>
 
+          <button
+            class="action-btn delete-btn"
+            onclick="deleteEmployee('${employee.employee_id}')"
+          >
+            Delete
+          </button>
 
-            <button
-              class="action-btn delete-btn"
-              onclick="deleteEmployee('${employee.employee_id}')"
-            >
-              🗑 Delete
-            </button>
+        </div>
 
-          </div>
+      </td>
 
-        </td>
+    </tr>
 
-      </tr>
-
-    `;
-
-  }).join("");
+  `).join("");
 
 }
 
@@ -1713,22 +1191,17 @@ function renderEmployees(){
 
 function previewPhoto(event){
 
-  const file =
-  event.target.files[0];
+  const file = event.target.files[0];
 
-  if(!file){
-    return;
-  }
+  if(!file) return;
 
   selectedPhotoFile = file;
-
 
   const preview =
   document.getElementById("photoPreview");
 
   const placeholder =
   document.getElementById("photoPlaceholder");
-
 
   preview.src =
   URL.createObjectURL(file);
@@ -1749,11 +1222,9 @@ function resetPhoto(){
   selectedPhotoFile = null;
   existingPhotoUrl = null;
 
-
-  document
-    .getElementById("employeePhoto")
-    .value = "";
-
+  document.getElementById(
+    "employeePhoto"
+  ).value = "";
 
   const preview =
   document.getElementById("photoPreview");
@@ -1761,12 +1232,11 @@ function resetPhoto(){
   preview.src = "";
   preview.style.display = "none";
 
-
   const placeholder =
   document.getElementById("photoPlaceholder");
 
   placeholder.style.display = "grid";
-  placeholder.textContent = "👤";
+  placeholder.textContent = "+";
 
 }
 
@@ -1779,45 +1249,37 @@ function openAddModal(){
 
   editingEmployeeId = null;
 
+  document.getElementById(
+    "modalTitle"
+  ).textContent =
+  "Add New Employee";
 
-  document
-    .getElementById("modalTitle")
-    .textContent =
-    "Add New Employee";
+  document.getElementById(
+    "employeeId"
+  ).value = "";
 
+  document.getElementById(
+    "employeeName"
+  ).value = "";
 
-  document
-    .getElementById("employeeId")
-    .value = "";
+  document.getElementById(
+    "department"
+  ).value = "";
 
+  document.getElementById(
+    "employeeId"
+  ).disabled = false;
 
-  document
-    .getElementById("employeeName")
-    .value = "";
-
-
-  document
-    .getElementById("department")
-    .value = "";
-
-
-  document
-    .getElementById("employeeId")
-    .disabled = false;
-
-
-  document
-    .getElementById("saveBtn")
-    .textContent =
-    "Save Employee";
-
+  document.getElementById(
+    "saveBtn"
+  ).textContent =
+  "Save Employee";
 
   resetPhoto();
 
-
-  document
-    .getElementById("employeeModal")
-    .classList.add("show");
+  document.getElementById(
+    "employeeModal"
+  ).classList.add("show");
 
 }
 
@@ -1830,106 +1292,81 @@ function editEmployee(employeeId){
 
   const employee =
   employeesData.find(
-    item =>
-    item.employee_id === employeeId
+    item => item.employee_id === employeeId
   );
 
-
-  if(!employee){
-    return;
-  }
-
+  if(!employee) return;
 
   editingEmployeeId =
   employee.employee_id;
 
-
   existingPhotoUrl =
   employee.photo_url || null;
 
-
   selectedPhotoFile = null;
 
+  document.getElementById(
+    "modalTitle"
+  ).textContent =
+  "Edit Employee";
 
-  document
-    .getElementById("modalTitle")
-    .textContent =
-    "Edit Employee";
+  document.getElementById(
+    "employeeId"
+  ).value =
+  employee.employee_id;
 
+  document.getElementById(
+    "employeeName"
+  ).value =
+  employee.name || "";
 
-  document
-    .getElementById("employeeId")
-    .value =
-    employee.employee_id;
+  document.getElementById(
+    "department"
+  ).value =
+  employee.department || "";
 
+  document.getElementById(
+    "employeeId"
+  ).disabled = true;
 
-  document
-    .getElementById("employeeName")
-    .value =
-    employee.name || "";
+  document.getElementById(
+    "saveBtn"
+  ).textContent =
+  "Update Employee";
 
-
-  document
-    .getElementById("department")
-    .value =
-    employee.department || "";
-
-
-  document
-    .getElementById("employeeId")
-    .disabled = true;
-
-
-  document
-    .getElementById("saveBtn")
-    .textContent =
-    "Update Employee";
-
-
-  document
-    .getElementById("employeePhoto")
-    .value = "";
-
+  document.getElementById(
+    "employeePhoto"
+  ).value = "";
 
   const preview =
   document.getElementById("photoPreview");
 
-
   const placeholder =
   document.getElementById("photoPlaceholder");
 
-
   if(existingPhotoUrl){
 
-    preview.src =
-    existingPhotoUrl;
+    preview.src = existingPhotoUrl;
+    preview.style.display = "block";
 
-    preview.style.display =
-    "block";
-
-    placeholder.style.display =
-    "none";
+    placeholder.style.display = "none";
 
   }
   else{
 
     preview.src = "";
+    preview.style.display = "none";
 
-    preview.style.display =
-    "none";
-
-    placeholder.style.display =
-    "grid";
+    placeholder.style.display = "grid";
 
     placeholder.textContent =
     getInitials(employee.name);
 
   }
 
-
-  document
-    .getElementById("employeeModal")
-    .classList.add("show");
+  document.getElementById(
+    "employeeModal"
+  ).classList.add("show");
 
 }
 
@@ -1940,9 +1377,9 @@ function editEmployee(employeeId){
 
 function closeModal(){
 
-  document
-    .getElementById("employeeModal")
-    .classList.remove("show");
+  document.getElementById(
+    "employeeModal"
+  ).classList.remove("show");
 
 }
 
@@ -1954,25 +1391,23 @@ function closeModal(){
 async function uploadPhoto(employeeId){
 
   if(!selectedPhotoFile){
-    return existingPhotoUrl;
-  }
 
+    return existingPhotoUrl;
+
+  }
 
   const extension =
   selectedPhotoFile.name
     .split(".")
     .pop();
 
-
   const fileName =
   `${employeeId}-${Date.now()}.${extension}`;
-
 
   const filePath =
   `employees/${fileName}`;
 
-
-  const {error:uploadError} =
+  const { error:uploadError } =
   await supabaseClient
     .storage
     .from("employee-photos")
@@ -1984,18 +1419,15 @@ async function uploadPhoto(employeeId){
       }
     );
 
-
   if(uploadError){
     throw uploadError;
   }
 
-
-  const {data} =
+  const { data } =
   supabaseClient
     .storage
     .from("employee-photos")
     .getPublicUrl(filePath);
-
 
   return data.publicUrl;
 
@@ -2009,25 +1441,19 @@ async function uploadPhoto(employeeId){
 async function saveEmployee(){
 
   const employeeId =
-  document
-    .getElementById("employeeId")
+  document.getElementById("employeeId")
     .value
     .trim();
-
 
   const name =
-  document
-    .getElementById("employeeName")
+  document.getElementById("employeeName")
     .value
     .trim();
-
 
   const department =
-  document
-    .getElementById("department")
+  document.getElementById("department")
     .value
     .trim();
-
 
   if(!employeeId || !name){
 
@@ -2036,44 +1462,35 @@ async function saveEmployee(){
     );
 
     return;
-
   }
-
 
   const saveBtn =
   document.getElementById("saveBtn");
-
 
   saveBtn.disabled = true;
 
   saveBtn.textContent =
   "Saving...";
 
-
   try{
 
     let photoUrl =
     existingPhotoUrl;
-
 
     if(selectedPhotoFile){
 
       saveBtn.textContent =
       "Uploading Photo...";
 
-
       photoUrl =
       await uploadPhoto(employeeId);
 
     }
 
-
     saveBtn.textContent =
     "Saving Employee...";
 
-
     let error;
-
 
     if(!editingEmployeeId){
 
@@ -2088,7 +1505,6 @@ async function saveEmployee(){
             photo_url:photoUrl
           }
         ]);
-
 
       error = result.error;
 
@@ -2108,16 +1524,13 @@ async function saveEmployee(){
           editingEmployeeId
         );
 
-
       error = result.error;
 
     }
 
-
     if(error){
       throw error;
     }
-
 
     alert(
       editingEmployeeId
@@ -2126,7 +1539,6 @@ async function saveEmployee(){
       :
       "Employee added successfully!"
     );
-
 
     closeModal();
 
@@ -2140,7 +1552,6 @@ async function saveEmployee(){
       error
     );
 
-
     alert(
       "Error: " +
       error.message
@@ -2150,7 +1561,6 @@ async function saveEmployee(){
   finally{
 
     saveBtn.disabled = false;
-
 
     saveBtn.textContent =
     editingEmployeeId
@@ -2175,15 +1585,11 @@ async function deleteEmployee(employeeId){
     `Are you sure you want to delete employee ${employeeId}?`
   );
 
-
-  if(!confirmDelete){
-    return;
-  }
-
+  if(!confirmDelete) return;
 
   try{
 
-    const {error} =
+    const { error } =
     await supabaseClient
       .from("employees")
       .delete()
@@ -2192,16 +1598,13 @@ async function deleteEmployee(employeeId){
         employeeId
       );
 
-
     if(error){
       throw error;
     }
 
-
     alert(
       "Employee deleted successfully!"
     );
-
 
     await loadEmployees();
 
@@ -2212,7 +1615,6 @@ async function deleteEmployee(employeeId){
       "DELETE ERROR:",
       error
     );
-
 
     alert(
       "Delete failed: " +
@@ -2229,11 +1631,11 @@ async function deleteEmployee(employeeId){
 ===================================== */
 
 document
-  .getElementById("searchInput")
-  .addEventListener(
-    "input",
-    renderEmployees
-  );
+.getElementById("searchInput")
+.addEventListener(
+  "input",
+  renderEmployees
+);
 
 
 /* =====================================
@@ -2247,18 +1649,13 @@ async function logout(){
     "Are you sure you want to logout?"
   );
 
-
-  if(!confirmLogout){
-    return;
-  }
-
+  if(!confirmLogout) return;
 
   try{
 
     await supabaseClient
       .auth
       .signOut();
-
 
     window.location.replace(
       "./login.html"
@@ -2272,9 +1669,7 @@ async function logout(){
       error
     );
 
-    alert(
-      "Logout failed."
-    );
+    alert("Logout failed.");
 
   }
 
@@ -2282,42 +1677,33 @@ async function logout(){
 
 
 /* =====================================
-   INITIALIZE
+   SESSION CHECK
 ===================================== */
 
 async function initialize(){
 
   try{
 
-    const {data,error} =
+    const { data, error } =
     await supabaseClient
       .auth
       .getSession();
 
-
     if(error){
-
       console.error(
         "SESSION ERROR:",
         error
       );
-
     }
 
-
-    if(
-      !data ||
-      !data.session
-    ){
+    if(!data || !data.session){
 
       window.location.replace(
         "./login.html"
       );
 
       return;
-
     }
-
 
     await loadEmployees();
 
