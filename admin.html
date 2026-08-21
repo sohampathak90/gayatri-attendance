@@ -23,8 +23,6 @@
       min-height:100vh;
     }
 
-    /* ================= LAYOUT ================= */
-
     .app{
       min-height:100vh;
       display:flex;
@@ -380,8 +378,6 @@
       display:none;
     }
 
-    /* ================= MOBILE ================= */
-
     @media(max-width:1000px){
 
       .stats{
@@ -499,8 +495,13 @@
     <div class="sidebar-bottom">
 
       <div class="admin-info">
-        <div class="admin-name">Administrator</div>
-        <div class="admin-role">System Admin</div>
+        <div class="admin-name" id="adminName">
+          Administrator
+        </div>
+
+        <div class="admin-role">
+          System Admin
+        </div>
       </div>
 
       <button
@@ -562,69 +563,30 @@
       </div>
 
 
-      <!-- STATS -->
-
       <div class="stats">
 
         <div class="stat-card">
-
-          <div class="stat-title">
-            TOTAL EMPLOYEES
-          </div>
-
-          <div
-            class="stat-number"
-            id="totalEmployees"
-          >0</div>
-
+          <div class="stat-title">TOTAL EMPLOYEES</div>
+          <div class="stat-number" id="totalEmployees">0</div>
         </div>
 
-
         <div class="stat-card">
-
-          <div class="stat-title">
-            PRESENT TODAY
-          </div>
-
-          <div
-            class="stat-number"
-            id="presentToday"
-          >0</div>
-
+          <div class="stat-title">PRESENT TODAY</div>
+          <div class="stat-number" id="presentToday">0</div>
         </div>
 
-
         <div class="stat-card">
-
-          <div class="stat-title">
-            ABSENT TODAY
-          </div>
-
-          <div
-            class="stat-number"
-            id="absentToday"
-          >0</div>
-
+          <div class="stat-title">ABSENT TODAY</div>
+          <div class="stat-number" id="absentToday">0</div>
         </div>
 
-
         <div class="stat-card">
-
-          <div class="stat-title">
-            PENDING CHECK-OUT
-          </div>
-
-          <div
-            class="stat-number"
-            id="pendingCheckout"
-          >0</div>
-
+          <div class="stat-title">PENDING CHECK-OUT</div>
+          <div class="stat-number" id="pendingCheckout">0</div>
         </div>
 
       </div>
 
-
-      <!-- CONTROLS -->
 
       <div class="controls-card">
 
@@ -661,8 +623,6 @@
 
       </div>
 
-
-      <!-- TABLE -->
 
       <div class="table-card">
 
@@ -705,15 +665,11 @@
 
             </thead>
 
-
             <tbody id="attendanceBody">
 
               <tr>
-                <td
-                  colspan="6"
-                  class="loading"
-                >
-                  Loading dashboard...
+                <td colspan="6" class="loading">
+                  Checking login session...
                 </td>
               </tr>
 
@@ -734,16 +690,23 @@
 
 <script>
 
-/* =========================
+/* =========================================
    SUPABASE CONFIG
-========================= */
+========================================= */
 
 const SUPABASE_URL =
 "https://ysdpsndophokczdqysiw.supabase.co";
 
 const SUPABASE_ANON_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
+
+/* IMPORTANT:
+   Same storageKey must be used in:
+   login.html
+   admin.html
+   employees.html
+*/
 
 const supabaseClient =
 window.supabase.createClient(
@@ -761,29 +724,31 @@ window.supabase.createClient(
 );
 
 
-/* =========================
+/* =========================================
    GLOBAL DATA
-========================= */
+========================================= */
 
 let dashboardData = [];
 
+let currentUser = null;
 
-/* =========================
+
+/* =========================================
    MOBILE SIDEBAR
-========================= */
+========================================= */
 
 function toggleSidebar(){
 
   document
-  .getElementById("sidebar")
-  .classList.toggle("show");
+    .getElementById("sidebar")
+    .classList.toggle("show");
 
 }
 
 
-/* =========================
+/* =========================================
    GET TODAY
-========================= */
+========================================= */
 
 function getToday(){
 
@@ -804,9 +769,9 @@ function getToday(){
 }
 
 
-/* =========================
+/* =========================================
    FORMAT TIME
-========================= */
+========================================= */
 
 function formatTime(time){
 
@@ -814,8 +779,13 @@ function formatTime(time){
     return "—";
   }
 
-  return new Date(time)
-  .toLocaleTimeString(
+  const date = new Date(time);
+
+  if(isNaN(date.getTime())){
+    return "—";
+  }
+
+  return date.toLocaleTimeString(
     "en-IN",
     {
       hour:"2-digit",
@@ -826,9 +796,9 @@ function formatTime(time){
 }
 
 
-/* =========================
+/* =========================================
    LOAD DASHBOARD
-========================= */
+========================================= */
 
 async function loadDashboard(){
 
@@ -856,9 +826,9 @@ async function loadDashboard(){
       error:employeeError
     } =
     await supabaseClient
-    .from("employees")
-    .select("*")
-    .order("name",{ascending:true});
+      .from("employees")
+      .select("*")
+      .order("name",{ascending:true});
 
 
     if(employeeError){
@@ -871,12 +841,12 @@ async function loadDashboard(){
       error:attendanceError
     } =
     await supabaseClient
-    .from("attendance")
-    .select("*")
-    .eq(
-      "attendance_date",
-      selectedDate
-    );
+      .from("attendance")
+      .select("*")
+      .eq(
+        "attendance_date",
+        selectedDate
+      );
 
 
     if(attendanceError){
@@ -942,7 +912,7 @@ async function loadDashboard(){
 
 
     const absent =
-    total-present;
+    total - present;
 
 
     const pending =
@@ -976,6 +946,7 @@ async function loadDashboard(){
     renderTable();
 
   }
+
   catch(error){
 
     console.error(
@@ -986,7 +957,8 @@ async function loadDashboard(){
     body.innerHTML = `
       <tr>
         <td colspan="6" class="loading">
-          Error loading dashboard.<br><br>
+          Error loading dashboard.
+          <br><br>
           ${error.message}
         </td>
       </tr>
@@ -997,9 +969,9 @@ async function loadDashboard(){
 }
 
 
-/* =========================
+/* =========================================
    RENDER TABLE
-========================= */
+========================================= */
 
 function renderTable(){
 
@@ -1079,6 +1051,7 @@ function renderTable(){
       `;
 
     }
+
     else if(employee.check_out_time){
 
       status = `
@@ -1088,6 +1061,7 @@ function renderTable(){
       `;
 
     }
+
     else{
 
       status = `
@@ -1152,9 +1126,9 @@ function renderTable(){
 }
 
 
-/* =========================
+/* =========================================
    DOWNLOAD CSV
-========================= */
+========================================= */
 
 function downloadAttendance(){
 
@@ -1185,9 +1159,11 @@ function downloadAttendance(){
     if(!employee.check_in_time){
       status="Absent";
     }
+
     else if(employee.check_out_time){
       status="Completed";
     }
+
     else{
       status="Checked In";
     }
@@ -1198,8 +1174,8 @@ function downloadAttendance(){
     `"${employee.employee_id || ""}",`+
     `"${employee.department || ""}",`+
     `"${selectedDate}",`+
-    `"${employee.check_in_time ? new Date(employee.check_in_time).toLocaleString() : ""}",`+
-    `"${employee.check_out_time ? new Date(employee.check_out_time).toLocaleString() : ""}",`+
+    `"${employee.check_in_time ? formatTime(employee.check_in_time) : ""}",`+
+    `"${employee.check_out_time ? formatTime(employee.check_out_time) : ""}",`+
     `"${status}"\n`;
 
   });
@@ -1222,7 +1198,7 @@ function downloadAttendance(){
   document.createElement("a");
 
 
-  link.href=url;
+  link.href = url;
 
   link.download =
   `Gayatri_Industries_Attendance_${selectedDate}.csv`;
@@ -1239,9 +1215,9 @@ function downloadAttendance(){
 }
 
 
-/* =========================
+/* =========================================
    SEARCH
-========================= */
+========================================= */
 
 document
 .getElementById("searchInput")
@@ -1251,9 +1227,9 @@ document
 );
 
 
-/* =========================
+/* =========================================
    DATE FILTER
-========================= */
+========================================= */
 
 document
 .getElementById("dateFilter")
@@ -1263,9 +1239,9 @@ document
 );
 
 
-/* =========================
+/* =========================================
    LOGOUT
-========================= */
+========================================= */
 
 async function logout(){
 
@@ -1280,34 +1256,95 @@ async function logout(){
   }
 
 
-  const {error} =
-  await supabaseClient
-  .auth
-  .signOut();
+  try{
+
+    const {
+      error
+    } =
+    await supabaseClient
+      .auth
+      .signOut();
 
 
-  if(error){
+    if(error){
+      throw error;
+    }
 
-    alert(
-      "Logout failed: "+
-      error.message
+
+    /*
+      Extra cleanup to prevent
+      old session redirect issues
+    */
+
+    localStorage.removeItem(
+      "gayatri-admin-auth"
     );
 
-    return;
+
+    window.location.replace(
+      "./login.html"
+    );
 
   }
 
+  catch(error){
 
-  window.location.replace(
-    "./login.html"
-  );
+    console.error(
+      "Logout error:",
+      error
+    );
+
+    alert(
+      "Logout failed: " +
+      error.message
+    );
+
+  }
 
 }
 
 
-/* =========================
-   INITIALIZE
-========================= */
+/* =========================================
+   AUTH STATE LISTENER
+========================================= */
+
+supabaseClient.auth.onAuthStateChange(
+  (event, session) => {
+
+    console.log(
+      "AUTH EVENT:",
+      event
+    );
+
+
+    if(
+      event === "SIGNED_OUT"
+    ){
+
+      window.location.replace(
+        "./login.html"
+      );
+
+    }
+
+
+    if(
+      event === "SIGNED_IN" ||
+      event === "TOKEN_REFRESHED"
+    ){
+
+      currentUser =
+      session?.user || null;
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   INITIALIZE DASHBOARD
+========================================= */
 
 async function initializeDashboard(){
 
@@ -1334,19 +1371,33 @@ async function initializeDashboard(){
 
   try{
 
+    /*
+      IMPORTANT:
+      First get the current user.
+      This confirms that authentication
+      is actually valid.
+    */
+
     const {
-      data,
+      data:{
+        user
+      },
       error
     } =
     await supabaseClient
-    .auth
-    .getSession();
+      .auth
+      .getUser();
 
 
     if(
       error ||
-      !data.session
+      !user
     ){
+
+      console.warn(
+        "No authenticated user found."
+      );
+
 
       window.location.replace(
         "./login.html"
@@ -1357,9 +1408,19 @@ async function initializeDashboard(){
     }
 
 
+    currentUser = user;
+
+
+    document.getElementById(
+      "adminName"
+    ).textContent =
+    user.email || "Administrator";
+
+
     await loadDashboard();
 
   }
+
   catch(error){
 
     console.error(
@@ -1367,14 +1428,27 @@ async function initializeDashboard(){
       error
     );
 
+
+    document.getElementById(
+      "attendanceBody"
+    ).innerHTML = `
+      <tr>
+        <td colspan="6" class="loading">
+          Authentication error.
+          <br><br>
+          ${error.message}
+        </td>
+      </tr>
+    `;
+
   }
 
 }
 
 
-/* =========================
+/* =========================================
    START
-========================= */
+========================================= */
 
 initializeDashboard();
 
