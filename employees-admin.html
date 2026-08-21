@@ -59,17 +59,12 @@ body::before{
 .header{
   height:76px;
   padding:0 6%;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   border-bottom:1px solid rgba(255,255,255,.08);
-
   background:rgba(3,9,20,.82);
-
   backdrop-filter:blur(16px);
-
   position:sticky;
   top:0;
   z-index:50;
@@ -84,24 +79,12 @@ body::before{
 .logo{
   width:45px;
   height:45px;
-
   border-radius:14px;
-
   display:grid;
   place-items:center;
-
   font-size:21px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #062b55
-    );
-
-  box-shadow:
-    0 10px 25px
-    rgba(0,100,255,.22);
+  background:linear-gradient(135deg,#137ee9,#062b55);
+  box-shadow:0 10px 25px rgba(0,100,255,.22);
 }
 
 .brand h2{
@@ -111,11 +94,8 @@ body::before{
 
 .brand p{
   margin-top:3px;
-
   font-size:9px;
-
   color:#8192a8;
-
   letter-spacing:1.3px;
 }
 
@@ -132,17 +112,11 @@ body::before{
 
 .btn{
   border:none;
-
   color:white;
-
   cursor:pointer;
-
   font-weight:bold;
-
   font-size:11px;
-
   transition:.2s;
-
   display:flex;
   align-items:center;
   justify-content:center;
@@ -156,40 +130,21 @@ body::before{
 
 .dashboard-btn{
   padding:10px 15px;
-
   border-radius:10px;
-
   background:#0b57a4;
 }
 
 .logout-btn{
   padding:10px 15px;
-
   border-radius:10px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e5484d,
-      #a91d27
-    );
+  background:linear-gradient(135deg,#e5484d,#a91d27);
 }
 
 .add-btn{
   padding:13px 20px;
-
   border-radius:12px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #0b57a4
-    );
-
-  box-shadow:
-    0 10px 25px
-    rgba(0,100,255,.18);
+  background:linear-gradient(135deg,#137ee9,#0b57a4);
+  box-shadow:0 10px 25px rgba(0,100,255,.18);
 }
 
 
@@ -200,7 +155,6 @@ body::before{
 .main{
   width:90%;
   max-width:1250px;
-
   margin:38px auto;
 }
 
@@ -213,7 +167,6 @@ body::before{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-
   margin-bottom:28px;
 }
 
@@ -224,9 +177,7 @@ body::before{
 
 .page-title p{
   margin-top:7px;
-
   font-size:12px;
-
   color:#8393a8;
 }
 
@@ -238,48 +189,28 @@ body::before{
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-
   gap:16px;
-
   margin-bottom:24px;
 }
 
 .stat-card{
   position:relative;
-
   padding:20px;
-
   border-radius:18px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #0a1b31,
-      #061222
-    );
-
-  border:
-    1px solid
-    rgba(70,140,255,.14);
-
+  background:linear-gradient(145deg,#0a1b31,#061222);
+  border:1px solid rgba(70,140,255,.14);
   overflow:hidden;
 }
 
 .stat-card::after{
   content:"";
-
   position:absolute;
-
   width:90px;
   height:90px;
-
   border-radius:50%;
-
   right:-30px;
   bottom:-40px;
-
-  background:
-    rgba(19,126,233,.07);
+  background:rgba(19,126,233,.07);
 }
 
 .stat-icon{
@@ -294,94 +225,56 @@ body::before{
 
 .stat-label{
   margin-top:5px;
-
   font-size:10px;
-
   color:#8393a8;
-
   letter-spacing:.7px;
 }
 
 
 /* =========================
-   SEARCH PANEL
+   SEARCH
 ========================= */
 
 .search-panel{
   padding:16px;
-
   margin-bottom:20px;
-
   display:flex;
   align-items:center;
   gap:12px;
-
-  background:
-    rgba(7,20,38,.85);
-
-  border:
-    1px solid
-    rgba(70,140,255,.15);
-
+  background:rgba(7,20,38,.85);
+  border:1px solid rgba(70,140,255,.15);
   border-radius:16px;
 }
 
 .search-wrap{
   flex:1;
-
   position:relative;
 }
 
 .search-icon{
   position:absolute;
-
   left:15px;
   top:50%;
-
   transform:translateY(-50%);
-
   font-size:14px;
-
   opacity:.7;
 }
 
 .search-box{
   width:100%;
-
   padding:14px 15px 14px 42px;
-
   background:#061326;
-
-  border:
-    1px solid
-    rgba(70,140,255,.20);
-
+  border:1px solid rgba(70,140,255,.20);
   border-radius:11px;
-
   color:white;
-
   outline:none;
-
   font-size:12px;
-
-  transition:.2s;
-}
-
-.search-box:focus{
-  border-color:#137ee9;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(19,126,233,.10);
 }
 
 .refresh-btn{
   padding:13px 17px;
-
   border-radius:11px;
-
-  background:
-    #13263f;
+  background:#13263f;
 }
 
 
@@ -391,26 +284,17 @@ body::before{
 
 .table-card{
   border-radius:20px;
-
   overflow:hidden;
-
   background:#071426;
-
-  border:
-    1px solid
-    rgba(70,140,255,.15);
+  border:1px solid rgba(70,140,255,.15);
 }
 
 .table-header{
   padding:19px 21px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .table-header h3{
@@ -419,19 +303,11 @@ body::before{
 
 .record-count{
   font-size:10px;
-
   color:#8192a8;
-
   padding:7px 11px;
-
   border-radius:20px;
-
-  background:
-    rgba(19,126,233,.08);
-
-  border:
-    1px solid
-    rgba(19,126,233,.12);
+  background:rgba(19,126,233,.08);
+  border:1px solid rgba(19,126,233,.12);
 }
 
 .table-wrapper{
@@ -440,44 +316,27 @@ body::before{
 
 table{
   width:100%;
-
   min-width:850px;
-
   border-collapse:collapse;
 }
 
 th{
   text-align:left;
-
   padding:15px 20px;
-
   font-size:10px;
-
   color:#7f91a8;
-
   letter-spacing:.6px;
-
-  background:
-    rgba(255,255,255,.02);
+  background:rgba(255,255,255,.02);
 }
 
 td{
   padding:15px 20px;
-
   font-size:12px;
-
-  border-top:
-    1px solid
-    rgba(255,255,255,.05);
-}
-
-tr{
-  transition:.2s;
+  border-top:1px solid rgba(255,255,255,.05);
 }
 
 tbody tr:hover{
-  background:
-    rgba(19,126,233,.035);
+  background:rgba(19,126,233,.035);
 }
 
 
@@ -491,39 +350,24 @@ tbody tr:hover{
   gap:11px;
 }
 
-.employee-photo{
-  width:42px;
-  height:42px;
-
-  border-radius:50%;
-
-  object-fit:cover;
-
-  background:#0b68c4;
-
-  border:
-    1px solid
-    rgba(255,255,255,.15);
-}
-
+.employee-photo,
 .photo-placeholder{
   width:42px;
   height:42px;
-
   border-radius:50%;
+}
 
+.employee-photo{
+  object-fit:cover;
+  background:#0b68c4;
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.photo-placeholder{
   display:grid;
   place-items:center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #062b55
-    );
-
+  background:linear-gradient(135deg,#137ee9,#062b55);
   font-weight:bold;
-
   font-size:13px;
 }
 
@@ -534,54 +378,32 @@ tbody tr:hover{
 
 .employee-sub{
   margin-top:3px;
-
   font-size:9px;
-
   color:#7f91a8;
 }
 
-
-/* =========================
-   BADGES
-========================= */
-
 .id-badge{
   display:inline-block;
-
   padding:6px 10px;
-
   border-radius:7px;
-
   font-size:10px;
-
   color:#8ebeff;
-
-  background:
-    rgba(19,126,233,.09);
-
-  border:
-    1px solid
-    rgba(19,126,233,.15);
+  background:rgba(19,126,233,.09);
+  border:1px solid rgba(19,126,233,.15);
 }
 
 .department-badge{
   display:inline-block;
-
   padding:6px 10px;
-
   border-radius:20px;
-
   font-size:10px;
-
   color:#9ab0c8;
-
-  background:
-    rgba(255,255,255,.04);
+  background:rgba(255,255,255,.04);
 }
 
 
 /* =========================
-   ACTION BUTTONS
+   ACTIONS
 ========================= */
 
 .actions{
@@ -591,24 +413,12 @@ tbody tr:hover{
 
 .action-btn{
   padding:8px 11px;
-
   border:none;
-
   border-radius:8px;
-
   color:white;
-
   cursor:pointer;
-
   font-size:10px;
-
   font-weight:bold;
-
-  transition:.2s;
-}
-
-.action-btn:hover{
-  transform:translateY(-1px);
 }
 
 .edit-btn{
@@ -616,28 +426,15 @@ tbody tr:hover{
 }
 
 .delete-btn{
-  background:
-    rgba(229,72,77,.14);
-
+  background:rgba(229,72,77,.14);
   color:#ff8d92;
-
-  border:
-    1px solid
-    rgba(229,72,77,.15);
+  border:1px solid rgba(229,72,77,.15);
 }
-
-
-/* =========================
-   LOADING
-========================= */
 
 .loading{
   text-align:center;
-
   padding:45px;
-
   color:#8192a8;
-
   font-size:12px;
 }
 
@@ -648,21 +445,13 @@ tbody tr:hover{
 
 .modal{
   display:none;
-
   position:fixed;
-
   inset:0;
-
-  background:
-    rgba(0,0,0,.72);
-
+  background:rgba(0,0,0,.72);
   backdrop-filter:blur(6px);
-
   align-items:center;
   justify-content:center;
-
   padding:20px;
-
   z-index:100;
 }
 
@@ -673,36 +462,18 @@ tbody tr:hover{
 .modal-box{
   width:100%;
   max-width:520px;
-
   max-height:90vh;
-
   overflow-y:auto;
-
   padding:27px;
-
   border-radius:22px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #0a1b31,
-      #061222
-    );
-
-  border:
-    1px solid
-    rgba(70,140,255,.20);
-
-  box-shadow:
-    0 30px 90px
-    rgba(0,0,0,.55);
+  background:linear-gradient(145deg,#0a1b31,#061222);
+  border:1px solid rgba(70,140,255,.20);
 }
 
 .modal-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   margin-bottom:22px;
 }
 
@@ -713,90 +484,53 @@ tbody tr:hover{
 .close-modal{
   width:32px;
   height:32px;
-
   border:none;
-
   border-radius:9px;
-
   background:#13263f;
-
   color:#9aacbf;
-
   cursor:pointer;
 }
 
 
 /* =========================
-   PHOTO SECTION
+   PHOTO
 ========================= */
 
 .photo-section{
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
-
   padding:18px;
-
   margin-bottom:20px;
-
   border-radius:16px;
-
-  background:
-    rgba(255,255,255,.018);
-
-  border:
-    1px dashed
-    rgba(70,140,255,.20);
+  background:rgba(255,255,255,.018);
+  border:1px dashed rgba(70,140,255,.20);
 }
 
 .photo-preview{
   width:105px;
   height:105px;
-
   border-radius:50%;
-
   object-fit:cover;
-
   display:none;
-
   margin-bottom:13px;
-
-  border:
-    2px solid
-    rgba(19,126,233,.45);
+  border:2px solid rgba(19,126,233,.45);
 }
 
 .photo-placeholder.large{
   width:105px;
   height:105px;
-
-  border-radius:50%;
-
-  display:grid;
-  place-items:center;
-
   font-size:32px;
-
   margin-bottom:13px;
 }
 
 .photo-upload-label{
-  display:inline-block;
-
   background:#0b68c4;
-
   color:white;
-
   padding:10px 15px;
-
   border-radius:9px;
-
   cursor:pointer;
-
   font-size:11px;
-
   font-weight:bold;
 }
 
@@ -806,9 +540,7 @@ tbody tr:hover{
 
 .photo-note{
   font-size:9px;
-
   color:#8192a8;
-
   margin-top:9px;
 }
 
@@ -823,113 +555,55 @@ tbody tr:hover{
 
 .field label{
   display:block;
-
   margin-bottom:8px;
-
   font-size:10px;
-
   color:#8fa1b8;
-
   letter-spacing:.4px;
 }
 
 .field input{
   width:100%;
-
   padding:14px;
-
   background:#061326;
-
-  border:
-    1px solid
-    rgba(70,140,255,.20);
-
+  border:1px solid rgba(70,140,255,.20);
   border-radius:10px;
-
   color:white;
-
   outline:none;
-
   font-size:12px;
-
-  transition:.2s;
 }
-
-.field input:focus{
-  border-color:#137ee9;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(19,126,233,.08);
-}
-
-
-/* =========================
-   MODAL BUTTONS
-========================= */
 
 .modal-actions{
   display:flex;
-
   justify-content:flex-end;
-
   gap:10px;
-
   margin-top:22px;
-
   padding-top:18px;
-
-  border-top:
-    1px solid
-    rgba(255,255,255,.06);
+  border-top:1px solid rgba(255,255,255,.06);
 }
 
 .cancel-btn{
   padding:11px 16px;
-
   border-radius:10px;
-
   background:#26384d;
 }
 
 .save-btn{
   padding:11px 17px;
-
   border-radius:10px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #137ee9,
-      #0b57a4
-    );
+  background:linear-gradient(135deg,#137ee9,#0b57a4);
 }
 
 
-/* =========================
-   MOBILE
-========================= */
-
 @media(max-width:850px){
-
   .stats{
     grid-template-columns:1fr;
   }
-
 }
 
 @media(max-width:600px){
 
   .header{
     padding:0 15px;
-  }
-
-  .brand h2{
-    font-size:14px;
-  }
-
-  .brand p{
-    font-size:8px;
   }
 
   .main{
@@ -941,20 +615,6 @@ tbody tr:hover{
     flex-direction:column;
     align-items:flex-start;
     gap:16px;
-  }
-
-  .page-top h1{
-    font-size:25px;
-  }
-
-  .header-actions{
-    gap:6px;
-  }
-
-  .dashboard-btn,
-  .logout-btn{
-    padding:9px 10px;
-    font-size:9px;
   }
 
   .search-panel{
@@ -971,23 +631,15 @@ tbody tr:hover{
 </style>
 </head>
 
-
 <body>
 
 <div class="grid"></div>
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
   <div class="brand">
 
-    <div class="logo">
-      👥
-    </div>
+    <div class="logo">👥</div>
 
     <div>
       <h2>Gayatri Industries</h2>
@@ -996,16 +648,14 @@ tbody tr:hover{
 
   </div>
 
-
   <div class="header-actions">
 
     <button
       class="btn dashboard-btn"
-      onclick="window.location.href='./admin.html'"
+      onclick="goToDashboard()"
     >
       📊 Dashboard
     </button>
-
 
     <button
       class="btn logout-btn"
@@ -1019,28 +669,14 @@ tbody tr:hover{
 </header>
 
 
-
-<!-- =========================
-     MAIN
-========================= -->
-
 <main class="main">
-
 
   <div class="page-top">
 
     <div class="page-title">
-
-      <h1>
-        Employee Management
-      </h1>
-
-      <p>
-        Add, update and manage your company workforce.
-      </p>
-
+      <h1>Employee Management</h1>
+      <p>Add, update and manage your company workforce.</p>
     </div>
-
 
     <button
       class="btn add-btn"
@@ -1052,87 +688,33 @@ tbody tr:hover{
   </div>
 
 
-
-  <!-- =========================
-       STATS
-  ========================= -->
-
   <div class="stats">
 
     <div class="stat-card">
-
-      <div class="stat-icon">
-        👥
-      </div>
-
-      <div
-        class="stat-number"
-        id="totalEmployees"
-      >
-        0
-      </div>
-
-      <div class="stat-label">
-        TOTAL EMPLOYEES
-      </div>
-
+      <div class="stat-icon">👥</div>
+      <div class="stat-number" id="totalEmployees">0</div>
+      <div class="stat-label">TOTAL EMPLOYEES</div>
     </div>
 
-
     <div class="stat-card">
-
-      <div class="stat-icon">
-        🏢
-      </div>
-
-      <div
-        class="stat-number"
-        id="totalDepartments"
-      >
-        0
-      </div>
-
-      <div class="stat-label">
-        DEPARTMENTS
-      </div>
-
+      <div class="stat-icon">🏢</div>
+      <div class="stat-number" id="totalDepartments">0</div>
+      <div class="stat-label">DEPARTMENTS</div>
     </div>
 
-
     <div class="stat-card">
-
-      <div class="stat-icon">
-        🟢
-      </div>
-
-      <div
-        class="stat-number"
-        id="employeesWithPhoto"
-      >
-        0
-      </div>
-
-      <div class="stat-label">
-        PHOTO PROFILES
-      </div>
-
+      <div class="stat-icon">🟢</div>
+      <div class="stat-number" id="employeesWithPhoto">0</div>
+      <div class="stat-label">PHOTO PROFILES</div>
     </div>
 
   </div>
 
 
-
-  <!-- =========================
-       SEARCH
-  ========================= -->
-
   <div class="search-panel">
 
     <div class="search-wrap">
-
-      <span class="search-icon">
-        🔍
-      </span>
+      <span class="search-icon">🔍</span>
 
       <input
         type="text"
@@ -1140,9 +722,7 @@ tbody tr:hover{
         class="search-box"
         placeholder="Search employee name, ID or department..."
       >
-
     </div>
-
 
     <button
       class="btn refresh-btn"
@@ -1154,18 +734,10 @@ tbody tr:hover{
   </div>
 
 
-
-  <!-- =========================
-       TABLE
-  ========================= -->
-
   <div class="table-card">
 
     <div class="table-header">
-
-      <h3>
-        Employee Directory
-      </h3>
+      <h3>Employee Directory</h3>
 
       <div
         class="record-count"
@@ -1173,7 +745,6 @@ tbody tr:hover{
       >
         0 Employees
       </div>
-
     </div>
 
 
@@ -1182,43 +753,20 @@ tbody tr:hover{
       <table>
 
         <thead>
-
           <tr>
-
-            <th>
-              EMPLOYEE
-            </th>
-
-            <th>
-              EMPLOYEE ID
-            </th>
-
-            <th>
-              DEPARTMENT
-            </th>
-
-            <th>
-              ACTIONS
-            </th>
-
+            <th>EMPLOYEE</th>
+            <th>EMPLOYEE ID</th>
+            <th>DEPARTMENT</th>
+            <th>ACTIONS</th>
           </tr>
-
         </thead>
 
-
         <tbody id="employeeBody">
-
           <tr>
-
-            <td
-              colspan="4"
-              class="loading"
-            >
+            <td colspan="4" class="loading">
               Loading employees...
             </td>
-
           </tr>
-
         </tbody>
 
       </table>
@@ -1230,10 +778,7 @@ tbody tr:hover{
 </main>
 
 
-
-<!-- =========================
-     ADD / EDIT MODAL
-========================= -->
+<!-- MODAL -->
 
 <div
   class="modal"
@@ -1242,13 +787,11 @@ tbody tr:hover{
 
   <div class="modal-box">
 
-
     <div class="modal-top">
 
       <h2 id="modalTitle">
         Add Employee
       </h2>
-
 
       <button
         class="close-modal"
@@ -1260,9 +803,6 @@ tbody tr:hover{
     </div>
 
 
-
-    <!-- PHOTO -->
-
     <div class="photo-section">
 
       <div
@@ -1272,13 +812,11 @@ tbody tr:hover{
         👤
       </div>
 
-
       <img
         id="photoPreview"
         class="photo-preview"
         alt="Employee Photo"
       >
-
 
       <label class="photo-upload-label">
 
@@ -1293,7 +831,6 @@ tbody tr:hover{
 
       </label>
 
-
       <div class="photo-note">
         JPG, PNG or WEBP • Recommended square image
       </div>
@@ -1301,14 +838,9 @@ tbody tr:hover{
     </div>
 
 
-
-    <!-- EMPLOYEE ID -->
-
     <div class="field">
 
-      <label>
-        EMPLOYEE ID
-      </label>
+      <label>EMPLOYEE ID</label>
 
       <input
         type="text"
@@ -1319,14 +851,9 @@ tbody tr:hover{
     </div>
 
 
-
-    <!-- NAME -->
-
     <div class="field">
 
-      <label>
-        EMPLOYEE NAME
-      </label>
+      <label>EMPLOYEE NAME</label>
 
       <input
         type="text"
@@ -1337,14 +864,9 @@ tbody tr:hover{
     </div>
 
 
-
-    <!-- DEPARTMENT -->
-
     <div class="field">
 
-      <label>
-        DEPARTMENT
-      </label>
+      <label>DEPARTMENT</label>
 
       <input
         type="text"
@@ -1355,9 +877,6 @@ tbody tr:hover{
     </div>
 
 
-
-    <!-- BUTTONS -->
-
     <div class="modal-actions">
 
       <button
@@ -1366,7 +885,6 @@ tbody tr:hover{
       >
         Cancel
       </button>
-
 
       <button
         class="btn save-btn"
@@ -1383,11 +901,10 @@ tbody tr:hover{
 </div>
 
 
-
 <script>
 
 /* =========================
-   SUPABASE
+   SUPABASE CONFIG
 ========================= */
 
 const SUPABASE_URL =
@@ -1404,7 +921,11 @@ window.supabase.createClient(
   {
     auth:{
       persistSession:true,
-      autoRefreshToken:true
+      autoRefreshToken:true,
+      detectSessionInUrl:true,
+
+      /* SAME STORAGE KEY */
+      storageKey:"gayatri-industries-auth"
     }
   }
 );
@@ -1429,19 +950,44 @@ let existingPhotoUrl = null;
 
 async function checkAdminLogin(){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-  .auth
-  .getUser();
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+    .auth
+    .getSession();
 
 
-  if(
-    error ||
-    !data.user
-  ){
+    if(
+      error ||
+      !data.session
+    ){
+
+      console.log(
+        "No active session"
+      );
+
+      window.location.replace(
+        "./login.html"
+      );
+
+      return false;
+
+    }
+
+
+    return true;
+
+  }
+  catch(error){
+
+    console.error(
+      "Auth check error:",
+      error
+    );
 
     window.location.replace(
       "./login.html"
@@ -1451,7 +997,17 @@ async function checkAdminLogin(){
 
   }
 
-  return true;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function goToDashboard(){
+
+  window.location.href =
+  "./admin.html";
 
 }
 
@@ -1578,7 +1134,7 @@ function updateStats(){
 
 
 /* =========================
-   GET INITIALS
+   INITIALS
 ========================= */
 
 function getInitials(name){
@@ -1628,28 +1184,19 @@ function renderEmployees(){
 
       return (
 
-        (
-          employee.employee_id ||
-          ""
-        )
+        (employee.employee_id || "")
         .toLowerCase()
         .includes(search)
 
         ||
 
-        (
-          employee.name ||
-          ""
-        )
+        (employee.name || "")
         .toLowerCase()
         .includes(search)
 
         ||
 
-        (
-          employee.department ||
-          ""
-        )
+        (employee.department || "")
         .toLowerCase()
         .includes(search)
 
@@ -1667,9 +1214,7 @@ function renderEmployees(){
   `${filtered.length} Employees`;
 
 
-  if(
-    filtered.length === 0
-  ){
+  if(filtered.length === 0){
 
     body.innerHTML = `
       <tr>
@@ -1693,7 +1238,6 @@ function renderEmployees(){
 
       <tr>
 
-
         <td>
 
           <div class="employee-info">
@@ -1707,7 +1251,7 @@ function renderEmployees(){
                 <img
                   src="${employee.photo_url}"
                   class="employee-photo"
-                  alt="${employee.name}"
+                  alt="${employee.name || "Employee"}"
                 >
               `
 
@@ -1790,7 +1334,6 @@ function renderEmployees(){
 
         </td>
 
-
       </tr>
 
     `
@@ -1853,12 +1396,9 @@ function previewPhoto(event){
 
 function resetPhoto(){
 
-  selectedPhotoFile =
-  null;
+  selectedPhotoFile = null;
 
-
-  existingPhotoUrl =
-  null;
+  existingPhotoUrl = null;
 
 
   document
@@ -1875,7 +1415,6 @@ function resetPhoto(){
 
 
   preview.src = "";
-
 
   preview.style.display =
   "none";
@@ -1898,13 +1437,12 @@ function resetPhoto(){
 
 
 /* =========================
-   OPEN ADD MODAL
+   ADD EMPLOYEE
 ========================= */
 
 function openAddModal(){
 
-  editingEmployeeId =
-  null;
+  editingEmployeeId = null;
 
 
   document
@@ -1940,8 +1478,7 @@ function openAddModal(){
   .getElementById(
     "employeeId"
   )
-  .disabled =
-  false;
+  .disabled = false;
 
 
   document
@@ -1975,8 +1512,7 @@ function editEmployee(employeeId){
   const employee =
   employeesData.find(
     item =>
-    item.employee_id ===
-    employeeId
+    item.employee_id === employeeId
   );
 
 
@@ -2019,8 +1555,7 @@ function editEmployee(employeeId){
     "employeeName"
   )
   .value =
-  employee.name ||
-  "";
+  employee.name || "";
 
 
   document
@@ -2028,16 +1563,14 @@ function editEmployee(employeeId){
     "department"
   )
   .value =
-  employee.department ||
-  "";
+  employee.department || "";
 
 
   document
   .getElementById(
     "employeeId"
   )
-  .disabled =
-  true;
+  .disabled = true;
 
 
   document
@@ -2046,13 +1579,6 @@ function editEmployee(employeeId){
   )
   .textContent =
   "Update Employee";
-
-
-  document
-  .getElementById(
-    "employeePhoto"
-  )
-  .value = "";
 
 
   const preview =
@@ -2079,7 +1605,6 @@ function editEmployee(employeeId){
     "none";
 
   }
-
   else{
 
     preview.src = "";
@@ -2161,15 +1686,14 @@ async function uploadPhoto(employeeId){
   .from("employee-photos")
   .upload(
     filePath,
-    selectedPhotoFile,
-    {
-      upsert:false
-    }
+    selectedPhotoFile
   );
 
 
   if(uploadError){
+
     throw uploadError;
+
   }
 
 
@@ -2246,10 +1770,6 @@ async function saveEmployee(){
   true;
 
 
-  saveBtn.textContent =
-  "Saving...";
-
-
   try{
 
     let photoUrl =
@@ -2292,7 +1812,6 @@ async function saveEmployee(){
       result.error;
 
     }
-
     else{
 
       const result =
@@ -2316,7 +1835,9 @@ async function saveEmployee(){
 
 
     if(error){
+
       throw error;
+
     }
 
 
@@ -2335,11 +1856,9 @@ async function saveEmployee(){
     await loadEmployees();
 
   }
-
   catch(error){
 
     console.error(error);
-
 
     alert(
       "Error: " +
@@ -2347,7 +1866,6 @@ async function saveEmployee(){
     );
 
   }
-
   finally{
 
     saveBtn.disabled =
@@ -2401,7 +1919,6 @@ async function deleteEmployee(employeeId){
 
     console.error(error);
 
-
     alert(
       "Delete failed: " +
       error.message
@@ -2451,9 +1968,21 @@ async function logout(){
   }
 
 
-  await supabaseClient
-  .auth
-  .signOut();
+  try{
+
+    await supabaseClient
+    .auth
+    .signOut();
+
+  }
+  catch(error){
+
+    console.error(
+      "Logout error:",
+      error
+    );
+
+  }
 
 
   window.location.replace(
@@ -2461,6 +1990,42 @@ async function logout(){
   );
 
 }
+
+
+/* =========================
+   AUTH LISTENER
+========================= */
+
+supabaseClient
+.auth
+.onAuthStateChange(
+  (event, session) => {
+
+    console.log(
+      "Auth event:",
+      event
+    );
+
+    /*
+      IMPORTANT:
+      Page ko sirf SIGNED_OUT par redirect karna hai.
+      TOKEN_REFRESHED, INITIAL_SESSION,
+      SIGNED_IN par logout nahi hoga.
+    */
+
+    if(
+      event === "SIGNED_OUT" &&
+      !session
+    ){
+
+      window.location.replace(
+        "./login.html"
+      );
+
+    }
+
+  }
+);
 
 
 /* =========================
