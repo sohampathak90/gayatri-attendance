@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Employee Attendance | Gayatri Industries</title>
@@ -25,16 +26,17 @@
       color: #1f2937;
     }
 
-    /* NAVBAR */
-
     .navbar {
       height: 75px;
       background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 7%;
+
       position: sticky;
       top: 0;
       z-index: 100;
@@ -91,13 +93,6 @@
       border: 1px solid #e5e7eb;
     }
 
-    .back-home:hover {
-      background: #f3f4f6;
-    }
-
-
-    /* MAIN */
-
     .page {
       max-width: 1100px;
       margin: auto;
@@ -122,7 +117,7 @@
       color: #1f2937;
     }
 
-    .heading h1 span {
+    .heading span {
       color: #e56a1f;
     }
 
@@ -132,28 +127,23 @@
       font-size: 14px;
     }
 
-
-    /* GRID */
-
     .attendance-layout {
       display: grid;
       grid-template-columns: 1.2fr .8fr;
       gap: 25px;
     }
 
-
-    /* CARD */
-
-    .card {
+    .card,
+    .info-card {
       background: #ffffff;
       border: 1px solid #e5e7eb;
       border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .04);
     }
 
-
-    /* STATUS */
+    .card {
+      padding: 30px;
+    }
 
     .status {
       display: flex;
@@ -176,9 +166,6 @@
       flex-shrink: 0;
     }
 
-
-    /* FORM */
-
     .field {
       margin-bottom: 20px;
     }
@@ -199,14 +186,6 @@
       outline: none;
       font-size: 14px;
     }
-
-    .field input:focus {
-      border-color: #e56a1f;
-      box-shadow: 0 0 0 3px rgba(229,106,31,.1);
-    }
-
-
-    /* LOCATION */
 
     .location-box {
       background: #f9fafb;
@@ -236,9 +215,6 @@
       font-weight: 500;
     }
 
-
-    /* BUTTONS */
-
     .button-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -254,11 +230,6 @@
       cursor: pointer;
     }
 
-    .action-btn:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-    }
-
     .checkin-btn {
       background: #2563eb;
       color: white;
@@ -269,8 +240,10 @@
       color: white;
     }
 
-
-    /* MESSAGE */
+    .action-btn:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
 
     .message {
       display: none;
@@ -296,14 +269,53 @@
       border: 1px solid #fecaca;
     }
 
-    .info {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
+    .info-card {
+      overflow: hidden;
     }
 
+    .info-top {
+      background: #1f3a5f;
+      color: white;
+      padding: 28px;
+    }
 
-    /* TODAY */
+    .info-top h2 {
+      font-size: 21px;
+    }
+
+    .info-top p {
+      margin-top: 8px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.75);
+    }
+
+    .info-list {
+      padding: 10px 25px 25px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 12px;
+      padding: 18px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .info-item-icon {
+      font-size: 24px;
+    }
+
+    .info-item h4 {
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .info-item p {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
 
     .today {
       margin-top: 20px;
@@ -324,55 +336,12 @@
       font-size: 13px;
     }
 
-
-    /* INFO CARD */
-
-    .info-card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,.04);
-    }
-
-    .info-top {
-      background: #1f3a5f;
-      color: white;
-      padding: 28px;
-    }
-
-    .info-icon {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
-
-    .info-top p {
-      margin-top: 8px;
-      font-size: 12px;
-      line-height: 1.6;
-      color: rgba(255,255,255,.75);
-    }
-
-    .info-list {
-      padding: 10px 25px 25px;
-    }
-
-    .info-item {
-      padding: 18px 0;
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .info-item h4 {
-      font-size: 13px;
-    }
-
-    .info-item p {
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #9ca3af;
       font-size: 11px;
-      color: #6b7280;
-      margin-top: 5px;
-      line-height: 1.5;
     }
-
 
     @media(max-width: 850px) {
       .attendance-layout {
@@ -384,6 +353,10 @@
 
       .navbar {
         padding: 0 20px;
+      }
+
+      .brand-text p {
+        display: none;
       }
 
       .page {
@@ -401,12 +374,11 @@
       .button-group {
         grid-template-columns: 1fr;
       }
-
     }
 
   </style>
-</head>
 
+</head>
 
 <body>
 
@@ -419,8 +391,14 @@
       </div>
 
       <div class="brand-text">
-        <h2>Gayatri <span>Attendance</span></h2>
+
+        <h2>
+          Gayatri
+          <span>Attendance</span>
+        </h2>
+
         <p>GAYATRI INDUSTRIES • EMPLOYEE MANAGEMENT</p>
+
       </div>
 
     </div>
@@ -439,7 +417,8 @@
       <p>Employee Portal</p>
 
       <h1>
-        Mark Your <span>Attendance</span>
+        Mark Your
+        <span>Attendance</span>
       </h1>
 
       <div class="description">
@@ -496,18 +475,11 @@
 
         <div class="button-group">
 
-          <button
-            class="action-btn checkin-btn"
-            id="checkInBtn"
-          >
+          <button class="action-btn checkin-btn" id="checkInBtn">
             ✓ CHECK-IN
           </button>
 
-
-          <button
-            class="action-btn checkout-btn"
-            id="checkOutBtn"
-          >
+          <button class="action-btn checkout-btn" id="checkOutBtn">
             CHECK-OUT →
           </button>
 
@@ -532,16 +504,12 @@
 
           <div class="record">
             <span>Check-In</span>
-            <span id="recordCheckIn">
-              Not marked
-            </span>
+            <span id="recordCheckIn">Not marked</span>
           </div>
 
           <div class="record">
             <span>Check-Out</span>
-            <span id="recordCheckOut">
-              Not marked
-            </span>
+            <span id="recordCheckOut">Not marked</span>
           </div>
 
         </div>
@@ -553,9 +521,7 @@
 
         <div class="info-top">
 
-          <div class="info-icon">🏢</div>
-
-          <h2>Gayatri Industries</h2>
+          <h2>🏢 Gayatri Industries</h2>
 
           <p>
             A simple and secure attendance system designed for employees.
@@ -568,44 +534,68 @@
 
           <div class="info-item">
 
-            <h4>👤 Employee Verification</h4>
+            <div class="info-item-icon">👤</div>
 
-            <p>
-              Your Employee ID is verified before attendance is recorded.
-            </p>
+            <div>
 
-          </div>
+              <h4>Employee Verification</h4>
 
+              <p>
+                Your Employee ID is verified before attendance is recorded.
+              </p>
 
-          <div class="info-item">
-
-            <h4>📍 Location Verification</h4>
-
-            <p>
-              You must be within the authorized company area.
-            </p>
+            </div>
 
           </div>
 
 
           <div class="info-item">
 
-            <h4>🕒 Daily Attendance</h4>
+            <div class="info-item-icon">📍</div>
 
-            <p>
-              Check-in and check-out timings are securely recorded.
-            </p>
+            <div>
+
+              <h4>Location Verification</h4>
+
+              <p>
+                You must be within the authorized company area.
+              </p>
+
+            </div>
 
           </div>
 
 
           <div class="info-item">
 
-            <h4>🔒 Secure Records</h4>
+            <div class="info-item-icon">🕒</div>
 
-            <p>
-              Attendance data is stored securely in the company system.
-            </p>
+            <div>
+
+              <h4>Daily Attendance</h4>
+
+              <p>
+                Check-in and check-out timings are securely recorded.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-item-icon">🔒</div>
+
+            <div>
+
+              <h4>Secure Records</h4>
+
+              <p>
+                Attendance data is stored securely in the company system.
+              </p>
+
+            </div>
 
           </div>
 
@@ -618,18 +608,27 @@
   </main>
 
 
+  <div class="footer">
+    © 2026 Gayatri Industries • Smart Attendance Management System
+  </div>
+
+
   <script>
 
     /* =========================
        SUPABASE CONFIG
-    ========================== */
+    ========================= */
 
     const SUPABASE_URL =
       "https://ysdpsndophokczdqysiw.supabase.co";
 
     const SUPABASE_ANON_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJleHAiOjIxMDI3MTc4OTN9.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
+
+    /* =========================
+       CREATE CLIENT
+    ========================= */
 
     const supabaseClient =
       window.supabase.createClient(
@@ -639,24 +638,19 @@
 
 
     /* =========================
-       COMPANY LOCATION
-    ========================== */
+       COMPANY GEOFENCE
+    ========================= */
 
     const COMPANY_LAT = 19.4159;
     const COMPANY_LNG = 72.8541;
 
-    /*
-      Allowed distance in meters.
-      GPS kabhi kabhi 20-50m error de sakta hai,
-      isliye 300m rakha hai.
-    */
-
-    const ALLOWED_RADIUS = 300;
+    /* 200 meters radius */
+    const ALLOWED_RADIUS = 200;
 
 
     /* =========================
        MESSAGE
-    ========================== */
+    ========================= */
 
     function showMessage(text, type = "info") {
 
@@ -673,7 +667,7 @@
 
     /* =========================
        STATUS
-    ========================== */
+    ========================= */
 
     function setStatus(text, color = "orange") {
 
@@ -701,7 +695,7 @@
 
     /* =========================
        TODAY DATE
-    ========================== */
+    ========================= */
 
     function getToday() {
 
@@ -724,7 +718,7 @@
 
     /* =========================
        DISTANCE CALCULATION
-    ========================== */
+    ========================= */
 
     function calculateDistance(
       lat1,
@@ -745,18 +739,13 @@
         toRad(lon2 - lon1);
 
       const a =
-
         Math.sin(dLat / 2) *
         Math.sin(dLat / 2)
-
         +
-
         Math.cos(toRad(lat1)) *
         Math.cos(toRad(lat2)) *
-
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
-
 
       const c =
         2 *
@@ -772,7 +761,7 @@
 
     /* =========================
        GET GPS LOCATION
-    ========================== */
+    ========================= */
 
     function getLocation() {
 
@@ -787,7 +776,6 @@
           );
 
           return;
-
         }
 
 
@@ -809,7 +797,6 @@
             });
 
           },
-
 
           error => {
 
@@ -856,13 +843,9 @@
           },
 
           {
-
             enableHighAccuracy: true,
-
             timeout: 20000,
-
             maximumAge: 0
-
           }
 
         );
@@ -873,17 +856,16 @@
 
 
     /* =========================
-       VERIFY EMPLOYEE
-    ========================== */
+       GET EMPLOYEE
+    ========================= */
 
     async function getEmployee() {
 
       const employeeId =
         document
-        .getElementById("employeeId")
-        .value
-        .trim();
-
+          .getElementById("employeeId")
+          .value
+          .trim();
 
       if (!employeeId) {
 
@@ -894,19 +876,18 @@
       }
 
 
-      const { data, error } =
+      const {
+        data,
+        error
+      } =
         await supabaseClient
-
-        .from("employees")
-
-        .select("*")
-
-        .eq(
-          "employee_id",
-          employeeId
-        )
-
-        .maybeSingle();
+          .from("employees")
+          .select("*")
+          .eq(
+            "employee_id",
+            employeeId
+          )
+          .maybeSingle();
 
 
       if (error) {
@@ -929,13 +910,13 @@
 
 
     /* =========================
-       VERIFY GEOFENCE
-    ========================== */
+       VERIFY LOCATION
+    ========================= */
 
     async function verifyLocation() {
 
       setStatus(
-        "Checking company location...",
+        "Getting your GPS location...",
         "orange"
       );
 
@@ -959,19 +940,17 @@
       document
         .getElementById("distanceText")
         .textContent =
-
         `Distance from company: ${Math.round(distance)} meters • GPS accuracy ±${Math.round(location.accuracy)}m`;
 
 
       /*
-        If GPS accuracy itself is very poor,
-        ask user to improve location.
+        GPS accuracy check
       */
 
       if (location.accuracy > 100) {
 
         throw new Error(
-          `GPS accuracy is too low (±${Math.round(location.accuracy)}m). Please move outdoors and turn on High Accuracy location.`
+          `GPS accuracy is too low (±${Math.round(location.accuracy)}m). Please move outdoors and try again.`
         );
 
       }
@@ -980,10 +959,16 @@
       if (distance > ALLOWED_RADIUS) {
 
         throw new Error(
-          `You are outside the company attendance area. Your distance is ${Math.round(distance)} meters. Allowed radius is ${ALLOWED_RADIUS} meters.`
+          `You are outside the company attendance area. You are approximately ${Math.round(distance)} meters away. Allowed radius is ${ALLOWED_RADIUS} meters.`
         );
 
       }
+
+
+      setStatus(
+        "Location verified successfully",
+        "green"
+      );
 
 
       return location;
@@ -993,28 +978,26 @@
 
     /* =========================
        LOAD TODAY RECORD
-    ========================== */
+    ========================= */
 
     async function loadTodayRecord(employee) {
 
-      const { data, error } =
+      const {
+        data,
+        error
+      } =
         await supabaseClient
-
-        .from("attendance")
-
-        .select("*")
-
-        .eq(
-          "employee_id",
-          employee.employee_id
-        )
-
-        .eq(
-          "attendance_date",
-          getToday()
-        )
-
-        .maybeSingle();
+          .from("attendance")
+          .select("*")
+          .eq(
+            "employee_id",
+            employee.employee_id
+          )
+          .eq(
+            "attendance_date",
+            getToday()
+          )
+          .maybeSingle();
 
 
       if (error) {
@@ -1088,19 +1071,15 @@
 
     /* =========================
        CHECK-IN
-    ========================== */
+    ========================= */
 
     async function checkIn() {
 
       const checkInBtn =
-        document.getElementById(
-          "checkInBtn"
-        );
+        document.getElementById("checkInBtn");
 
       const checkOutBtn =
-        document.getElementById(
-          "checkOutBtn"
-        );
+        document.getElementById("checkOutBtn");
 
 
       checkInBtn.disabled = true;
@@ -1135,28 +1114,26 @@
           "Checking Attendance...";
 
 
-        const { data: existingRecord, error } =
+        const {
+          data: existingRecord,
+          error: recordError
+        } =
           await supabaseClient
-
-          .from("attendance")
-
-          .select("*")
-
-          .eq(
-            "employee_id",
-            employee.employee_id
-          )
-
-          .eq(
-            "attendance_date",
-            getToday()
-          )
-
-          .maybeSingle();
+            .from("attendance")
+            .select("*")
+            .eq(
+              "employee_id",
+              employee.employee_id
+            )
+            .eq(
+              "attendance_date",
+              getToday()
+            )
+            .maybeSingle();
 
 
-        if (error) {
-          throw error;
+        if (recordError) {
+          throw recordError;
         }
 
 
@@ -1172,43 +1149,82 @@
         }
 
 
+        checkInBtn.textContent =
+          "Marking Check-In...";
+
+
         const now =
           new Date().toISOString();
 
 
-        const { error: insertError } =
-          await supabaseClient
+        /*
+          If a record already exists,
+          update it instead of creating duplicate
+        */
 
-          .from("attendance")
+        if (existingRecord) {
 
-          .insert([{
+          const {
+            error: updateError
+          } =
+            await supabaseClient
+              .from("attendance")
+              .update({
 
-            employee_id:
-              employee.employee_id,
+                check_in_time: now,
+                check_in_lat: location.lat,
+                check_in_lng: location.lng
 
-            employee_name:
-              employee.name,
-
-            department:
-              employee.department,
-
-            attendance_date:
-              getToday(),
-
-            check_in_time:
-              now,
-
-            check_in_lat:
-              location.lat,
-
-            check_in_lng:
-              location.lng
-
-          }]);
+              })
+              .eq(
+                "id",
+                existingRecord.id
+              );
 
 
-        if (insertError) {
-          throw insertError;
+          if (updateError) {
+            throw updateError;
+          }
+
+        }
+
+        else {
+
+          const {
+            error: insertError
+          } =
+            await supabaseClient
+              .from("attendance")
+              .insert([{
+
+                employee_id:
+                  employee.employee_id,
+
+                employee_name:
+                  employee.name,
+
+                department:
+                  employee.department,
+
+                attendance_date:
+                  getToday(),
+
+                check_in_time:
+                  now,
+
+                check_in_lat:
+                  location.lat,
+
+                check_in_lng:
+                  location.lng
+
+              }]);
+
+
+          if (insertError) {
+            throw insertError;
+          }
+
         }
 
 
@@ -1224,12 +1240,9 @@
         );
 
 
-        await loadTodayRecord(
-          employee
-        );
+        await loadTodayRecord(employee);
 
       }
-
 
       catch (error) {
 
@@ -1240,6 +1253,7 @@
           "red"
         );
 
+
         showMessage(
           error.message ||
           "Check-In failed.",
@@ -1247,7 +1261,6 @@
         );
 
       }
-
 
       finally {
 
@@ -1264,19 +1277,15 @@
 
     /* =========================
        CHECK-OUT
-    ========================== */
+    ========================= */
 
     async function checkOut() {
 
       const checkInBtn =
-        document.getElementById(
-          "checkInBtn"
-        );
+        document.getElementById("checkInBtn");
 
       const checkOutBtn =
-        document.getElementById(
-          "checkOutBtn"
-        );
+        document.getElementById("checkOutBtn");
 
 
       checkInBtn.disabled = true;
@@ -1287,6 +1296,12 @@
 
         checkOutBtn.textContent =
           "Verifying Employee...";
+
+
+        setStatus(
+          "Verifying Employee ID...",
+          "orange"
+        );
 
 
         const employee =
@@ -1301,28 +1316,30 @@
           await verifyLocation();
 
 
-        const { data: record, error } =
+        checkOutBtn.textContent =
+          "Checking Attendance...";
+
+
+        const {
+          data: record,
+          error: recordError
+        } =
           await supabaseClient
-
-          .from("attendance")
-
-          .select("*")
-
-          .eq(
-            "employee_id",
-            employee.employee_id
-          )
-
-          .eq(
-            "attendance_date",
-            getToday()
-          )
-
-          .maybeSingle();
+            .from("attendance")
+            .select("*")
+            .eq(
+              "employee_id",
+              employee.employee_id
+            )
+            .eq(
+              "attendance_date",
+              getToday()
+            )
+            .maybeSingle();
 
 
-        if (error) {
-          throw error;
+        if (recordError) {
+          throw recordError;
         }
 
 
@@ -1330,6 +1347,15 @@
 
           throw new Error(
             "Check-In not found. Please check in first."
+          );
+
+        }
+
+
+        if (!record.check_in_time) {
+
+          throw new Error(
+            "Please check in first."
           );
 
         }
@@ -1344,32 +1370,35 @@
         }
 
 
+        checkOutBtn.textContent =
+          "Marking Check-Out...";
+
+
         const now =
           new Date().toISOString();
 
 
-        const { error: updateError } =
+        const {
+          error: updateError
+        } =
           await supabaseClient
+            .from("attendance")
+            .update({
 
-          .from("attendance")
+              check_out_time:
+                now,
 
-          .update({
+              check_out_lat:
+                location.lat,
 
-            check_out_time:
-              now,
+              check_out_lng:
+                location.lng
 
-            check_out_lat:
-              location.lat,
-
-            check_out_lng:
-              location.lng
-
-          })
-
-          .eq(
-            "id",
-            record.id
-          );
+            })
+            .eq(
+              "id",
+              record.id
+            );
 
 
         if (updateError) {
@@ -1389,12 +1418,9 @@
         );
 
 
-        await loadTodayRecord(
-          employee
-        );
+        await loadTodayRecord(employee);
 
       }
-
 
       catch (error) {
 
@@ -1405,6 +1431,7 @@
           "red"
         );
 
+
         showMessage(
           error.message ||
           "Check-Out failed.",
@@ -1412,7 +1439,6 @@
         );
 
       }
-
 
       finally {
 
@@ -1428,8 +1454,8 @@
 
 
     /* =========================
-       EVENTS
-    ========================== */
+       BUTTON EVENTS
+    ========================= */
 
     document
       .getElementById("checkInBtn")
