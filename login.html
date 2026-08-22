@@ -81,7 +81,7 @@
       content: "";
       position: absolute;
       border-radius: 50%;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .welcome-side::before {
@@ -148,7 +148,7 @@
       max-width: 390px;
       font-size: 15px;
       line-height: 1.7;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
     }
 
     .feature-list {
@@ -164,14 +164,14 @@
       align-items: center;
       gap: 10px;
       font-size: 13px;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .check {
       width: 25px;
       height: 25px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.16);
+      background: rgba(255, 255, 255, 0.16);
       display: grid;
       place-items: center;
       font-size: 12px;
@@ -239,7 +239,7 @@
 
     .field input:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
     }
 
     .login-btn {
@@ -523,18 +523,33 @@
 
     /* =========================
        SUPABASE CONFIG
-    ========================= */
+    ========================== */
 
     const SUPABASE_URL =
       "https://ysdpsndophokczdqysiw.supabase.co";
 
     const SUPABASE_ANON_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWJhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+
+
+    /* =========================
+       CHECK SUPABASE LOADED
+    ========================== */
+
+    if (!window.supabase) {
+
+      console.error("Supabase library failed to load.");
+
+      alert(
+        "Supabase library failed to load. Check your internet connection."
+      );
+
+    }
 
 
     /* =========================
        CREATE SUPABASE CLIENT
-    ========================= */
+    ========================== */
 
     const supabaseClient =
       window.supabase.createClient(
@@ -554,7 +569,7 @@
 
     /* =========================
        SHOW MESSAGE
-    ========================= */
+    ========================== */
 
     function showMessage(text, type) {
 
@@ -571,7 +586,7 @@
 
     /* =========================
        LOGIN
-    ========================= */
+    ========================== */
 
     async function login() {
 
@@ -594,6 +609,21 @@
 
         showMessage(
           "Please enter both email and password.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        SUPABASE_ANON_KEY ===
+        "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"
+      ) {
+
+        showMessage(
+          "Supabase API key is not configured. Please add your Publishable/Anon key.",
           "error"
         );
 
@@ -627,10 +657,10 @@
         }
 
 
-        if (!data || !data.session) {
+        if (!data.session) {
 
           throw new Error(
-            "Login successful but session was not created."
+            "Login successful but no session was created."
           );
 
         }
@@ -648,7 +678,7 @@
             "./admin.html"
           );
 
-        }, 800);
+        }, 700);
 
       }
 
@@ -659,9 +689,25 @@
           error
         );
 
-        showMessage(
+
+        let errorMessage =
           error.message ||
-          "Login failed. Please try again.",
+          "Login failed. Please try again.";
+
+
+        if (
+          errorMessage.toLowerCase()
+            .includes("invalid api key")
+        ) {
+
+          errorMessage =
+            "Invalid Supabase API key. Please copy the correct Publishable or Anon key from your Supabase project settings.";
+
+        }
+
+
+        showMessage(
+          errorMessage,
           "error"
         );
 
@@ -677,7 +723,7 @@
 
     /* =========================
        BUTTON CLICK
-    ========================= */
+    ========================== */
 
     document
       .getElementById("loginBtn")
@@ -689,7 +735,7 @@
 
     /* =========================
        ENTER KEY
-    ========================= */
+    ========================== */
 
     document
       .getElementById("email")
@@ -700,6 +746,7 @@
           if (event.key === "Enter") {
 
             event.preventDefault();
+
             login();
 
           }
@@ -717,6 +764,7 @@
           if (event.key === "Enter") {
 
             event.preventDefault();
+
             login();
 
           }
@@ -727,9 +775,17 @@
 
     /* =========================
        CHECK EXISTING SESSION
-    ========================= */
+    ========================== */
 
     async function checkSession() {
+
+      if (
+        SUPABASE_ANON_KEY ===
+        "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"
+      ) {
+        return;
+      }
+
 
       try {
 
@@ -742,8 +798,19 @@
             .getSession();
 
 
+        if (error) {
+
+          console.error(
+            "SESSION ERROR:",
+            error
+          );
+
+          return;
+
+        }
+
+
         if (
-          !error &&
           data &&
           data.session
         ) {
@@ -759,7 +826,7 @@
       catch (error) {
 
         console.error(
-          "SESSION ERROR:",
+          "SESSION CHECK ERROR:",
           error
         );
 
@@ -770,7 +837,7 @@
 
     /* =========================
        START
-    ========================= */
+    ========================== */
 
     checkSession();
 
