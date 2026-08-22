@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
 
@@ -385,11 +384,9 @@
     }
 
     @media (max-width: 1000px) {
-
       .stats {
         grid-template-columns: repeat(2, 1fr);
       }
-
     }
 
     @media (max-width: 800px) {
@@ -471,7 +468,6 @@
 <div class="app">
 
   <!-- SIDEBAR -->
-
   <aside class="sidebar" id="sidebar">
 
     <div class="brand">
@@ -501,7 +497,6 @@
     <div class="sidebar-bottom">
 
       <div class="admin-info">
-
         <div class="admin-name" id="adminName">
           Administrator
         </div>
@@ -509,7 +504,6 @@
         <div class="admin-role">
           System Admin
         </div>
-
       </div>
 
       <button
@@ -524,9 +518,7 @@
 
   </aside>
 
-
   <!-- CONTENT -->
-
   <section class="content">
 
     <header class="topbar">
@@ -541,7 +533,6 @@
         </button>
 
         <div>
-
           <div class="page-label">
             Admin Dashboard
           </div>
@@ -549,7 +540,6 @@
           <div class="breadcrumb">
             Gayatri Industries / Attendance Management
           </div>
-
         </div>
 
       </div>
@@ -561,103 +551,52 @@
 
     </header>
 
-
     <main class="main">
 
       <div class="hero">
-
         <h1>Attendance Overview</h1>
 
         <p>
           Monitor employee attendance and workforce activity.
         </p>
-
       </div>
 
-
       <!-- STATS -->
-
       <div class="stats">
 
         <div class="stat-card">
-          <div class="stat-title">
-            TOTAL EMPLOYEES
-          </div>
-
-          <div
-            class="stat-number"
-            id="totalEmployees"
-          >
-            0
-          </div>
+          <div class="stat-title">TOTAL EMPLOYEES</div>
+          <div class="stat-number" id="totalEmployees">0</div>
         </div>
 
-
         <div class="stat-card">
-
-          <div class="stat-title">
-            PRESENT TODAY
-          </div>
-
-          <div
-            class="stat-number"
-            id="presentToday"
-          >
-            0
-          </div>
-
+          <div class="stat-title">PRESENT TODAY</div>
+          <div class="stat-number" id="presentToday">0</div>
         </div>
 
-
         <div class="stat-card">
-
-          <div class="stat-title">
-            ABSENT TODAY
-          </div>
-
-          <div
-            class="stat-number"
-            id="absentToday"
-          >
-            0
-          </div>
-
+          <div class="stat-title">ABSENT TODAY</div>
+          <div class="stat-number" id="absentToday">0</div>
         </div>
 
-
         <div class="stat-card">
-
-          <div class="stat-title">
-            PENDING CHECK-OUT
-          </div>
-
-          <div
-            class="stat-number"
-            id="pendingCheckout"
-          >
-            0
-          </div>
-
+          <div class="stat-title">PENDING CHECK-OUT</div>
+          <div class="stat-number" id="pendingCheckout">0</div>
         </div>
 
       </div>
 
-
       <!-- CONTROLS -->
-
       <div class="controls-card">
 
         <div class="search-wrapper">
-
           <input
             type="text"
             class="search-box"
             id="searchInput"
             placeholder="Search employee name, ID or department..."
           >
-
         </div>
-
 
         <input
           type="date"
@@ -665,14 +604,12 @@
           id="dateFilter"
         >
 
-
         <button
           class="btn refresh-btn"
           onclick="loadDashboard()"
         >
           Refresh
         </button>
-
 
         <button
           class="btn download-btn"
@@ -683,21 +620,17 @@
 
       </div>
 
-
       <!-- TABLE -->
-
       <div class="table-card">
 
         <div class="table-header">
 
           <div>
-
             <h3>Employee Attendance</h3>
 
             <p>
               Daily attendance records and status
             </p>
-
           </div>
 
           <span
@@ -709,13 +642,11 @@
 
         </div>
 
-
         <div class="table-wrapper">
 
           <table>
 
             <thead>
-
               <tr>
                 <th>EMPLOYEE</th>
                 <th>EMPLOYEE ID</th>
@@ -724,17 +655,12 @@
                 <th>CHECK-OUT</th>
                 <th>STATUS</th>
               </tr>
-
             </thead>
-
 
             <tbody id="attendanceBody">
 
               <tr>
-                <td
-                  colspan="6"
-                  class="loading"
-                >
+                <td colspan="6" class="loading">
                   Checking login session...
                 </td>
               </tr>
@@ -753,7 +679,6 @@
 
 </div>
 
-
 <script>
 
 /* =========================================
@@ -761,27 +686,29 @@
 ========================================= */
 
 const SUPABASE_URL =
-"https://ysdpsndophokczdqysiw.supabase.co";
-
+  "https://ysdpsndophokczdqysiw.supabase.co";
 
 const SUPABASE_ANON_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva2N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
+/* =========================================
+   CREATE SUPABASE CLIENT
+========================================= */
 
 const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY,
-  {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: false,
-      storage: window.localStorage,
-      storageKey: "gayatri-admin-auth"
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: false,
+        storage: window.localStorage,
+        storageKey: "gayatri-admin-auth"
+      }
     }
-  }
-);
+  );
 
 
 /* =========================================
@@ -789,7 +716,6 @@ window.supabase.createClient(
 ========================================= */
 
 let dashboardData = [];
-
 let currentUser = null;
 
 
@@ -798,11 +724,10 @@ let currentUser = null;
 ========================================= */
 
 function toggleSidebar() {
-
   document
     .getElementById("sidebar")
-    .classList.toggle("show");
-
+    .classList
+    .toggle("show");
 }
 
 
@@ -825,7 +750,6 @@ function getToday() {
     .padStart(2, "0");
 
   return `${year}-${month}-${day}`;
-
 }
 
 
@@ -852,7 +776,6 @@ function formatTime(time) {
       minute: "2-digit"
     }
   );
-
 }
 
 
@@ -866,10 +789,8 @@ async function loadDashboard() {
     document.getElementById("dateFilter").value
     || getToday();
 
-
   const body =
     document.getElementById("attendanceBody");
-
 
   body.innerHTML = `
     <tr>
@@ -879,20 +800,18 @@ async function loadDashboard() {
     </tr>
   `;
 
-
   try {
 
     const {
       data: employees,
       error: employeeError
     } =
-    await supabaseClient
-      .from("employees")
-      .select("*")
-      .order("name", {
-        ascending: true
-      });
-
+      await supabaseClient
+        .from("employees")
+        .select("*")
+        .order("name", {
+          ascending: true
+        });
 
     if (employeeError) {
       throw employeeError;
@@ -903,14 +822,13 @@ async function loadDashboard() {
       data: attendance,
       error: attendanceError
     } =
-    await supabaseClient
-      .from("attendance")
-      .select("*")
-      .eq(
-        "attendance_date",
-        selectedDate
-      );
-
+      await supabaseClient
+        .from("attendance")
+        .select("*")
+        .eq(
+          "attendance_date",
+          selectedDate
+        );
 
     if (attendanceError) {
       throw attendanceError;
@@ -918,7 +836,6 @@ async function loadDashboard() {
 
 
     const attendanceMap = {};
-
 
     (attendance || []).forEach(record => {
 
@@ -937,9 +854,7 @@ async function loadDashboard() {
             employee.employee_id
           ] || null;
 
-
         return {
-
           employee_name:
             employee.name || "",
 
@@ -957,7 +872,6 @@ async function loadDashboard() {
 
           check_out_time:
             record?.check_out_time || null
-
         };
 
       });
@@ -966,44 +880,38 @@ async function loadDashboard() {
     const total =
       dashboardData.length;
 
-
     const present =
       dashboardData.filter(
         employee =>
-        employee.check_in_time
+          employee.check_in_time
       ).length;
-
 
     const absent =
       total - present;
 
-
     const pending =
       dashboardData.filter(
         employee =>
-        employee.check_in_time &&
-        !employee.check_out_time
+          employee.check_in_time &&
+          !employee.check_out_time
       ).length;
 
 
-    document.getElementById(
-      "totalEmployees"
-    ).textContent = total;
+    document
+      .getElementById("totalEmployees")
+      .textContent = total;
 
+    document
+      .getElementById("presentToday")
+      .textContent = present;
 
-    document.getElementById(
-      "presentToday"
-    ).textContent = present;
+    document
+      .getElementById("absentToday")
+      .textContent = absent;
 
-
-    document.getElementById(
-      "absentToday"
-    ).textContent = absent;
-
-
-    document.getElementById(
-      "pendingCheckout"
-    ).textContent = pending;
+    document
+      .getElementById("pendingCheckout")
+      .textContent = pending;
 
 
     renderTable();
@@ -1016,7 +924,6 @@ async function loadDashboard() {
       "Dashboard loading error:",
       error
     );
-
 
     body.innerHTML = `
       <tr>
@@ -1044,12 +951,9 @@ function renderTable() {
       "attendanceBody"
     );
 
-
   const search =
     document
-      .getElementById(
-        "searchInput"
-      )
+      .getElementById("searchInput")
       .value
       .toLowerCase()
       .trim();
@@ -1063,18 +967,15 @@ function renderTable() {
           employee.employee_name || ""
         ).toLowerCase();
 
-
       const id =
         String(
           employee.employee_id || ""
         ).toLowerCase();
 
-
       const department =
         String(
           employee.department || ""
         ).toLowerCase();
-
 
       return (
         name.includes(search) ||
@@ -1085,10 +986,10 @@ function renderTable() {
     });
 
 
-  document.getElementById(
-    "recordCount"
-  ).textContent =
-    `${filtered.length} Employees`;
+  document
+    .getElementById("recordCount")
+    .textContent =
+      `${filtered.length} Employees`;
 
 
   if (filtered.length === 0) {
@@ -1110,7 +1011,6 @@ function renderTable() {
     filtered.map(employee => {
 
       let status = "";
-
 
       if (!employee.check_in_time) {
 
@@ -1144,7 +1044,6 @@ function renderTable() {
 
 
       return `
-
         <tr>
 
           <td>
@@ -1159,37 +1058,29 @@ function renderTable() {
 
           </td>
 
-
           <td>
-
             <span class="id-badge">
               ${employee.employee_id || "—"}
             </span>
-
           </td>
-
 
           <td>
             ${employee.department || "—"}
           </td>
 
-
           <td>
             ${formatTime(employee.check_in_time)}
           </td>
 
-
           <td>
             ${formatTime(employee.check_out_time)}
           </td>
-
 
           <td>
             ${status}
           </td>
 
         </tr>
-
       `;
 
     })
@@ -1216,9 +1107,8 @@ function downloadAttendance() {
 
 
   const selectedDate =
-    document.getElementById(
-      "dateFilter"
-    ).value || getToday();
+    document.getElementById("dateFilter").value
+    || getToday();
 
 
   let csv =
@@ -1229,23 +1119,16 @@ function downloadAttendance() {
 
     let status;
 
-
     if (!employee.check_in_time) {
-
       status = "Absent";
-
     }
 
     else if (employee.check_out_time) {
-
       status = "Completed";
-
     }
 
     else {
-
       status = "Checked In";
-
     }
 
 
@@ -1270,21 +1153,16 @@ function downloadAttendance() {
       }
     );
 
-
   const url =
     URL.createObjectURL(blob);
-
 
   const link =
     document.createElement("a");
 
-
   link.href = url;
-
 
   link.download =
     `Gayatri_Industries_Attendance_${selectedDate}.csv`;
-
 
   document.body.appendChild(link);
 
@@ -1332,7 +1210,6 @@ async function logout() {
       "Are you sure you want to logout?"
     );
 
-
   if (!confirmLogout) {
     return;
   }
@@ -1343,10 +1220,9 @@ async function logout() {
     const {
       error
     } =
-    await supabaseClient
-      .auth
-      .signOut();
-
+      await supabaseClient
+        .auth
+        .signOut();
 
     if (error) {
       throw error;
@@ -1371,7 +1247,6 @@ async function logout() {
       error
     );
 
-
     alert(
       "Logout failed: " +
       error.message
@@ -1386,40 +1261,36 @@ async function logout() {
    AUTH STATE LISTENER
 ========================================= */
 
-supabaseClient
-  .auth
-  .onAuthStateChange(
-    (event, session) => {
+supabaseClient.auth.onAuthStateChange(
+  (event, session) => {
 
-      console.log(
-        "AUTH EVENT:",
-        event
+    console.log(
+      "AUTH EVENT:",
+      event
+    );
+
+
+    if (event === "SIGNED_OUT") {
+
+      window.location.replace(
+        "./login.html"
       );
 
-
-      if (
-        event === "SIGNED_OUT"
-      ) {
-
-        window.location.replace(
-          "./login.html"
-        );
-
-      }
+    }
 
 
-      if (
-        event === "SIGNED_IN" ||
-        event === "TOKEN_REFRESHED"
-      ) {
+    if (
+      event === "SIGNED_IN" ||
+      event === "TOKEN_REFRESHED"
+    ) {
 
-        currentUser =
-          session?.user || null;
-
-      }
+      currentUser =
+        session?.user || null;
 
     }
-  );
+
+  }
+);
 
 
 /* =========================================
@@ -1428,25 +1299,25 @@ supabaseClient
 
 async function initializeDashboard() {
 
-  document.getElementById(
-    "dateFilter"
-  ).value =
-    getToday();
+  document
+    .getElementById("dateFilter")
+    .value =
+      getToday();
 
 
-  document.getElementById(
-    "currentDate"
-  ).textContent =
-    new Date()
-      .toLocaleDateString(
-        "en-IN",
-        {
-          weekday: "short",
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-        }
-      );
+  document
+    .getElementById("currentDate")
+    .textContent =
+      new Date()
+        .toLocaleDateString(
+          "en-IN",
+          {
+            weekday: "short",
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+          }
+        );
 
 
   try {
@@ -1457,9 +1328,9 @@ async function initializeDashboard() {
       },
       error
     } =
-    await supabaseClient
-      .auth
-      .getUser();
+      await supabaseClient
+        .auth
+        .getUser();
 
 
     if (
@@ -1470,7 +1341,6 @@ async function initializeDashboard() {
       console.warn(
         "No authenticated user found."
       );
-
 
       window.location.replace(
         "./login.html"
@@ -1484,11 +1354,11 @@ async function initializeDashboard() {
     currentUser = user;
 
 
-    document.getElementById(
-      "adminName"
-    ).textContent =
-      user.email ||
-      "Administrator";
+    document
+      .getElementById("adminName")
+      .textContent =
+        user.email ||
+        "Administrator";
 
 
     await loadDashboard();
@@ -1502,18 +1372,17 @@ async function initializeDashboard() {
       error
     );
 
-
-    document.getElementById(
-      "attendanceBody"
-    ).innerHTML = `
-      <tr>
-        <td colspan="6" class="loading">
-          Authentication error.
-          <br><br>
-          ${error.message}
-        </td>
-      </tr>
-    `;
+    document
+      .getElementById("attendanceBody")
+      .innerHTML = `
+        <tr>
+          <td colspan="6" class="loading">
+            Authentication error.
+            <br><br>
+            ${error.message}
+          </td>
+        </tr>
+      `;
 
   }
 
