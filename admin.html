@@ -30,25 +30,17 @@
       --orange-dark: #c95612;
 
       --text: #1f2937;
-      --secondary: #4b5563;
-      --muted: #8b95a1;
+      --secondary: #6b7280;
+      --muted: #9ca3af;
 
       --border: #e5e7eb;
       --bg: #f4f6f8;
+      --soft: #f8fafc;
       --white: #ffffff;
-      --soft: #f9fafb;
 
-      --green: #16a34a;
-      --green-soft: #ecfdf5;
-
-      --red: #dc2626;
-      --red-soft: #fef2f2;
-
-      --yellow-soft: #fff7ed;
+      --success: #16a34a;
+      --danger: #dc2626;
     }
-
-
-    /* ================= BODY ================= */
 
     body {
       font-family: Inter, "Segoe UI", Arial, sans-serif;
@@ -62,18 +54,17 @@
       display: flex;
     }
 
-
     /* ================= SIDEBAR ================= */
 
     .sidebar {
-      width: 250px;
+      width: 255px;
       min-height: 100vh;
 
-      background: #ffffff;
+      background: var(--white);
 
       border-right: 1px solid var(--border);
 
-      padding: 20px 15px;
+      padding: 22px 16px;
 
       display: flex;
       flex-direction: column;
@@ -84,92 +75,49 @@
       top: 0;
       bottom: 0;
 
-      z-index: 200;
+      z-index: 100;
     }
 
-
-    /* ================= BRAND ================= */
-
     .brand {
-      padding: 10px;
+      padding: 12px;
 
       border-bottom: 1px solid var(--border);
 
-      margin-bottom: 20px;
-    }
-
-    .brand-top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-
-      border-radius: 10px;
-
-      background: #ffffff;
-
-      border: 1px solid var(--border);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: var(--primary);
-
-      font-size: 14px;
-      font-weight: 700;
+      margin-bottom: 24px;
     }
 
     .brand h2 {
-      font-size: 17px;
-      font-weight: 600;
-
+      font-size: 18px;
       color: var(--text);
-    }
-
-    .brand h2 span {
-      color: var(--orange);
+      margin-bottom: 6px;
+      font-weight: 700;
     }
 
     .brand p {
       font-size: 9px;
-
       color: var(--muted);
-
-      margin-top: 4px;
-
-      letter-spacing: .6px;
+      letter-spacing: 1px;
     }
-
 
     /* ================= MENU ================= */
 
     .menu-title {
       font-size: 10px;
-
       color: var(--muted);
-
-      margin: 15px 10px 8px;
-
-      font-weight: 600;
-
-      letter-spacing: .6px;
+      margin: 15px 10px 9px;
+      font-weight: 700;
+      letter-spacing: .7px;
     }
 
     .nav-item {
       width: 100%;
 
       border: none;
-
       background: transparent;
 
       padding: 12px 14px;
 
-      margin-bottom: 5px;
+      margin-bottom: 6px;
 
       border-radius: 9px;
 
@@ -179,27 +127,27 @@
 
       font-size: 13px;
 
-      color: var(--secondary);
+      color: #4b5563;
 
       transition: .2s;
     }
 
     .nav-item:hover {
-      background: #f3f4f6;
-      color: var(--text);
+      background: #eff6ff;
+      color: var(--primary);
     }
 
     .nav-item.active {
-      background: #eff6ff;
-      color: var(--primary);
+      background: var(--primary);
+      color: white;
 
-      font-weight: 600;
+      box-shadow:
+        0 5px 15px rgba(37, 99, 235, .18);
     }
 
     .nav-icon {
       margin-right: 10px;
     }
-
 
     /* ================= SIDEBAR BOTTOM ================= */
 
@@ -208,64 +156,51 @@
 
       border-top: 1px solid var(--border);
 
-      padding-top: 15px;
+      padding-top: 16px;
     }
 
     .admin-info {
       padding: 10px;
-
       margin-bottom: 5px;
     }
 
     .admin-name {
       font-size: 13px;
-
-      font-weight: 600;
-
+      font-weight: 700;
       color: var(--text);
-
-      white-space: nowrap;
-
-      overflow: hidden;
-
-      text-overflow: ellipsis;
     }
 
     .admin-role {
       font-size: 10px;
-
       color: var(--muted);
-
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     .logout-side {
-      color: var(--red);
+      color: var(--danger);
     }
 
     .logout-side:hover {
-      background: var(--red-soft);
-      color: var(--red);
+      background: #fef2f2;
+      color: var(--danger);
     }
-
 
     /* ================= CONTENT ================= */
 
     .content {
-      width: calc(100% - 250px);
+      width: calc(100% - 255px);
 
-      margin-left: 250px;
+      margin-left: 255px;
 
       min-height: 100vh;
     }
 
-
     /* ================= TOPBAR ================= */
 
     .topbar {
-      height: 75px;
+      height: 70px;
 
-      background: #ffffff;
+      background: var(--white);
 
       border-bottom: 1px solid var(--border);
 
@@ -281,28 +216,18 @@
 
       top: 0;
 
-      z-index: 100;
-    }
-
-    .topbar-left {
-      display: flex;
-
-      align-items: center;
+      z-index: 50;
     }
 
     .page-label {
       font-size: 18px;
-
-      font-weight: 600;
-
+      font-weight: 700;
       color: var(--text);
     }
 
     .breadcrumb {
       font-size: 10px;
-
       color: var(--muted);
-
       margin-top: 4px;
     }
 
@@ -311,54 +236,33 @@
 
       color: var(--secondary);
 
-      padding: 9px 13px;
-
       background: var(--soft);
 
       border: 1px solid var(--border);
 
+      padding: 8px 12px;
+
       border-radius: 8px;
     }
-
 
     /* ================= MAIN ================= */
 
     .main {
-      padding: 40px 30px 60px;
-
-      max-width: 1500px;
+      padding: 35px;
     }
 
     .hero {
       margin-bottom: 28px;
     }
 
-    .hero-label {
-      color: var(--orange);
-
-      font-size: 11px;
-
-      font-weight: 600;
-
-      text-transform: uppercase;
-
-      letter-spacing: 1px;
+    .hero h1 {
+      font-size: 28px;
 
       margin-bottom: 7px;
-    }
-
-    .hero h1 {
-      font-size: 30px;
-
-      font-weight: 600;
 
       color: var(--text);
 
-      margin-bottom: 7px;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
+      letter-spacing: -.5px;
     }
 
     .hero p {
@@ -367,13 +271,13 @@
       font-size: 13px;
     }
 
-
     /* ================= STATS ================= */
 
     .stats {
       display: grid;
 
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns:
+        repeat(4, 1fr);
 
       gap: 16px;
 
@@ -381,16 +285,17 @@
     }
 
     .stat-card {
-      background: #ffffff;
+      background: var(--white);
 
       border: 1px solid var(--border);
 
-      border-radius: 15px;
+      border-radius: 14px;
 
-      padding: 20px;
+      padding: 21px;
 
-      box-shadow:
-        0 5px 20px rgba(0, 0, 0, .04);
+      position: relative;
+
+      overflow: hidden;
 
       transition: .2s;
     }
@@ -399,43 +304,33 @@
       transform: translateY(-2px);
 
       box-shadow:
-        0 8px 25px rgba(37, 99, 235, .08);
+        0 8px 25px rgba(31, 41, 55, .06);
     }
 
-    .stat-icon {
-      width: 40px;
-      height: 40px;
+    .stat-card::before {
+      content: "";
 
-      border-radius: 10px;
+      position: absolute;
 
-      display: flex;
+      left: 0;
+      top: 0;
 
-      align-items: center;
+      width: 4px;
+      height: 100%;
 
-      justify-content: center;
-
-      background: #eff6ff;
-
-      color: var(--primary);
-
-      font-size: 18px;
-
-      margin-bottom: 15px;
+      background: var(--primary);
     }
 
-    .stat-card:nth-child(2) .stat-icon {
-      background: #ecfdf5;
-      color: var(--green);
+    .stat-card:nth-child(2)::before {
+      background: var(--success);
     }
 
-    .stat-card:nth-child(3) .stat-icon {
-      background: #fef2f2;
-      color: var(--red);
+    .stat-card:nth-child(3)::before {
+      background: var(--danger);
     }
 
-    .stat-card:nth-child(4) .stat-icon {
-      background: #fff7ed;
-      color: var(--orange);
+    .stat-card:nth-child(4)::before {
+      background: var(--orange);
     }
 
     .stat-title {
@@ -443,32 +338,31 @@
 
       color: var(--muted);
 
-      margin-bottom: 7px;
+      margin-bottom: 10px;
 
-      letter-spacing: .5px;
+      font-weight: 700;
 
-      font-weight: 600;
+      letter-spacing: .6px;
     }
 
     .stat-number {
       font-size: 28px;
 
-      font-weight: 600;
+      font-weight: 700;
 
       color: var(--text);
     }
 
-
     /* ================= CONTROLS ================= */
 
     .controls-card {
-      background: #ffffff;
+      background: var(--white);
 
       border: 1px solid var(--border);
 
-      border-radius: 13px;
+      border-radius: 14px;
 
-      padding: 12px;
+      padding: 14px;
 
       margin-bottom: 20px;
 
@@ -477,25 +371,11 @@
       gap: 10px;
 
       box-shadow:
-        0 3px 15px rgba(0, 0, 0, .03);
+        0 4px 15px rgba(0, 0, 0, .025);
     }
 
     .search-wrapper {
       flex: 1;
-
-      position: relative;
-    }
-
-    .search-icon {
-      position: absolute;
-
-      left: 13px;
-
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      font-size: 14px;
     }
 
     .search-box,
@@ -506,21 +386,19 @@
 
       border: 1px solid #d1d5db;
 
-      border-radius: 8px;
+      border-radius: 9px;
 
-      padding: 0 12px;
+      padding: 0 13px;
 
       font-size: 12px;
 
       outline: none;
 
-      background: #ffffff;
+      background: var(--white);
 
       color: var(--text);
-    }
 
-    .search-box {
-      padding-left: 38px;
+      transition: .2s;
     }
 
     .search-box:focus,
@@ -535,17 +413,16 @@
       width: 155px;
     }
 
-
     /* ================= BUTTONS ================= */
 
     .btn {
       height: 42px;
 
-      padding: 0 16px;
+      padding: 0 17px;
 
       border: none;
 
-      border-radius: 8px;
+      border-radius: 9px;
 
       cursor: pointer;
 
@@ -556,46 +433,47 @@
       transition: .2s;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
     .refresh-btn {
-      background: #eff6ff;
+      background: var(--primary);
 
-      color: var(--primary);
-
-      border: 1px solid #dbeafe;
+      color: white;
     }
 
     .refresh-btn:hover {
-      background: #dbeafe;
+      background: var(--primary-dark);
+
+      transform: translateY(-1px);
     }
 
     .download-btn {
       background: var(--orange);
 
-      color: #ffffff;
+      color: white;
     }
 
     .download-btn:hover {
       background: var(--orange-dark);
+
+      transform: translateY(-1px);
     }
 
+    .btn:hover {
+      opacity: .95;
+    }
 
     /* ================= TABLE ================= */
 
     .table-card {
-      background: #ffffff;
+      background: var(--white);
 
       border: 1px solid var(--border);
 
-      border-radius: 16px;
+      border-radius: 14px;
 
       overflow: hidden;
 
       box-shadow:
-        0 5px 20px rgba(0, 0, 0, .04);
+        0 5px 20px rgba(0, 0, 0, .025);
     }
 
     .table-header {
@@ -613,21 +491,19 @@
     .table-header h3 {
       font-size: 15px;
 
-      font-weight: 600;
-
       color: var(--text);
     }
 
     .table-header p {
-      font-size: 11px;
+      font-size: 10px;
 
       color: var(--muted);
 
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
     .record-count {
-      font-size: 10px;
+      font-size: 11px;
 
       color: var(--primary);
 
@@ -647,7 +523,7 @@
     table {
       width: 100%;
 
-      min-width: 850px;
+      min-width: 800px;
 
       border-collapse: collapse;
     }
@@ -657,7 +533,7 @@
 
       padding: 14px 20px;
 
-      background: #f9fafb;
+      background: #f8fafc;
 
       font-size: 10px;
 
@@ -665,9 +541,9 @@
 
       border-bottom: 1px solid var(--border);
 
-      letter-spacing: .5px;
+      font-weight: 700;
 
-      font-weight: 600;
+      letter-spacing: .5px;
     }
 
     td {
@@ -675,7 +551,7 @@
 
       font-size: 12px;
 
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f2f5;
 
       color: var(--text);
     }
@@ -685,8 +561,10 @@
     }
 
     tbody tr:hover {
-      background: #f9fafb;
+      background: #f8fafc;
     }
+
+    /* ================= EMPLOYEE ================= */
 
     .employee-name {
       font-weight: 600;
@@ -703,9 +581,9 @@
     }
 
     .id-badge {
-      background: #eff6ff;
+      background: #f3f6fb;
 
-      color: var(--primary);
+      color: #374151;
 
       padding: 6px 9px;
 
@@ -713,14 +591,13 @@
 
       font-size: 10px;
 
-      font-weight: 600;
+      border: 1px solid #e5eaf0;
     }
-
 
     /* ================= STATUS ================= */
 
     .status-badge {
-      padding: 7px 10px;
+      padding: 6px 10px;
 
       border-radius: 20px;
 
@@ -732,29 +609,28 @@
     }
 
     .completed {
-      background: var(--green-soft);
+      background: #ecfdf5;
 
-      color: #047857;
+      color: #15803d;
 
-      border: 1px solid #a7f3d0;
+      border: 1px solid #bbf7d0;
     }
 
     .checked-in {
       background: #fff7ed;
 
-      color: var(--orange-dark);
+      color: #c2410c;
 
       border: 1px solid #fed7aa;
     }
 
     .absent {
-      background: var(--red-soft);
+      background: #fef2f2;
 
       color: #b91c1c;
 
       border: 1px solid #fecaca;
     }
-
 
     /* ================= LOADING ================= */
 
@@ -767,7 +643,6 @@
 
       font-size: 12px;
     }
-
 
     /* ================= MOBILE MENU ================= */
 
@@ -782,24 +657,23 @@
 
       padding: 8px 10px;
 
-      border-radius: 7px;
+      border-radius: 8px;
 
       margin-right: 12px;
 
       cursor: pointer;
     }
 
-
     /* ================= RESPONSIVE ================= */
 
     @media (max-width: 1100px) {
 
       .stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
     }
-
 
     @media (max-width: 800px) {
 
@@ -808,7 +682,7 @@
 
         transition: .3s;
 
-        z-index: 300;
+        z-index: 100;
       }
 
       .sidebar.show {
@@ -830,11 +704,10 @@
       }
 
       .main {
-        padding: 25px 20px 50px;
+        padding: 22px;
       }
 
     }
-
 
     @media (max-width: 600px) {
 
@@ -849,14 +722,7 @@
       }
 
       .stat-number {
-        font-size: 23px;
-      }
-
-      .stat-icon {
-        width: 36px;
-        height: 36px;
-
-        font-size: 16px;
+        font-size: 22px;
       }
 
       .controls-card {
@@ -876,73 +742,27 @@
       }
 
       .hero h1 {
-        font-size: 26px;
-      }
-
-      .brand p {
-        display: none;
-      }
-
-    }
-
-
-    @media (max-width: 420px) {
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .topbar {
-        height: 65px;
-      }
-
-      .page-label {
-        font-size: 15px;
-      }
-
-      .main {
-        padding: 22px 15px 45px;
+        font-size: 24px;
       }
 
     }
 
   </style>
-
 </head>
-
 
 <body>
 
-
 <div class="app">
 
+  <!-- SIDEBAR -->
 
-  <!-- ================= SIDEBAR ================= -->
-
-  <aside
-    class="sidebar"
-    id="sidebar"
-  >
-
+  <aside class="sidebar" id="sidebar">
 
     <div class="brand">
 
-      <div class="brand-top">
-
-        <div class="brand-logo">
-          GI
-        </div>
-
-        <div>
-
-          <h2>
-            Gayatri
-            <span>Industries</span>
-          </h2>
-
-        </div>
-
-      </div>
+      <h2>
+        Gayatri Industries
+      </h2>
 
       <p>
         ATTENDANCE MANAGEMENT SYSTEM
@@ -950,17 +770,13 @@
 
     </div>
 
-
     <div class="menu">
 
       <div class="menu-title">
         MAIN MENU
       </div>
 
-
-      <button
-        class="nav-item active"
-      >
+      <button class="nav-item active">
 
         <span class="nav-icon">
           📊
@@ -969,7 +785,6 @@
         Dashboard
 
       </button>
-
 
       <button
         class="nav-item"
@@ -986,9 +801,7 @@
 
     </div>
 
-
     <div class="sidebar-bottom">
-
 
       <div class="admin-info">
 
@@ -1005,7 +818,6 @@
 
       </div>
 
-
       <button
         class="nav-item logout-side"
         onclick="logout()"
@@ -1019,24 +831,20 @@
 
       </button>
 
-
     </div>
 
   </aside>
 
 
-  <!-- ================= CONTENT ================= -->
+  <!-- CONTENT -->
 
   <section class="content">
 
-
-    <!-- TOPBAR -->
-
     <header class="topbar">
 
-
-      <div class="topbar-left">
-
+      <div
+        style="display:flex;align-items:center;"
+      >
 
         <button
           class="mobile-menu"
@@ -1044,7 +852,6 @@
         >
           ☰
         </button>
-
 
         <div>
 
@@ -1058,35 +865,22 @@
 
         </div>
 
-
       </div>
-
 
       <div
         class="date-display"
         id="currentDate"
       ></div>
 
-
     </header>
 
 
-    <!-- MAIN -->
-
     <main class="main">
-
-
-      <!-- HERO -->
 
       <div class="hero">
 
-        <div class="hero-label">
-          Admin Portal
-        </div>
-
         <h1>
-          Attendance
-          <span>Overview</span>
+          Attendance Overview
         </h1>
 
         <p>
@@ -1096,16 +890,11 @@
       </div>
 
 
-      <!-- ================= STATS ================= -->
+      <!-- STATS -->
 
       <div class="stats">
 
-
         <div class="stat-card">
-
-          <div class="stat-icon">
-            👥
-          </div>
 
           <div class="stat-title">
             TOTAL EMPLOYEES
@@ -1123,10 +912,6 @@
 
         <div class="stat-card">
 
-          <div class="stat-icon">
-            ✓
-          </div>
-
           <div class="stat-title">
             PRESENT TODAY
           </div>
@@ -1142,10 +927,6 @@
 
 
         <div class="stat-card">
-
-          <div class="stat-icon">
-            ✕
-          </div>
 
           <div class="stat-title">
             ABSENT TODAY
@@ -1163,10 +944,6 @@
 
         <div class="stat-card">
 
-          <div class="stat-icon">
-            🕒
-          </div>
-
           <div class="stat-title">
             PENDING CHECK-OUT
           </div>
@@ -1180,20 +957,14 @@
 
         </div>
 
-
       </div>
 
 
-      <!-- ================= CONTROLS ================= -->
+      <!-- CONTROLS -->
 
       <div class="controls-card">
 
-
         <div class="search-wrapper">
-
-          <span class="search-icon">
-            🔍
-          </span>
 
           <input
             type="text"
@@ -1204,40 +975,34 @@
 
         </div>
 
-
         <input
           type="date"
           class="date-input"
           id="dateFilter"
         >
 
-
         <button
           class="btn refresh-btn"
           onclick="loadDashboard()"
         >
-          ↻ Refresh
+          Refresh
         </button>
-
 
         <button
           class="btn download-btn"
           onclick="downloadAttendance()"
         >
-          ↓ Export CSV
+          Export CSV
         </button>
-
 
       </div>
 
 
-      <!-- ================= TABLE ================= -->
+      <!-- TABLE -->
 
       <div class="table-card">
 
-
         <div class="table-header">
-
 
           <div>
 
@@ -1251,7 +1016,6 @@
 
           </div>
 
-
           <span
             class="record-count"
             id="recordCount"
@@ -1259,15 +1023,11 @@
             0 Employees
           </span>
 
-
         </div>
-
 
         <div class="table-wrapper">
 
-
           <table>
-
 
             <thead>
 
@@ -1301,10 +1061,7 @@
 
             </thead>
 
-
-            <tbody
-              id="attendanceBody"
-            >
+            <tbody id="attendanceBody">
 
               <tr>
 
@@ -1319,27 +1076,20 @@
 
             </tbody>
 
-
           </table>
-
 
         </div>
 
-
       </div>
-
 
     </main>
 
-
   </section>
-
 
 </div>
 
 
 <script>
-
 
 /* =========================================
    SUPABASE CONFIG
@@ -1349,7 +1099,7 @@ const SUPABASE_URL =
   "https://ysdpsndophokczdqysiw.supabase.co";
 
 const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva3pkcXNpc3ciLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc4NzE0MTg5MywiZXhwIjoyMTAyNzE3ODkzfQ.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzZHBzbmRvcGhva3N6ZHF5c2l3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDE4OTMsImV4cCI6MjEwMjcxNzg5M30.OOUs696nMFc8TByXE39U2PBELo_gUurq6npcPsoG8Ww";
 
 
 /* =========================================
@@ -1377,7 +1127,6 @@ const supabaseClient =
 ========================================= */
 
 let dashboardData = [];
-
 let currentUser = null;
 
 
@@ -1407,14 +1156,12 @@ function getToday() {
     now.getFullYear();
 
   const month =
-    String(
-      now.getMonth() + 1
-    ).padStart(2, "0");
+    String(now.getMonth() + 1)
+      .padStart(2, "0");
 
   const day =
-    String(
-      now.getDate()
-    ).padStart(2, "0");
+    String(now.getDate())
+      .padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 
@@ -1434,14 +1181,8 @@ function formatTime(time) {
   const date =
     new Date(time);
 
-  if (
-    isNaN(
-      date.getTime()
-    )
-  ) {
-
+  if (isNaN(date.getTime())) {
     return "—";
-
   }
 
   return date.toLocaleTimeString(
@@ -1462,17 +1203,13 @@ function formatTime(time) {
 async function loadDashboard() {
 
   const selectedDate =
-    document
-      .getElementById("dateFilter")
-      .value
+    document.getElementById("dateFilter").value
     || getToday();
-
 
   const body =
     document.getElementById(
       "attendanceBody"
     );
-
 
   body.innerHTML = `
     <tr>
@@ -1485,9 +1222,7 @@ async function loadDashboard() {
     </tr>
   `;
 
-
   try {
-
 
     const {
       data: employees,
@@ -1496,18 +1231,12 @@ async function loadDashboard() {
       await supabaseClient
         .from("employees")
         .select("*")
-        .order(
-          "name",
-          {
-            ascending: true
-          }
-        );
-
+        .order("name", {
+          ascending: true
+        });
 
     if (employeeError) {
-
       throw employeeError;
-
     }
 
 
@@ -1523,16 +1252,12 @@ async function loadDashboard() {
           selectedDate
         );
 
-
     if (attendanceError) {
-
       throw attendanceError;
-
     }
 
 
     const attendanceMap = {};
-
 
     (attendance || [])
       .forEach(record => {
@@ -1553,7 +1278,6 @@ async function loadDashboard() {
               employee.employee_id
             ] || null;
 
-
           return {
 
             employee_name:
@@ -1569,12 +1293,10 @@ async function loadDashboard() {
               selectedDate,
 
             check_in_time:
-              record?.check_in_time ||
-              null,
+              record?.check_in_time || null,
 
             check_out_time:
-              record?.check_out_time ||
-              null
+              record?.check_out_time || null
 
           };
 
@@ -1584,17 +1306,14 @@ async function loadDashboard() {
     const total =
       dashboardData.length;
 
-
     const present =
       dashboardData.filter(
         employee =>
           employee.check_in_time
       ).length;
 
-
     const absent =
       total - present;
-
 
     const pending =
       dashboardData.filter(
@@ -1605,39 +1324,27 @@ async function loadDashboard() {
 
 
     document
-      .getElementById(
-        "totalEmployees"
-      )
+      .getElementById("totalEmployees")
       .textContent =
-      total;
-
+        total;
 
     document
-      .getElementById(
-        "presentToday"
-      )
+      .getElementById("presentToday")
       .textContent =
-      present;
-
+        present;
 
     document
-      .getElementById(
-        "absentToday"
-      )
+      .getElementById("absentToday")
       .textContent =
-      absent;
-
+        absent;
 
     document
-      .getElementById(
-        "pendingCheckout"
-      )
+      .getElementById("pendingCheckout")
       .textContent =
-      pending;
+        pending;
 
 
     renderTable();
-
 
   }
 
@@ -1647,7 +1354,6 @@ async function loadDashboard() {
       "Dashboard loading error:",
       error
     );
-
 
     body.innerHTML = `
       <tr>
@@ -1678,12 +1384,9 @@ function renderTable() {
       "attendanceBody"
     );
 
-
   const search =
     document
-      .getElementById(
-        "searchInput"
-      )
+      .getElementById("searchInput")
       .value
       .toLowerCase()
       .trim();
@@ -1698,18 +1401,15 @@ function renderTable() {
             employee.employee_name || ""
           ).toLowerCase();
 
-
         const id =
           String(
             employee.employee_id || ""
           ).toLowerCase();
 
-
         const department =
           String(
             employee.department || ""
           ).toLowerCase();
-
 
         return (
           name.includes(search) ||
@@ -1722,16 +1422,12 @@ function renderTable() {
 
 
   document
-    .getElementById(
-      "recordCount"
-    )
+    .getElementById("recordCount")
     .textContent =
-    `${filtered.length} Employees`;
+      `${filtered.length} Employees`;
 
 
-  if (
-    filtered.length === 0
-  ) {
+  if (filtered.length === 0) {
 
     body.innerHTML = `
       <tr>
@@ -1751,105 +1447,111 @@ function renderTable() {
 
   body.innerHTML =
     filtered
-      .map(
-        employee => {
+      .map(employee => {
+
+        let status = "";
 
 
-          let status = "";
+        if (!employee.check_in_time) {
 
-
-          if (
-            !employee.check_in_time
-          ) {
-
-            status = `
-              <span class="status-badge absent">
-                Absent
-              </span>
-            `;
-
-          }
-
-
-          else if (
-            employee.check_out_time
-          ) {
-
-            status = `
-              <span class="status-badge completed">
-                Completed
-              </span>
-            `;
-
-          }
-
-
-          else {
-
-            status = `
-              <span class="status-badge checked-in">
-                Checked In
-              </span>
-            `;
-
-          }
-
-
-          return `
-
-            <tr>
-
-              <td>
-
-                <div class="employee-name">
-                  ${employee.employee_name || "Unnamed Employee"}
-                </div>
-
-                <div class="employee-sub">
-                  Gayatri Industries
-                </div>
-
-              </td>
-
-
-              <td>
-
-                <span class="id-badge">
-                  ${employee.employee_id || "—"}
-                </span>
-
-              </td>
-
-
-              <td>
-                ${employee.department || "—"}
-              </td>
-
-
-              <td>
-                ${formatTime(
-                  employee.check_in_time
-                )}
-              </td>
-
-
-              <td>
-                ${formatTime(
-                  employee.check_out_time
-                )}
-              </td>
-
-
-              <td>
-                ${status}
-              </td>
-
-            </tr>
-
+          status = `
+            <span
+              class="status-badge absent"
+            >
+              Absent
+            </span>
           `;
 
         }
-      )
+
+        else if (
+          employee.check_out_time
+        ) {
+
+          status = `
+            <span
+              class="status-badge completed"
+            >
+              Completed
+            </span>
+          `;
+
+        }
+
+        else {
+
+          status = `
+            <span
+              class="status-badge checked-in"
+            >
+              Checked In
+            </span>
+          `;
+
+        }
+
+
+        return `
+          <tr>
+
+            <td>
+
+              <div class="employee-name">
+                ${
+                  employee.employee_name ||
+                  "Unnamed Employee"
+                }
+              </div>
+
+              <div class="employee-sub">
+                Gayatri Industries
+              </div>
+
+            </td>
+
+
+            <td>
+
+              <span class="id-badge">
+                ${
+                  employee.employee_id ||
+                  "—"
+                }
+              </span>
+
+            </td>
+
+
+            <td>
+              ${
+                employee.department ||
+                "—"
+              }
+            </td>
+
+
+            <td>
+              ${formatTime(
+                employee.check_in_time
+              )}
+            </td>
+
+
+            <td>
+              ${formatTime(
+                employee.check_out_time
+              )}
+            </td>
+
+
+            <td>
+              ${status}
+            </td>
+
+          </tr>
+        `;
+
+      })
       .join("");
 
 }
@@ -1875,11 +1577,9 @@ function downloadAttendance() {
 
 
   const selectedDate =
-    document
-      .getElementById(
-        "dateFilter"
-      )
-      .value
+    document.getElementById(
+      "dateFilter"
+    ).value
     || getToday();
 
 
@@ -1889,7 +1589,6 @@ function downloadAttendance() {
 
   dashboardData.forEach(
     employee => {
-
 
       let status;
 
@@ -1932,10 +1631,7 @@ function downloadAttendance() {
 
   const blob =
     new Blob(
-      [
-        "\uFEFF" +
-        csv
-      ],
+      ["\uFEFF" + csv],
       {
         type:
           "text/csv;charset=utf-8;"
@@ -1944,41 +1640,23 @@ function downloadAttendance() {
 
 
   const url =
-    URL.createObjectURL(
-      blob
-    );
-
+    URL.createObjectURL(blob);
 
   const link =
-    document.createElement(
-      "a"
-    );
+    document.createElement("a");
 
-
-  link.href =
-    url;
-
+  link.href = url;
 
   link.download =
     `Gayatri_Industries_Attendance_${selectedDate}.csv`;
 
-
-  document
-    .body
-    .appendChild(link);
-
+  document.body.appendChild(link);
 
   link.click();
 
+  document.body.removeChild(link);
 
-  document
-    .body
-    .removeChild(link);
-
-
-  URL.revokeObjectURL(
-    url
-  );
+  URL.revokeObjectURL(url);
 
 }
 
@@ -1988,9 +1666,7 @@ function downloadAttendance() {
 ========================================= */
 
 document
-  .getElementById(
-    "searchInput"
-  )
+  .getElementById("searchInput")
   .addEventListener(
     "input",
     renderTable
@@ -2002,9 +1678,7 @@ document
 ========================================= */
 
 document
-  .getElementById(
-    "dateFilter"
-  )
+  .getElementById("dateFilter")
   .addEventListener(
     "change",
     loadDashboard
@@ -2022,11 +1696,8 @@ async function logout() {
       "Are you sure you want to logout?"
     );
 
-
   if (!confirmLogout) {
-
     return;
-
   }
 
 
@@ -2039,11 +1710,8 @@ async function logout() {
         .auth
         .signOut();
 
-
     if (error) {
-
       throw error;
-
     }
 
 
@@ -2058,14 +1726,12 @@ async function logout() {
 
   }
 
-
   catch (error) {
 
     console.error(
       "Logout error:",
       error
     );
-
 
     alert(
       "Logout failed: " +
@@ -2107,8 +1773,7 @@ supabaseClient.auth.onAuthStateChange(
     ) {
 
       currentUser =
-        session?.user ||
-        null;
+        session?.user || null;
 
     }
 
@@ -2122,34 +1787,28 @@ supabaseClient.auth.onAuthStateChange(
 
 async function initializeDashboard() {
 
-
   document
-    .getElementById(
-      "dateFilter"
-    )
+    .getElementById("dateFilter")
     .value =
-    getToday();
+      getToday();
 
 
   document
-    .getElementById(
-      "currentDate"
-    )
+    .getElementById("currentDate")
     .textContent =
-    new Date()
-      .toLocaleDateString(
-        "en-IN",
-        {
-          weekday: "short",
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-        }
-      );
+      new Date()
+        .toLocaleDateString(
+          "en-IN",
+          {
+            weekday: "short",
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+          }
+        );
 
 
   try {
-
 
     const {
       data: {
@@ -2171,11 +1830,9 @@ async function initializeDashboard() {
         "No authenticated user found."
       );
 
-
       window.location.replace(
         "./login.html"
       );
-
 
       return;
 
@@ -2187,19 +1844,15 @@ async function initializeDashboard() {
 
 
     document
-      .getElementById(
-        "adminName"
-      )
+      .getElementById("adminName")
       .textContent =
-      user.email ||
-      "Administrator";
+        user.email ||
+        "Administrator";
 
 
     await loadDashboard();
 
-
   }
-
 
   catch (error) {
 
@@ -2208,30 +1861,21 @@ async function initializeDashboard() {
       error
     );
 
-
     document
       .getElementById(
         "attendanceBody"
       )
       .innerHTML = `
-
         <tr>
-
           <td
             colspan="6"
             class="loading"
           >
-
             Authentication error.
-
             <br><br>
-
             ${error.message}
-
           </td>
-
         </tr>
-
       `;
 
   }
